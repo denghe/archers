@@ -38,11 +38,15 @@ namespace Test1 {
 				XYi p = mp * c1_CellPixelSize;
 				// 弓位
 				if (archerPoss.Find(p) != -1) {
-					archers.Emplace().Emplace()->Init(this, mp);
+					for (size_t i = 0; i < 5; i++) {
+						archers.Emplace().Emplace()->Init(this, mp);
+					}
 				}
 				// 进怪位
 				else if (enterPoss.Find(p) != -1) {
-					monsters.Emplace().Emplace()->Init(this, mp);
+					for (size_t i = 0; i < 5; i++) {
+						monsters.Emplace().Emplace()->Init(this, mp);
+					}
 				}
 			}
 		}
