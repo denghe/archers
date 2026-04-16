@@ -9,12 +9,6 @@ namespace Test1 {
 		owner = xx::WeakFromThis(owner_);
 		//target = xx::WeakFromThis(tar_);
 
-		pos = owner_->pos;
-		y = pos.y;
-		radius = 16.f;
-		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.w;
-		radians = {};
-
 		indexAtContainer = scene->archerArrows.len - 1;
 		assert(scene->archerArrows[indexAtContainer].pointer == this);
 
@@ -27,6 +21,12 @@ namespace Test1 {
 
 		damage = owner->damage;
 		leftPierceCount = cPierceCount;
+
+		pos = owner_->pos;
+		y = pos.y;
+		radius = 32.f;
+		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.w;
+		radians = std::atan2(d.y, d.x);
 	}
 
 	void ArcherArrow::Update() {
