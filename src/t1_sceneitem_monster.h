@@ -15,6 +15,8 @@ namespace Test1 {
 
 		// 爆炸( 创建爆炸体并自杀 )
 		void Explode();
+
+		void Hurt(int32_t damage_);
 	};
 
 }

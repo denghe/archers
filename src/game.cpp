@@ -99,7 +99,7 @@ namespace Global {
 	}
 
 	void Game::Stat() {
-		fpsVal = xx::ToString(drawFPS);	// for uiFPS
+		fpsVal = xx::ToString("FPS = ", drawFPS);	// for uiFPS
 		if (isShowInfo) {
 			xx::CoutN("FPS = ", drawFPS, " DrawCall = ", drawCall, " NumVerts = ", drawVerts);
 		}

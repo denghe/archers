@@ -81,4 +81,11 @@ namespace Test1 {
 		scene->exploders.Emplace().Emplace()->Init(this);
 		Dispose();
 	}
+
+	void Monster::Hurt(int32_t damage_) {
+		properties->hp -= damage_;
+		if (properties->hp <= 0) {
+			Dispose();
+		}
+	}
 }

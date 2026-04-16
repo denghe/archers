@@ -37,6 +37,11 @@ namespace Test1 {
 		pos += inc;
 		y = pos.y;
 
+		frameNumber += cFrameNumberInc;
+		if (frameNumber >= gg.pics.firearrow_.size()) {
+			frameNumber = 0.f;
+		}
+
 		// todo: 因为是锁定怪物的模式，所以只有当 arrow 落地后才判定，并且判定只是看指针是否未失效
 
 		bool needDispose{};
@@ -51,8 +56,9 @@ namespace Test1 {
 			auto rr = r * r;
 			// 距离小于圆心和: 相交
 			if (mag2 < rr) {
-				// 伤害目标	// todo
-				((Monster*)o.value)->Dispose();
+				// 伤害目标
+				((Monster*)o.value)->Hurt(damage);	// todo: 继续丰富 damage 细节
+				scene->effectTexts.Add(pos, { 0,-1 }, xx::RGBA8_Red, 2 * scene->cam.scale, -damage, true);
 				needDispose = true;
 				return true;
 			}
@@ -83,7 +89,7 @@ namespace Test1 {
 	}
 
 	void ArcherArrow::Draw() {
-		gg.Quad().DrawFrame(gg.pics.c32_bullet, scene->cam.ToGLPos(pos)
+		gg.Quad().DrawFrame(gg.pics.firearrow_[frameNumber], scene->cam.ToGLPos(pos)
 			, scale * scene->cam.scale, radians);
 	}
 
