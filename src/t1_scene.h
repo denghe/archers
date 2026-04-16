@@ -16,14 +16,11 @@ namespace Test1 {
 		// 空间索引 / 物理相关
 		xx::Grid2dCircle<SceneItem*, GridCache> gridWalls;
 		xx::Grid2dCircle<SceneItem*, GridCache> gridLavas;
-		xx::Grid2dCircle<SceneItem*, GridCache> gridOutlets;
 		xx::Shared<PhysSystem> physMonsters;
 		// 所有墙壁
 		xx::List<xx::Shared<Wall>> walls;
 		// 所有岩浆
 		xx::List<xx::Shared<Lava>> lavas;
-		// 所有出口
-		xx::List<xx::Shared<Outlet>> outlets;
 		// 所有怪
 		xx::List<xx::Shared<Monster>> monsters;
 		// 所有弓箭手
@@ -35,10 +32,12 @@ namespace Test1 {
 		// 所有伤害文字
 		xx::EffectTextManager effectTexts;
 
-		// 所有弓箭手可放置的坐标
+		// 所有弓手放置坐标
 		xx::List<XYi> archerPoss;
-		// 所有门(怪物出生点)的坐标
-		xx::List<XYi> doorPoss;
+		// 所有进怪点坐标
+		xx::List<XYi> enterPoss;
+		// 所有怪出口坐标
+		xx::List<XYi> outletPoss;
 
 		// for draw floorMaskTex, light ...
 		xx::FrameBuffer frameBuffer;

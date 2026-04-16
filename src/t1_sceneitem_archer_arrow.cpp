@@ -3,29 +3,26 @@
 
 namespace Test1 {
 
-	void ArcherArrow::Init(xx::Weak<Archer> owner_) {
+	void ArcherArrow::Init(Archer* owner_, Monster* tar_) {
 		typeId = cTypeId;
 		scene = owner_->scene;
-		owner = std::move(owner_);
+		owner = xx::WeakFromThis(owner_);
+		target = xx::WeakFromThis(tar_);
 
-		// todo: 找最近怪作为目标
-
-		auto pp = owner->pos;
-		auto cosSin = XY{};// todo
-		auto pr = owner->radius;
-		// 起始坐标：从玩家中心点出发，前进玩家半径的距离
-		pos = pp + cosSin * pr;
+		pos = owner_->pos;
 		y = pos.y;
 		radius = 16.f;
-		scale = radius * 2.f / gg.pics.c32_bullet.uvRect.w;
+		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.w;
 		radians = {};
 
 		indexAtContainer = scene->archerArrows.len - 1;
 		assert(scene->archerArrows[indexAtContainer].pointer == this);
 
-		// todo: 模拟抛物线
 		// 算出每帧的步进
-		inc = cosSin * cSpeed * gg.cDelta;
+		auto d = tar_->pos - owner_->pos;
+		auto mag2 = d.x * d.x + d.y * d.y;
+		auto _1mag = 1.f / std::sqrtf(mag2);
+		inc = d * _1mag * cSpeed * gg.cDelta;
 		deathTime = scene->time + cMaxLifetime;
 
 		damage = owner->damage;
@@ -41,6 +38,48 @@ namespace Test1 {
 		y = pos.y;
 
 		// todo: 因为是锁定怪物的模式，所以只有当 arrow 落地后才判定，并且判定只是看指针是否未失效
+
+		bool needDispose{};
+
+		// 查找子弹位置的 bucket
+		auto cri = scene->physMonsters->PosToCRIndex(pos);
+		scene->physMonsters->ForeachBy9Break(cri.y, cri.x, [&](PhysSystem::Node& o, float range)->bool {
+			// 开始碰撞判定
+			auto d = o.cache.pos - pos;
+			auto mag2 = d.x * d.x + d.y * d.y;
+			auto r = o.cache.radius + radius;
+			auto rr = r * r;
+			// 距离小于圆心和: 相交
+			if (mag2 < rr) {
+				// 伤害目标	// todo
+				((Monster*)o.value)->Dispose();
+				needDispose = true;
+				return true;
+			}
+			return false;
+		});
+		if (needDispose) {
+			// todo: 弄点子弹命中怪消失的粒子？
+			Dispose();
+			return;
+		}
+
+		// 查找子弹位置的建筑. 如果有相交，子弹自杀
+		using G = decltype(scene->gridWalls);
+		auto& g = scene->gridWalls;
+		cri = g.PosToCRIndex(pos);
+		needDispose = g.ForeachBy9Break(cri.y, cri.x, [&](G::Node& node, float range)->bool {
+			auto d = pos - node.cache.pos;
+			auto mag2 = d.x * d.x + d.y * d.y;
+			auto r = node.cache.radius + radius;
+			auto rr = r * r;
+			return mag2 < rr;
+		});
+		if (needDispose) {
+			// todo: 弄点子弹命中建筑消失的粒子？
+			Dispose();
+			return;
+		}
 	}
 
 	void ArcherArrow::Draw() {

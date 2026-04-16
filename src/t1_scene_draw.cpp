@@ -83,7 +83,7 @@ namespace Test1 {
 		gg.picsTex->SetParm(GL_NEAREST);
 
 		// 设置顶部信息文字显示内容
-		gg.uiText->SetText(xx::ToString("monsters.len = ", monsters.len, "  archerArrows.len = ", archerArrows.len));
+		gg.uiText->SetText(xx::ToString("archers.len = ", archers.len, "  archerArrows.len = ", archerArrows.len, " monsters.len = ", monsters.len));
 		gg.DrawNode(ui);
 	}
 

@@ -9,8 +9,6 @@ namespace Test1 {
 		void Init(Scene* scene_, XY pos_);
 		void Draw() override;
 		void Dispose() override;
-
-		virtual void Visit(SceneItem* tar_);
 	};
 
 }

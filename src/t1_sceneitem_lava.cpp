@@ -45,9 +45,4 @@ namespace Test1 {
 		container.SwapRemoveAt(i);
 	}
 
-	void Lava::Visit(SceneItem* tar_) {
-		// todo: 特效？折返？
-		tar_->Dispose();
-	}
-
 }

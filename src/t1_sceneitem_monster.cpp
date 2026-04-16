@@ -25,6 +25,12 @@ namespace Test1 {
 
 	void Monster::Update() {
 		// todo: 向前移动
+
+		// 判断是否掉入岩浆. 是：自杀
+		if (scene->TryGetCrossLava(pos, radius)) {
+			// todo: 特效？
+			Dispose();
+		}
 	}
 
 	void Monster::Draw() {

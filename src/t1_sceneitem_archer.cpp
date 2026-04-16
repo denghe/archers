@@ -20,8 +20,37 @@ namespace Test1 {
 
 	void Archer::Update() {
 		if (scene->time >= nextShootTime) {
-			nextShootTime = scene->time + cShootInterval;
-			scene->archerArrows.Emplace().Emplace()->Init(xx::WeakFromThis(this));
+			// 尝试攻击射程内最近怪
+			auto& g = *scene->physMonsters;
+			auto cri = g.PosToCRIndex(pos);
+			auto searchRange = scene->mapPixelSize.x * 0.5f;
+			// 从找到第一个开始判断后续 range 值如果变化就不是同一批了. 在同一批中选最近
+			float minMag2{}, currentBatchRange{};
+			Monster* tar{};
+			g.ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
+				auto d = pos - node.cache.pos;
+				auto mag2 = d.x * d.x + d.y * d.y;
+				// todo: 精确射程检测?
+				if (!tar) {
+					minMag2 = mag2;
+					currentBatchRange = range;
+					tar = (Monster*)node.value;
+				} else {
+					if (currentBatchRange != range) return true;
+					if (mag2 < minMag2) {
+						minMag2 = mag2;
+						tar = (Monster*)node.value;
+					}
+				}
+				return false;
+			});
+			if (tar) {
+				nextShootTime = scene->time + cShootInterval;
+				scene->archerArrows.Emplace().Emplace()->Init(this, tar);
+			}
+			else {
+				nextShootTime = scene->time + cSearchInterval;
+			}
 		}
 	}
 
@@ -32,7 +61,7 @@ namespace Test1 {
 
 	void Archer::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (2048.f / 64.f) * scene->cam.scale);
+			, (256.f / 64.f) * scene->cam.scale);
 	}
 
 	void Archer::Dispose() {

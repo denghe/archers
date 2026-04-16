@@ -5,6 +5,7 @@ namespace Test1 {
 
 	struct Archer : SceneItem {
 		static constexpr int32_t cTypeId{ 7 };
+		static constexpr float cSearchInterval{ 0.2f };
 		static constexpr float cShootInterval{ 1.f };
 		int32_t damage{};
 		int32_t _1{};

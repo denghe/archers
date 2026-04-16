@@ -93,11 +93,10 @@ namespace Test1 {
 		sortContainer.Resize<true>((int32_t)mapPixelSize.y);
 		gridWalls.Init(cCellPixelSize, mapHeight, mapWidth);
 		gridLavas.Init(cCellPixelSize, mapHeight, mapWidth);
-		gridOutlets.Init(cCellPixelSize, mapHeight, mapWidth);
 		physMonsters.Emplace()->Init(this);
 		floorMaskTex.Emplace()->Make(mapPixelSize);
 
-		// 逐行扫内容并生成
+		// 逐行扫内容并 各种预生成 / 填充
 		for (int32_t y = 0; y < mapHeight; y++) {
 			for (x = 0; x < mapWidth; x++) {
 				auto i = y * mapWidth + x;
@@ -115,18 +114,12 @@ namespace Test1 {
 					if (y > 0 && mapData[i - mapWidth] == U'墙') {
 						walls.Emplace().Emplace()->Init(this, p + XY{ cCellPixelHalfSize, 0 });
 					}
-
+					// 岩浆插值
 					if (x > 0 && mapData[i - 1] == U'浆') {
 						lavas.Emplace().Emplace()->Init(this, p + XY{ 0, cCellPixelHalfSize });
 					}
 					if (y > 0 && mapData[i - mapWidth] == U'浆') {
 						lavas.Emplace().Emplace()->Init(this, p + XY{ cCellPixelHalfSize, 0 });
-					}
-					if (x > 0 && mapData[i - 1] == U'出') {
-						outlets.Emplace().Emplace()->Init(this, p + XY{ 0, cCellPixelHalfSize });
-					}
-					if (y > 0 && mapData[i - mapWidth] == U'出') {
-						outlets.Emplace().Emplace()->Init(this, p + XY{ cCellPixelHalfSize, 0 });
 					}
 
 					break;
@@ -147,20 +140,14 @@ namespace Test1 {
 					break;
 				}
 				case U'出':
-				{
-					// 计算出左上角坐标
-					auto p = XY{ x, y } * cCellPixelSize;
-					// 创建墙壁主体
-					outlets.Emplace().Emplace()->Init(this, p + cCellPixelHalfSize);
-					// 判断左边和上边如果也有，在中缝补一个进增加密度
-					if (x > 0 && mapData[i - 1] == U'出' || mapData[i - 1] == U'墙') {
-						outlets.Emplace().Emplace()->Init(this, p + XY{ 0, cCellPixelHalfSize });
-					}
-					if (y > 0 && mapData[i - mapWidth] == U'出' || mapData[i - mapWidth] == U'墙') {
-						outlets.Emplace().Emplace()->Init(this, p + XY{ cCellPixelHalfSize, 0 });
-					}
+					outletPoss.Emplace(x, y);
 					break;
-				}
+				case U'弓':
+					archerPoss.Emplace(x, y);
+					break;
+				case U'进':
+					enterPoss.Emplace(x, y);
+					break;
 				}
 			}
 		}

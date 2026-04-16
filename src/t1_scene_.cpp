@@ -31,7 +31,7 @@ namespace Test1 {
 		g.ForeachBy9Break(cri.y, cri.x, [&](G::Node& node, float range)->bool {
 			auto d = pos_ - node.cache.pos;
 			auto mag2 = d.x * d.x + d.y * d.y;
-			auto r = /*node.cache.radius + */radius_;
+			auto r = node.cache.radius * 0.5f + radius_;
 			auto rr = r * r;
 			// 如果 pos_ 足够接近圆心
 			if (mag2 < rr) {
