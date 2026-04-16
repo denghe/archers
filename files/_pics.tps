@@ -809,7 +809,7 @@
             <key type="filename">pics/firearrow_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.796875,0.46875</point_f>
+                <point_f>0.85,0.5</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>

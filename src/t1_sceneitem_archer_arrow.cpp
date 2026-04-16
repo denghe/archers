@@ -25,7 +25,7 @@ namespace Test1 {
 		pos = owner_->pos;
 		y = pos.y;
 		radius = 16.f;
-		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h * 1.3f;	// 1.3f: space fix
+		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h;
 		radians = std::atan2(d.y, d.x);
 	}
 
