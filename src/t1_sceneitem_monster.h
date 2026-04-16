@@ -10,6 +10,7 @@ namespace Test1 {
 		void Update() override;
 		void Draw() override;
 		void DrawHPBar() override;
+		void DrawLight() override;
 		void Dispose() override;
 
 		// 爆炸( 创建爆炸体并自杀 )

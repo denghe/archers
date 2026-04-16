@@ -43,6 +43,11 @@ namespace Test1 {
 		gg.HPBar().Alloc()->Fill(scene->cam.ToGLPos(p), siz, xx::RGBA8_Black, xx::RGBA8_White, xx::RGBA8_Red, percent);
 	}
 
+	void Monster::DrawLight() {
+		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
+			, (256.f / 64.f) * scene->cam.scale);
+	}
+
 	void Monster::Dispose() {
 		assert(scene);
 		assert(!disposing);

@@ -28,6 +28,17 @@ namespace Test1 {
 		UpdateItems(exploders);
 		physMonsters->Step();
 		effectTexts.Update(time);
+
+		auto mp = cam.ToLogicPos(gg.mousePos);
+		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁
+		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
+			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
+			// 鼠标左键：生成怪
+			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
+				monsters.Emplace().Emplace()->Init(this, mp);
+			}
+		}
+
 	}
 
 }
