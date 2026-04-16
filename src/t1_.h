@@ -1,0 +1,11 @@
+﻿#pragma once
+#include "t1_.h"
+#include "t1_phys.h"
+#include "t1_scene.h"
+#include "t1_sceneitem_monster.h"
+#include "t1_sceneitem_lava.h"
+#include "t1_sceneitem_outlet.h"
+#include "t1_sceneitem_archer.h"
+#include "t1_sceneitem_archer_arrow.h"
+#include "t1_sceneitem_wall.h"
+#include "t1_sceneitem_exploder.h"
