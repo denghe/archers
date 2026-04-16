@@ -24,8 +24,8 @@ namespace Test1 {
 
 		pos = owner_->pos;
 		y = pos.y;
-		radius = 32.f;
-		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.w;
+		radius = 16.f;
+		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h * 1.3f;	// 1.3f: space fix
 		radians = std::atan2(d.y, d.x);
 	}
 
@@ -105,7 +105,7 @@ namespace Test1 {
 			needDispose = g.ForeachBy9Break(cri.y, cri.x, [&](G::Node& node, float range)->bool {
 				auto d = pos - node.cache.pos;
 				auto mag2 = d.x * d.x + d.y * d.y;
-				auto r = node.cache.radius + radius;
+				auto r = node.cache.radius;	// +radius; 忽略子弹半径，让碰撞显得更贴墙
 				auto rr = r * r;
 				return mag2 < rr;
 			});
