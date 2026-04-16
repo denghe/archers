@@ -2,4 +2,4 @@
 放到同级目录
 
 主要内容：
-模拟 以撒 里面的物理效果
+模拟 Zero Stress King: Idle Defense 里面的 弓箭射怪
