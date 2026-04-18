@@ -89,7 +89,7 @@ namespace Test1 {
 
 		mapSize = { mapWidth, mapHeight };
 		mapPixelSize = mapSize * cCellPixelSize;
-		cam.Init(gg.scale, gg.designSize.y / cRoom1x1PixelSize.y, mapPixelSize / 2);
+		cam.Init(gg.scale, 1.f, mapPixelSize / 2);
 		sortContainer.Resize<true>((int32_t)mapPixelSize.y);
 		gridWalls.Init(cCellPixelSize, mapHeight, mapWidth);
 		gridLavas.Init(cCellPixelSize, mapHeight, mapWidth);

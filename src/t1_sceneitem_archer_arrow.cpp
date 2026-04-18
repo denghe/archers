@@ -127,7 +127,7 @@ namespace Test1 {
 
 	void ArcherArrow::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (256.f / 64.f) * scene->cam.scale);
+			, (256.f / 64.f) * scene->cam.scale, 0, 0.5f);
 	}
 
 	void ArcherArrow::Dispose() {

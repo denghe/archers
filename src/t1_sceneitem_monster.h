@@ -6,6 +6,10 @@ namespace Test1 {
 	struct Monster : SceneItem {
 		static constexpr int32_t cTypeId{ 4 };
 
+		// 怪物动画帧数组下标范围
+		xx::FromTo<float> frameIndexRange;
+		float frameIndex{};
+
 		void Init(Scene* scene_, XY pos_);
 		void Update() override;
 		void Draw() override;

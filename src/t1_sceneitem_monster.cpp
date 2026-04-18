@@ -8,9 +8,15 @@ namespace Test1 {
 		scene = scene_;
 		pos = pos_;
 		y = pos.y;
-		radius = cBucketRadius;
-		scale = radius * 2.f / gg.pics.c128_bucket.uvRect.w;
+		radius = cMonsterRadius;
+		static constexpr auto n = gg.pics.creature_1_.size() / 4;
+		auto i = gg.rnd.Next<int32_t>(n);
+		frameIndexRange.from = i * 4;
+		frameIndexRange.to = i * 4 + 4;
+		frameIndex = frameIndexRange.from;
+		scale = radius * 2.f / gg.pics.creature_1_[frameIndexRange.from].uvRect.w;
 		radians = {};
+		flipX = true;
 
 		indexAtContainer = scene->monsters.len - 1;
 		assert(scene->monsters[indexAtContainer].pointer == this);
@@ -24,18 +30,27 @@ namespace Test1 {
 	}
 
 	void Monster::Update() {
-		// todo: 向前移动
-
 		// 判断是否掉入岩浆. 是：自杀
 		if (scene->TryGetCrossLava(pos, radius)) {
 			// todo: 特效？
 			Dispose();
 		}
+
+		// todo: 向前移动
+
+		// 切帧动画
+		frameIndex += (15.f / gg.cFps);
+		if (frameIndex >= frameIndexRange.to) {
+			frameIndex = frameIndexRange.from;
+		}
+
 	}
 
 	void Monster::Draw() {
-		gg.Quad().DrawFrame(gg.pics.c128_bucket, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+		XY s{ scale * scene->cam.scale };
+		if (flipX) s.x = -s.x;
+		gg.Quad().DrawFrame(gg.pics.creature_1_[frameIndex], scene->cam.ToGLPos(pos)
+			, s, radians);
 	}
 
 	void Monster::DrawHPBar() {
@@ -51,7 +66,7 @@ namespace Test1 {
 
 	void Monster::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (256.f / 64.f) * scene->cam.scale);
+			, (256.f / 64.f) * scene->cam.scale, 0, 0.5f);
 	}
 
 	void Monster::Dispose() {

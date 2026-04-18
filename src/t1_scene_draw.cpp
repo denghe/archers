@@ -69,7 +69,7 @@ namespace Test1 {
 		cam.SetBaseScale(gg.scale);
 
 		// 合并绘制: 内容 + 光照
-		gg.QuadLight().Draw(tex, lightTex, xx::RGBA8_White, 2);
+		gg.QuadLight().Draw(tex, lightTex, xx::RGBA8_White, 1.2f);	// 1.2: 稍微弄点曝光过度
 		// 立即提交以防止 tex, lightTex 出函数后失效
 		gg.ShaderEnd();
 
