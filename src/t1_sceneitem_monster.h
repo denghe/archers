@@ -10,6 +10,8 @@ namespace Test1 {
 		xx::FromTo<float> frameIndexRange;
 		float frameIndex{};
 
+		// todo: 挨打变白
+
 		void Init(Scene* scene_, XY pos_);
 		void Update() override;
 		void Draw() override;
@@ -17,11 +19,9 @@ namespace Test1 {
 		void DrawLight() override;
 		void Dispose() override;
 
-		// 爆炸( 创建爆炸体并自杀 )
-		void Explode();
-
-		// 令怪物受伤 返回实际伤害值( 死亡则对象已 Dispose )
-		float Hurt(float attackValue_);
+		// 令怪物受伤( 可能会死 ).
+		// 返回 实际受伤血量 & 状态: 0 正常 1 被闪避 2 死亡( 对象已 Dispose )
+		std::pair<float, int> Hurt(float attackValue_);
 	};
 
 }

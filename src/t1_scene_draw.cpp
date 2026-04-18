@@ -17,7 +17,7 @@ namespace Test1 {
 					auto p = leftTopPos + o.pos.FlipY();
 					gg.Quad().DrawFrame(o.frame, p, o.scale, o.radians, o.colorplus, o.color);
 				}
-				});
+			});
 			floorMasks.Clear();
 		}
 
@@ -38,16 +38,14 @@ namespace Test1 {
 			// 地板污染痕迹绘制
 			gg.Quad().Draw(*floorMaskTex, *floorMaskTex, cam.ToGLPos(mapPixelSize * 0.5f), 0.5f, cam.scale, 0, 1.f, {222,222,222,222});
 
+			// todo: 影子
+
 			// sort order by y
 			for (auto& o : monsters) SortContainerAdd(o.pointer);
 			for (auto& o : archers) SortContainerAdd(o.pointer);
 			for (auto& o : archerArrows) SortContainerAdd(o.pointer);
+			for (auto& o : exploders) SortContainerAdd(o.pointer);
 			SortContainerDraw();
-
-			// 爆炸特效覆盖在最上层
-			for (auto& o : exploders) o->Draw();
-
-			// todo: 影子
 		});
 
 		// 设置内容绘制时插值, 让光影过渡柔和

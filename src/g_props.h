@@ -43,7 +43,7 @@ namespace Global {
 		float healthRegeneration{};			// 18
 		// 防( 伤害折扣百分比 )
 		float defense{};					// 19
-		// 闪避( 让伤害 miss 的百分比 )
+		// 闪避( 让伤害 miss 的概率百分比 )
 		float dodge{};						// 20
 		// 伤害基数
 		float damageBase{};					// 21
@@ -62,7 +62,7 @@ namespace Global {
 		std::pair<float, bool> PropsCalcAttackValue(xx::Rnd& rnd_, float damageBase_);
 
 		// 执行受伤逻辑( 受伤时调用 ). hurt value 来自攻击方的 PropsCalcAttackValue 计算结果
-		// 返回 受伤血量 & 状态: 0 正常 1 被闪避 2 死亡
+		// 返回 实际受伤血量 & 状态: 0 正常 1 被闪避 2 死亡
 		std::pair<float, int> PropsDoHurt(xx::Rnd& rnd_, float hurtValue_);
 
 		// ... more funcs

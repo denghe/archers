@@ -26,6 +26,7 @@ namespace Test1 {
 		// 初始化数据面板
 		healthMaxDefault = 100.f;
 		PropsInit();
+		dodgePreset = dodgeFactor;	// 测试下闪避效果。 1/2 概率挨打
 		PropsCalc();
 	}
 
@@ -92,16 +93,12 @@ namespace Test1 {
 		container.SwapRemoveAt(i);
 	}
 
-	void Monster::Explode() {
-		scene->exploders.Emplace().Emplace()->Init(this);
-		Dispose();
-	}
-
-	float Monster::Hurt(float attackValue_) {
-		auto [v, c] = PropsDoHurt(gg.rnd, attackValue_);
-		if (c == 2) {
+	std::pair<float, int> Monster::Hurt(float attackValue_) {
+		auto r = PropsDoHurt(gg.rnd, attackValue_);
+		if (r.second == 2) {
+			scene->exploders.Emplace().Emplace()->Init(this);
 			Dispose();
 		}
-		return v;
+		return r;
 	}
 }

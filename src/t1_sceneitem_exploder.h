@@ -8,11 +8,13 @@ namespace Test1 {
 	struct Exploder : SceneItem {
 		static constexpr int32_t cTypeId{ 5 };
 
-		static constexpr float cExplodeRadius{ 128.f };
-		static constexpr float cExplodeDuration{ 0.1f };
-		static constexpr float cFadeoutDuration{ 0.3f };
-		int32_t _1{}, numSteps{};
-		float inc{}, alpha{ 1 };
+		static constexpr float cExplodeNumFrames{ gg.pics.explosion_1_.size() };
+		static constexpr float cExplodeRadiusRatio{ 1.5f };
+		static constexpr float cExplodeDuration{ 0.7f };
+
+		int32_t _1{};
+		float frameIndex{}, inc{}, tarFrameIndex{};
+
 		void Init(Monster* tar_);
 		void Update() override;
 		void Draw() override;

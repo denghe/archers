@@ -6,11 +6,23 @@ namespace Test1 {
 	void Exploder::Init(Monster* tar_) {
 		typeId = cTypeId;
 		scene = tar_->scene;
-		pos = tar_->pos;
-		y = tar_->y;
+		pos = tar_->pos;	// todo: 考虑 anchor point 在脚下 而爆炸的 anchor point 在中心 故需要位移
+		y = pos.y;
 		radius = tar_->radius;
-		scale = tar_->scale;
-		radians = tar_->radians;
+		scale = (radius * 2.f / gg.pics.explosion_1_[0].uvRect.w) * cExplodeRadiusRatio;
+		radians = gg.rnd.Next<float>(g2PI) - gPI;
+		tarFrameIndex = tar_->frameIndex;
+		// 播放爆炸帧动画. 计算需要多少帧，每帧的帧编号增量
+		inc = cExplodeNumFrames / (cExplodeDuration * gg.cFps);
+		// 在地板上留下痕迹
+		scene->floorMasks.Emplace(FloorMask{
+			.frame = gg.pics.creature_1_[tarFrameIndex],
+			.pos = pos,
+			.scale = radius / gg.pics.creature_1_[tarFrameIndex].uvRect.w * 2,
+			.radians = 0,
+			.colorplus = 1.f,
+			.color = {0,0,0,222}
+		});
 
 		indexAtContainer = scene->exploders.len - 1;
 		assert(scene->exploders[indexAtContainer].pointer == this);
@@ -18,51 +30,9 @@ namespace Test1 {
 
 	void Exploder::Update() {
 		XX_BEGIN(_1);
-		// 爆炸第一阶段，体积短时间内变大
-		// 计算需要多少帧，每帧的半径增量
-		numSteps = (int32_t)std::ceilf(cExplodeDuration * gg.cFps);
-		inc = (cExplodeRadius - radius) / numSteps;
-		// 开始执行体积增大循环逻辑
-		for (; numSteps > 0; --numSteps) {
-			// 爆炸检测，级联引爆
-			{
-				auto cri = scene->physMonsters->PosToCRIndex(pos);
-				scene->physMonsters->ForeachByRange(cri.y, cri.x, radius + 64.f, gg.sgrdd
-					, [&](PhysSystem::Node& o, float range)->void {
-					// 圆心距离判断
-					auto d = o.cache.pos - pos;
-					auto mag2 = d.x * d.x + d.y * d.y;
-					auto r = o.cache.radius + radius;
-					auto rr = r * r;
-					// 相交
-					if (mag2 < rr) {
-						((Monster*)o.value)->Explode();
-					}
-				});
-			}
+		// 开始播放帧动画
+		for (; frameIndex < cExplodeNumFrames; frameIndex += inc) {
 			XX_YIELD(_1);
-			// 体积逐渐变大
-			radius += inc;
-			scale = radius * 2.f / gg.pics.c128_bucket.uvRect.w;
-		}
-		// 在地板上留下痕迹
-		scene->floorMasks.Emplace(FloorMask{
-			.frame = gg.pics.c128_bucket,
-			.pos = pos,
-			.scale = scale,
-			.radians = radians,
-			.colorplus = 1.f,//colorplus
-			.color = {0,0,0,66}
-		});
-		// 第二阶段，颜色淡出
-		// 计算需要多少帧，每帧的 alpha 增量
-		numSteps = (int32_t)std::ceilf(cFadeoutDuration * gg.cFps);
-		inc = 1.f / numSteps;
-		// 开始执行颜色淡出循环逻辑
-		for (; numSteps > 0; --numSteps) {
-			XX_YIELD(_1);
-			// alpha 逐渐变小
-			alpha -= inc;
 		}
 		// 自杀
 		Dispose();
@@ -70,14 +40,13 @@ namespace Test1 {
 	}
 
 	void Exploder::Draw() {
-		auto c = (uint8_t)(255 * alpha);
-		gg.Quad().DrawFrame(gg.pics.c128_bucket, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians, 1, {c,c,c,c});
+		gg.Quad().DrawFrame(gg.pics.explosion_1_[frameIndex], scene->cam.ToGLPos(pos)
+			, scale * scene->cam.scale, radians);
 	}
 
 	void Exploder::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (radius * 10.f / 64.f) * scene->cam.scale);
+			, (radius * cExplodeRadiusRatio * 2.f * 5.f / 64.f) * scene->cam.scale, 0, 1.f);
 	}
 
 	void Exploder::Dispose() {

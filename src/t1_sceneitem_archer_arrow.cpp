@@ -80,10 +80,18 @@ namespace Test1 {
 				// 先算攻击力
 				auto [atkVal, isCritical] = PropsCalcAttackValue(gg.rnd, baseDamage);
 				// 得到实际造成的伤害
-				auto actualDmg = w->Hurt(atkVal);
-				// 生成伤害数字特效( 暴击时颜色会不同 )
-				scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
-					, 2 * scene->cam.scale, -actualDmg, true);
+				auto [actualDmg, state] = w->Hurt(atkVal);
+				if (state == 0) {
+					// 生成伤害数字特效( 暴击时颜色会不同 )
+					scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
+						, 2 * scene->cam.scale, -actualDmg, true);
+				}
+				else if(state == 1) {
+					// todo: miss 的特效表达
+				}
+				else {
+					assert(!w);
+				}
 				// 如果目标没死
 				if (w) {
 					// 记录到名单
@@ -92,10 +100,13 @@ namespace Test1 {
 						.elapsedTime = currTime + cPierceInterval
 						});
 				}
-				// 穿刺次数 -1
-				--leftPierceCount;
-				// 没有次数就终止整个查询
-				if (leftPierceCount <= 0) return true;
+				// 如果被 miss 则不消耗穿刺
+				if (state != 1) {
+					// 穿刺次数 -1
+					--leftPierceCount;
+					// 没有次数就终止整个查询
+					if (leftPierceCount <= 0) return true;
+				}
 			}
 			return false;
 		});
@@ -131,7 +142,7 @@ namespace Test1 {
 
 	void ArcherArrow::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (256.f / 64.f) * scene->cam.scale, 0, 0.5f);
+			, (128.f / 64.f) * scene->cam.scale, 0, 0.5f);
 	}
 
 	void ArcherArrow::Dispose() {
