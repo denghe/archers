@@ -6,7 +6,7 @@ namespace Global {
 	void Props12::PropsInit() {
 		healthMaxPreset = healthMaxDefault;
 		healthMaxRatio = 1.f;
-		health = healthMax;
+		health = healthMax = healthMaxPreset * healthMaxRatio;
 		healthRegenerationPreset = 0.f;
 		healthRegenerationRatio = 1.f;
 		defensePreset = 0.f;
@@ -23,7 +23,7 @@ namespace Global {
 		movementSpeedRatio = 1.f;
 	}
 
-	void Props12::Props2Calc() {
+	void Props12::PropsCalc() {
 		healthMax = std::max(healthMaxPreset * healthMaxRatio, 1.f);
 		health = std::min(health, healthMax);
 		healthRegeneration = std::min(healthRegenerationPreset * healthRegenerationRatio, 0.f);
@@ -42,7 +42,7 @@ namespace Global {
 		return ((float*)this)[idx_];
 	}
 
-	std::pair<float, bool> Props12::PropsCalcDamagePoint(xx::Rnd& rnd_, float damageBase_) {
+	std::pair<float, bool> Props2::PropsCalcAttackValue(xx::Rnd& rnd_, float damageBase_) {
 		auto d = (damageBase + damageBase_) * damage;
 		if (rnd_.Next<float>() <= criticalChance) {
 			return { d * criticalDamage, true };
@@ -50,7 +50,7 @@ namespace Global {
 		return { d, false };
 	}
 
-	std::pair<float, int> Props12::PropsDoHurt(xx::Rnd& rnd_, float hurtValue_) {
+	std::pair<float, int> Props2::PropsDoHurt(xx::Rnd& rnd_, float hurtValue_) {
 		// 受伤前角色已死( 容错 )
 		if (health <= 0) return { 0.f, 2 };
 		// 闪避判断

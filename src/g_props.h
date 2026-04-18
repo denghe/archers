@@ -57,9 +57,19 @@ namespace Global {
 		float criticalDamage{};				// 25
 		// 移动速度( 每秒像素距离 )
 		float movementSpeed{};				// 26
+
+		// 计算并返回 攻击力(伤害值) & 是否暴击
+		std::pair<float, bool> PropsCalcAttackValue(xx::Rnd& rnd_, float damageBase_);
+
+		// 执行受伤逻辑( 受伤时调用 ). hurt value 来自攻击方的 PropsCalcAttackValue 计算结果
+		// 返回 受伤血量 & 状态: 0 正常 1 被闪避 2 死亡
+		std::pair<float, int> PropsDoHurt(xx::Rnd& rnd_, float hurtValue_);
+
+		// ... more funcs
 	};
 
 	// 合并 Props1 & 2
+	// 目标类直接走多重继承带上这个类 从而实现数值支撑
 	struct Props12 : Props1, Props2 {
 		// 数组模式长度( 成员个数 )
 		static constexpr int32_t numProps{ (sizeof(Props1) + sizeof(Props2)) / sizeof(float) };
@@ -87,17 +97,10 @@ namespace Global {
 		void PropsInit();
 
 		// 根据上下文计算并将结果填充到 props2( 初始化后 或 装备变化后 适合调用 )
-		void Props2Calc();
+		void PropsCalc();
 
 		// 以数组下标方式访问成员( 常用于遍历装备累加数值 )
 		float& PropsAt(int32_t idx_) const;
-
-		// 计算并返回 伤害值(攻击力) & 是否暴击
-		std::pair<float, bool> PropsCalcDamagePoint(xx::Rnd& rnd_, float damageBase_);
-
-		// 执行受伤逻辑( 受伤时调用 ). hurt value 来自攻击方的 PropsCalcDamagePoint 计算结果
-		// 返回 受伤血量 & 状态: 0 正常 1 被闪避 2 死亡
-		std::pair<float, int> PropsDoHurt(xx::Rnd& rnd_, float hurtValue_);
 
 		// 执行回血逻辑( 每帧调用 )
 		// 返回执行结果: 回血量, true/false( 是否产生了回血行为 )

@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "g_scenebase.h"
+#include "g_props.h"
 
 namespace Test1 {
 
@@ -9,23 +10,28 @@ namespace Test1 {
 
 	struct Scene;
 	struct Dot;
+
+	// 场景对象之 基础版
 	struct SceneItem : Global::SceneItemBase {
 
 		// 为方便使用，指向所在场景指针( 生命周期通常长于 item )
 		Scene* scene{};
-
-		// 如果 item 是具有 属性面板 的对象，则可以创建并填充这个成员
-		xx::Shared<Properties> properties;
 
 		// 用于注册回调函数
 		xx::List<std::function<void()>> disposeCallbacks;
 
 		// 用于 Dispose 时调用回调函数
 		void CallDisposeCallbacks();
+	};
 
+	// 场景对象之 带完整数值版
+	struct SceneProps12Item : SceneItem, Global::Props12 {
 		// 绘制血条的功能函数
 		virtual void DrawHPBar() {};
 	};
+
+	// 场景对象之 带结果数值版( 常见于子弹啥的. 创建时需复制创建者数据 )
+	struct SceneProps2Item : SceneItem, Global::Props2 {};
 
 	struct GridCache {
 		XY pos{};

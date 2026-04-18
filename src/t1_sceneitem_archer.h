@@ -3,11 +3,10 @@
 
 namespace Test1 {
 
-	struct Archer : SceneItem {
+	struct Archer : SceneProps12Item {
 		static constexpr int32_t cTypeId{ 7 };
 		static constexpr float cSearchInterval{ 0.2f };
 		static constexpr float cShootInterval{ 0.5f };
-		int32_t damage{};
 		int32_t _1{};
 		float nextShootTime{};
 

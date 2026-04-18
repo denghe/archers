@@ -7,7 +7,6 @@ namespace Test1 {
 		typeId = cTypeId;
 		scene = owner_->scene;
 		owner = xx::WeakFromThis(owner_);
-		//target = xx::WeakFromThis(tar_);
 
 		indexAtContainer = scene->archerArrows.len - 1;
 		assert(scene->archerArrows[indexAtContainer].pointer == this);
@@ -19,31 +18,33 @@ namespace Test1 {
 		inc = d * _1mag * cSpeed * gg.cDelta;
 		deathTime = scene->time + cMaxLifetime;
 
-		damage = owner->damage;
-		leftPierceCount = cPierceCount;
-
 		pos = owner_->pos;
 		y = pos.y;
 		radius = 16.f;
 		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h;
 		radians = std::atan2(d.y, d.x);
+
+		// 复制玩家当前数值面板值以便于算伤害
+		*(Props2*)this = *(Props2*)owner;
+		leftPierceCount = cPierceCount;
 	}
 
 	void ArcherArrow::Update() {
+		// 超时自杀
 		if (scene->time >= deathTime) {
 			Dispose();
 			return;
 		}
 
+		// 移动
 		pos += inc;
 		y = pos.y;
 
+		// 步进帧动画
 		frameNumber += cFrameNumberInc;
 		if (frameNumber >= gg.pics.firearrow_.size()) {
 			frameNumber = 0.f;
 		}
-
-		// todo: 因为是锁定怪物的模式，所以只有当 arrow 落地后才判定，并且判定只是看指针是否未失效
 
 		assert(leftPierceCount > 0);
 		// 移除名单里面已经过期 或 对象已失效 的那部分
@@ -53,7 +54,6 @@ namespace Test1 {
 				pierceInfos.SwapRemoveAt(i);
 			}
 		}
-
 
 		// 查找子弹位置的 bucket
 		auto cri = scene->physMonsters->PosToCRIndex(pos);
@@ -68,23 +68,27 @@ namespace Test1 {
 				// 开始穿刺处理
 				// 如果目标在名单里则忽略碰撞
 				if (pierceInfos.Exists([&](PierceInfo& pi)->bool {
-					// 这里不用 Try版 是因为 Foreach 过程中不会发生 target 删除行为
-					return pi.target.GetPointer() == o.value;
+						// 这里不用 Try版 是因为 Foreach 过程中不会发生 target 删除行为
+						return pi.target.GetPointer() == o.value;
 					})) {
 					// 忽略碰撞 继续下次查询
 					return false;
 				}
 				// 防止怪物释放内存导致指针失效，先拿 weak ptr
 				auto w = xx::WeakFromThis((Monster*)o.value);
-				// 伤害目标	// todo: 继续丰富 damage 细节
-				w->Hurt(damage);
-				// 生成伤害数字特效
-				scene->effectTexts.Add(pos, { 0,-1 }, xx::RGBA8_Red, 2 * scene->cam.scale, -damage, true);
-				// 如果对象还没有释放
+				// 伤害目标
+				// 先算攻击力
+				auto [atkVal, isCritical] = PropsCalcAttackValue(gg.rnd, baseDamage);
+				// 得到实际造成的伤害
+				auto actualDmg = w->Hurt(atkVal);
+				// 生成伤害数字特效( 暴击时颜色会不同 )
+				scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
+					, 2 * scene->cam.scale, -actualDmg, true);
+				// 如果目标没死
 				if (w) {
 					// 记录到名单
 					pierceInfos.Emplace(PierceInfo{
-						.target = xx::WeakFromThis(o.value),
+						.target = std::move(w),	// w 直接挪进去 后面不能再访问了
 						.elapsedTime = currTime + cPierceInterval
 						});
 				}

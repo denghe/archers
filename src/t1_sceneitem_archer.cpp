@@ -15,7 +15,13 @@ namespace Test1 {
 		indexAtContainer = scene->archers.len - 1;
 		assert(scene->archers[indexAtContainer].pointer == this);
 
-		damage = 1;
+		// 初始化数据面板
+		healthMaxDefault = 100.f;
+		PropsInit();
+		// 测试下暴击效果
+		criticalDamagePreset = 3.f;
+		criticalChancePreset = 0.2f;	
+		PropsCalc();
 	}
 
 	void Archer::Update() {

@@ -23,10 +23,10 @@ namespace Test1 {
 
 		scene->physMonsters->Add(this);
 
-		// 创建数据面板并初始化
-		properties.Emplace();
-		properties->hp = 100;
-		properties->hpMax = 100;
+		// 初始化数据面板
+		healthMaxDefault = 100.f;
+		PropsInit();
+		PropsCalc();
 	}
 
 	void Monster::Update() {
@@ -55,8 +55,8 @@ namespace Test1 {
 
 	void Monster::DrawHPBar() {
 		// 显示触发条件：带属性, 非满血
-		if (properties->hp == properties->hpMax) return;
-		auto percent = (float)properties->hp / properties->hpMax;
+		if (health == healthMax) return;
+		auto percent = (float)health / healthMax;
 		auto p = pos + XY{ -25, -40 };
 		auto siz = XY{ 50, 9 } * scene->cam.scale;
 		if (siz.x < 10) siz.x = 10;
@@ -97,10 +97,11 @@ namespace Test1 {
 		Dispose();
 	}
 
-	void Monster::Hurt(int32_t damage_) {
-		properties->hp -= damage_;
-		if (properties->hp <= 0) {
+	float Monster::Hurt(float attackValue_) {
+		auto [v, c] = PropsDoHurt(gg.rnd, attackValue_);
+		if (c == 2) {
 			Dispose();
 		}
+		return v;
 	}
 }

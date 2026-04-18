@@ -12,11 +12,12 @@ namespace Test1 {
 	};
 
 	struct Archer;
-	struct ArcherArrow : SceneItem {
+	struct ArcherArrow : SceneProps2Item {
 		static constexpr int32_t cTypeId{ 6 };
 
-		// todo: 抛物线效果
-		
+		// todo: 抛物线效果( 以及更多子弹攻击类型？
+		// todo: 因为是锁定怪物的模式，所以只有当 arrow 落地后才判定，并且判定只是看指针是否未失效
+
 		// 移动速度
 		static constexpr XY cSpeed{ 1000.f };
 		// 最大存活时长
@@ -38,8 +39,8 @@ namespace Test1 {
 		// 当前帧下标
 		float frameNumber{};
 
-		// 伤害值( 创建时从 owner 身上复制 )
-		int32_t damage{};
+		// 箭矢的基础攻击力
+		float baseDamage{ 1.f };
 		// 剩余穿刺次数( 命中 1 次，减 1 )
 		int32_t leftPierceCount{};
 		// 穿刺信息表( 黑名单, 避免子弹连续多帧判定同一个对象 )
