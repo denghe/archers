@@ -27,13 +27,13 @@ namespace Test1 {
 	void Archer::Update() {
 		if (scene->time >= nextShootTime) {
 			// 尝试攻击射程内最近怪
-			auto& g = *scene->physMonsters;
-			auto cri = g.PosToCRIndex(pos);
 			auto searchRange = scene->mapPixelSize.x * 0.5f;
 			// 从找到第一个开始判断后续 range 值如果变化就不是同一批了. 在同一批中选最近
 			float minMag2{}, currentBatchRange{};
 			Monster* tar{};
-			g.ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
+			auto g = scene->physMonsters.pointer;
+			auto cri = g->PosToCRIndex(pos);
+			g->ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
 				auto d = pos - node.cache.pos;
 				auto mag2 = d.x * d.x + d.y * d.y;
 				// todo: 精确射程检测?
@@ -41,7 +41,8 @@ namespace Test1 {
 					minMag2 = mag2;
 					currentBatchRange = range;
 					tar = (Monster*)node.value;
-				} else {
+				}
+				else {
 					if (currentBatchRange != range) return true;
 					if (mag2 < minMag2) {
 						minMag2 = mag2;

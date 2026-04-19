@@ -12,7 +12,7 @@ namespace Test1 {
 	void DotFire::Refresh(ArcherArrow* caster_) {
 		deathTime = scene->time + cLifespan;
 		damage += caster_->damage;
-		nextDamageTime = 0;	// update 时立即触发一次
+		nextActiveTime = 0;	// update 时立即触发一次
 	}
 
 	int32_t DotFire::Update(Global::SceneItemBase* owner_) {
@@ -24,7 +24,7 @@ namespace Test1 {
 		auto self = (SceneProps12DotItem*)owner_;
 
 		// 到达激活时间点: 产生伤害 并更新时间点
-		if (scene->time >= nextDamageTime) {
+		if (scene->time >= nextActiveTime) {
 			// 得到实际造成的伤害( 需要小心：可能令宿主 Dispose 内存失效 )
 			auto [actualDmg, state] = self->Hurt(damage);
 			// 容器已自杀, 直接返回 -1 通知外部循环退出函数
@@ -38,7 +38,7 @@ namespace Test1 {
 				// todo: 特效
 			}
 			// 更新下次激活时间点
-			nextDamageTime = scene->time + cActiveInterval;
+			nextActiveTime = scene->time + cActiveInterval;
 		}
 
 		// 下次继续

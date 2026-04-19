@@ -13,7 +13,7 @@ namespace Test1 {
 		static constexpr float cExplodeDuration{ 0.7f };
 
 		int32_t _1{};
-		float frameIndex{}, inc{}, tarFrameIndex{};
+		float frameIndex{}, inc{};
 
 		void Init(Monster* tar_);
 		void Update() override;

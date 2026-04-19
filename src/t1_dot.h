@@ -16,8 +16,10 @@ namespace Test1 {
 		static constexpr float cActiveInterval{ 0.1f };
 
 		Scene* scene{};
-		int32_t damage{};
-		float nextDamageTime{};
+		// 伤害值
+		float damage{};
+		// 下次激活时间
+		float nextActiveTime{};
 
 		void Init(ArcherArrow* caster_);
 

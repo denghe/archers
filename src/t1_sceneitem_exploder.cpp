@@ -6,19 +6,21 @@ namespace Test1 {
 	void Exploder::Init(Monster* tar_) {
 		typeId = cTypeId;
 		scene = tar_->scene;
-		pos = tar_->pos;	// todo: 考虑 anchor point 在脚下 而爆炸的 anchor point 在中心 故需要位移
+		auto& frame = gg.pics.creature_1_[tar_->frameIndex];
+		auto frameSize = frame.Size();
+		// 考虑 anchor point 在脚下 而爆炸的 anchor point 在中心 故需要位移
+		pos = tar_->pos + frameSize * frame.anchor - frameSize * 0.5f;
 		y = pos.y;
 		radius = tar_->radius;
 		scale = (radius * 2.f / gg.pics.explosion_1_[0].uvRect.w) * cExplodeRadiusRatio;
-		radians = gg.rnd.Next<float>(g2PI) - gPI;
-		tarFrameIndex = tar_->frameIndex;
+		radians = gg.rnd.NextRadians<float>();
 		// 播放爆炸帧动画. 计算需要多少帧，每帧的帧编号增量
 		inc = cExplodeNumFrames / (cExplodeDuration * gg.cFps);
 		// 在地板上留下痕迹
 		scene->floorMasks.Emplace(FloorMask{
-			.frame = gg.pics.creature_1_[tarFrameIndex],
+			.frame = frame,
 			.pos = pos,
-			.scale = radius / gg.pics.creature_1_[tarFrameIndex].uvRect.w * 2,
+			.scale = radius / frameSize.y * 2,
 			.radians = 0,
 			.colorplus = 1.f,
 			.color = {0,0,0,222}

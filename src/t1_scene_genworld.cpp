@@ -93,7 +93,7 @@ namespace Test1 {
 		sortContainer.Resize<true>((int32_t)mapPixelSize.y);
 		gridWalls.Init(cCellPixelSize, mapHeight, mapWidth);
 		gridLavas.Init(cCellPixelSize, mapHeight, mapWidth);
-		physMonsters.Emplace()->Init(this);
+		physMonsters.Emplace()->Init(this, cBossRadius * 2, 5000, 15);
 		floorMaskTex.Emplace()->Make(mapPixelSize);
 
 		// 逐行扫内容并 各种预生成 / 填充

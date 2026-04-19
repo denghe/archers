@@ -12,7 +12,7 @@ namespace Test1 {
 
 		// todo: 挨打变白
 
-		void Init(Scene* scene_, XY pos_);
+		void Init(Scene* scene_, XY pos_, float radius_ = cMonsterRadius);
 		void Update() override;
 		void Draw() override;
 		void DrawHPBar() override;

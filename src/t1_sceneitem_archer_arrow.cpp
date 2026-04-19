@@ -20,7 +20,7 @@ namespace Test1 {
 
 		pos = owner_->pos;
 		y = pos.y;
-		radius = 16.f;
+		radius = cPlayerRadius * 0.5f;
 		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h;
 		radians = std::atan2(d.y, d.x);
 
@@ -55,11 +55,12 @@ namespace Test1 {
 			}
 		}
 
-		// 查找子弹位置的 bucket
+		// 查找子弹位置的怪
 		auto cri = scene->physMonsters->PosToCRIndex(pos);
 		scene->physMonsters->ForeachBy9Break(cri.y, cri.x, [&](PhysSystem::Node& o, float range)->bool {
 			// 开始碰撞判定
 			auto d = o.cache.pos - pos;
+			d.y *= 2.0f;	// 椭圆效果
 			auto mag2 = d.x * d.x + d.y * d.y;
 			auto r = o.cache.radius + radius;
 			auto rr = r * r;

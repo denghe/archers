@@ -53,8 +53,9 @@ namespace Test1 {
 		// 尝试获取 pos 附近相交( 圆心足够近 )的 lava. 未找到或不够近返回 空
 		Lava* TryGetCrossLava(XY const& pos_, float radius_);
 
-		// 尝试获取 pos 附近相交( 圆心足够近 )的 lava. 未找到或不够近返回 空
-		Outlet* TryGetCrossOutlet(XY const& pos_, float radius_);
+		// todo
+		//// 尝试获取 pos 附近相交( 圆心足够近 )的 outlet. 未找到或不够近返回 空
+		//Outlet* TryGetCrossOutlet(XY const& pos_, float radius_);
 
 		void Init() override;
 		void Update() override;

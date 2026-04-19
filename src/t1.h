@@ -12,9 +12,9 @@ namespace Test1 {
 	static constexpr float c1_CellPixelSize{ 1.f / 128 };
 	static constexpr float cCellPixelHalfSize{ cCellPixelSize / 2.f };
 	static constexpr float cWallRadius{ cCellPixelSize / 2.f };
-	static constexpr float cMonsterRadius{ cWallRadius * 0.5f };
-	static constexpr float cPlayerRadius{ cWallRadius * 0.5f };
-	static constexpr float cItemMaxRadius{ cMonsterRadius };
+	static constexpr float cMonsterRadius{ cWallRadius * 0.25f };
+	static constexpr float cPlayerRadius{ cWallRadius * 0.25f };
+	static constexpr float cBossRadius{ cMonsterRadius * 2.5f };
 
 	// ...
 }

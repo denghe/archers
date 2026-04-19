@@ -11,7 +11,7 @@ namespace Test1 {
 		cursor->frame = gg.pics.cursor_cross;
 		GenWorld();
 
-		// todo: 
+		// todo: more logic here
 	}
 
 }

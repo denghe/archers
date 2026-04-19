@@ -4,6 +4,7 @@
 #include "t1_phys.h"
 #include "t1_scene.h"
 #include "t1_sceneitem_monster.h"
+#include "t1_sceneitem_boss.h"
 #include "t1_sceneitem_lava.h"
 #include "t1_sceneitem_archer.h"
 #include "t1_sceneitem_archer_arrow.h"

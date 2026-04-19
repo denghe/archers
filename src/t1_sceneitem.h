@@ -57,6 +57,7 @@ namespace Test1 {
 	struct Lava;
 	struct Outlet;
 	struct Monster;
+	struct Boss;
 	struct Exploder;
 	struct Archer;
 	struct ArcherArrow;

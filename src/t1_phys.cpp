@@ -10,12 +10,13 @@ namespace Test1 {
 	}
 
 
-	void PhysSystem::Init(Scene* scene_, int32_t capacity_) {
+	void PhysSystem::Init(Scene* scene_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_) {
 		scene = scene_;
+		maxNumNeighbors = maxNumNeighbors_;
 		pixelSize = scene->mapPixelSize;
-		numRows = std::ceilf(pixelSize.y / cCellPixelSize);
-		numCols = std::ceilf(pixelSize.x / cCellPixelSize);
-		Base::Init(cCellPixelSize, numRows, numCols, capacity_);
+		numRows = std::ceilf(pixelSize.y / cellPixelSize_);
+		numCols = std::ceilf(pixelSize.x / cellPixelSize_);
+		Base::Init(cellPixelSize_, numRows, numCols, capacity_);
 	}
 
 	void PhysSystem::Add(SceneItem* item_) {
@@ -62,8 +63,6 @@ namespace Test1 {
 		assert(b1_ >= 0 && b1_ < count);
 		assert(b2_ >= 0 && b2_ < count);
 		// 两个桶内所有节点两两检测
-		// 检测次数限制变量
-		static constexpr int32_t cMaxChecksPerBucket{ 3 };
 		int32_t n1{}, n2{};
 		do {
 			n2 = 0;
@@ -71,11 +70,11 @@ namespace Test1 {
 			do {
 				CalcNN(nodes[b1_].cache, nodes[b2].cache);
 
-				if (++n2 > cMaxChecksPerBucket) break;
+				if (++n2 > maxNumNeighbors) break;
 				b2 = nodes[b2].next;
 			} while (b2 >= 0);
 
-			if (++n1 > cMaxChecksPerBucket) break;
+			if (++n1 > maxNumNeighbors) break;
 			b1_ = nodes[b1_].next;
 		} while (b1_ >= 0);
 	}
@@ -83,6 +82,7 @@ namespace Test1 {
 	void PhysSystem::CalcNN(PhysCache& d1_, PhysCache& d2_) {
 		// 距离计算
 		auto d = d1_.pos - d2_.pos;
+		d.y *= 2.f;	// 椭圆效果
 		auto mag2 = d.x * d.x + d.y * d.y;
 		auto r = d1_.radius + d2_.radius;
 		auto rr = r * r;
@@ -117,13 +117,18 @@ namespace Test1 {
 			auto& o = nodes[ni];
 			if (o.bucketsIndex < 0) continue;
 
+			// helpers
+			auto& a = o.cache.accel;
+			auto& p = o.cache.pos;
+			auto& lp = o.cache.lastPos;
+
 			// 附加重力加速度
-			o.cache.accel += cGravity;
+			a += cGravity;
 
 			// 通过两个坐标来算移动增量
-			auto inc = o.cache.pos - o.cache.lastPos;
+			auto inc = p - lp;
 			// 将 加速度, 阻尼 按 1 帧的运行时长 应用到移动增量上
-			inc = inc + (o.cache.accel - inc * cVelocityDamping) * (gg.cDelta * gg.cDelta);
+			inc = inc + (a - inc * cVelocityDamping) * (gg.cDelta * gg.cDelta);
 
 			// 简单限制最大速度，避免物体弹得过快地图越界
 			// 这个写法不严谨, 但实际执行效果看上去正确，性能好
@@ -133,19 +138,25 @@ namespace Test1 {
 			else if (inc.y < -cMaxSpeed) inc.y = -cMaxSpeed;
 
 			// 更新位置，重置加速度
-			o.cache.lastPos = o.cache.pos;
-			o.cache.pos = o.cache.pos + inc;
-			o.cache.accel = {};
+			lp = p;
+			p = p + inc;
+			a = {};
 
 			// 处理当前对象和邻居建筑碰撞( 直接修改位置将其移到建筑范围外 )
-			scene->HandleWallsCross(o.cache.pos, o.cache.radius);
+			scene->HandleWallsCross(p, o.cache.radius);
+
+			// 超出地图边界，硬拉?
+			if (p.x >= pixelSize.x) p.x = pixelSize.x - 0.001f;
+			else if (p.x < 0) p.x = 0;
+			if (p.y >= pixelSize.y) p.y = pixelSize.y - 0.001f;
+			else if (p.y < 0) p.y = 0;
 
 			// 更新数据
-			auto cri = PosToCRIndex(o.cache.pos);
+			auto cri = PosToCRIndex(p);
 			Base::Base::Update(ni, cri.y, cri.x);
-			if (o.value->pos != o.cache.pos) {
-				o.value->pos = o.cache.pos;
-				o.value->y = o.cache.pos.y;
+			if (o.value->pos != p) {
+				o.value->pos = p;
+				o.value->y = p.y;
 			}
 		}
 	}

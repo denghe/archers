@@ -33,19 +33,28 @@ namespace Test1 {
 		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁
 		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
 			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
-			// 进一步判断鼠标点击的部位
+			XYi cxy = mp * c1_CellPixelSize;
 			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
-				XYi p = mp * c1_CellPixelSize;
+				// 进一步判断鼠标点击的部位
 				// 弓位
-				if (archerPoss.Find(p) != -1) {
+				if (archerPoss.Find(cxy) != -1) {
 					for (size_t i = 0; i < 5; i++) {
 						archers.Emplace().Emplace()->Init(this, mp);
 					}
 				}
 				// 进怪位
-				else if (enterPoss.Find(p) != -1) {
+				else if (enterPoss.Find(cxy) != -1) {
 					for (size_t i = 0; i < 5; i++) {
 						monsters.Emplace().Emplace()->Init(this, mp);
+					}
+				}
+			}
+			// BOSS
+			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
+				// 进怪位
+				if (enterPoss.Find(cxy) != -1) {
+					for (size_t i = 0; i < 1; i++) {
+						monsters.Emplace().Emplace<Boss>()->Init(this, mp);
 					}
 				}
 			}

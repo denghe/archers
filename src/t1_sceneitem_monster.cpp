@@ -3,12 +3,12 @@
 
 namespace Test1 {
 
-	void Monster::Init(Scene* scene_, XY pos_) {
+	void Monster::Init(Scene* scene_, XY pos_, float radius_) {
 		typeId = cTypeId;
 		scene = scene_;
 		pos = pos_;
 		y = pos.y;
-		radius = cMonsterRadius;
+		radius = radius_;
 		static constexpr auto n = gg.pics.creature_1_.size() / 4;
 		auto i = gg.rnd.Next<int32_t>(n);
 		frameIndexRange.from = i * 4;
@@ -40,7 +40,7 @@ namespace Test1 {
 		// 驱动 dots
 		if (DotsUpdate(this)) return;
 
-		// todo: 向前移动
+		// todo: 向前移动( 设置 accel )
 
 		// 切帧动画
 		frameIndex += (15.f / gg.cFps);
@@ -61,8 +61,10 @@ namespace Test1 {
 		// 显示触发条件：带属性, 非满血
 		if (health == healthMax) return;
 		auto percent = (float)health / healthMax;
-		auto p = pos + XY{ -25, -40 };
-		auto siz = XY{ 50, 9 } * scene->cam.scale;
+		auto& f = gg.pics.creature_1_[frameIndex];
+		XY siz{ 15 * scale, 9 };
+		auto p = pos + XY{ -siz.x * 0.5f, (f.uvRect.h * f.anchor.y + 1) * scale };
+		siz *= scene->cam.scale;
 		if (siz.x < 10) siz.x = 10;
 		if (siz.y < 4) siz.y = 4;
 		gg.HPBar().Alloc()->Fill(scene->cam.ToGLPos(p), siz, xx::RGBA8_Black, xx::RGBA8_White, xx::RGBA8_Red, percent);
@@ -70,7 +72,7 @@ namespace Test1 {
 
 	void Monster::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (256.f / 64.f) * scene->cam.scale, 0, 0.5f);
+			, (radius * 6.f / 64.f) * scene->cam.scale, 0, 0.5f);
 	}
 
 	void Monster::Dispose() {
