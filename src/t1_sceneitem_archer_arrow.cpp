@@ -85,6 +85,8 @@ namespace Test1 {
 					// 生成伤害数字特效( 暴击时颜色会不同 )
 					scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
 						, 2 * scene->cam.scale, -actualDmg, true);
+					// 在目标怪 身上挂 dot Fire
+					DotFire::Make(this, w.GetPointer());
 				}
 				else if(state == 1) {
 					// todo: miss 的特效表达
@@ -92,7 +94,7 @@ namespace Test1 {
 				else {
 					assert(!w);
 				}
-				// 如果目标没死
+				// 如果目标没死( 没被打死 或 miss )
 				if (w) {
 					// 记录到名单
 					pierceInfos.Emplace(PierceInfo{

@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "t1_.h"
+#include "t1_dot.h"
 #include "t1_phys.h"
 #include "t1_scene.h"
 #include "t1_sceneitem_monster.h"

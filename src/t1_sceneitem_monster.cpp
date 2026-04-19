@@ -37,6 +37,9 @@ namespace Test1 {
 			Dispose();
 		}
 
+		// 驱动 dots
+		if (DotsUpdate(this)) return;
+
 		// todo: 向前移动
 
 		// 切帧动画

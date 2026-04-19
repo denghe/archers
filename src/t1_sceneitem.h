@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "g_scenebase.h"
 #include "g_props.h"
+#include "g_dot.h"
 
 namespace Test1 {
 
@@ -9,7 +10,6 @@ namespace Test1 {
 	};
 
 	struct Scene;
-	struct Dot;
 
 	// 场景对象之 基础版
 	struct SceneItem : Global::SceneItemBase {
@@ -24,8 +24,11 @@ namespace Test1 {
 		void CallDisposeCallbacks();
 	};
 
-	// 场景对象之 带完整数值版
-	struct SceneProps12Item : SceneItem, Global::Props12 {
+	// 场景对象之 带完整数值 能上DOT 版( 大多数怪继承它 )
+	struct SceneProps12DotItem : SceneItem, Global::Props12, Global::DotContainer {
+		// 令目标受伤
+		virtual std::pair<float, int> Hurt(float attackValue_) { return {}; };
+
 		// 绘制血条的功能函数
 		virtual void DrawHPBar() {};
 	};
