@@ -82,6 +82,7 @@ namespace Test1 {
 				// 得到实际造成的伤害
 				auto [actualDmg, state] = w->Hurt(atkVal);
 				if (state == 0) {
+					assert(w);
 					// 生成伤害数字特效( 暴击时颜色会不同 )
 					scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
 						, 2 * scene->cam.scale, -actualDmg, true);
@@ -89,6 +90,7 @@ namespace Test1 {
 					DotFire::Make(this, w.GetPointer());
 				}
 				else if(state == 1) {
+					assert(w);
 					// todo: miss 的特效表达
 				}
 				else {

@@ -27,7 +27,7 @@ namespace Test1 {
 		// 帧逻辑驱动
 		int32_t Update(Global::SceneItemBase* owner_) override;
 
-		// 合并 / 替换 /新建 dot 到 target
+		// 合并 / 替换 / 新建 dot 到 target( 可能会从 caster 复制一些参数 )
 		static void Make(ArcherArrow* caster_, Global::DotContainer* target_);
 	};
 
