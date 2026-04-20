@@ -8,6 +8,7 @@ struct _pics {
 	xx::Frame c64;
 	xx::Frame c64_bullet;
 	xx::Frame c64_light;
+	xx::Frame c64_shadow;
 	xx::Frame c128;
 	xx::Frame c128_bucket;
 	xx::Frame c128_door;

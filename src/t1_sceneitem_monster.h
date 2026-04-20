@@ -17,6 +17,7 @@ namespace Test1 {
 		void Draw() override;
 		void DrawHPBar() override;
 		void DrawLight() override;
+		void DrawShadow() override;
 		void Dispose() override;
 
 		// 令怪物受伤( 可能会死 ).

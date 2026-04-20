@@ -72,7 +72,12 @@ namespace Test1 {
 
 	void Monster::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (radius * 6.f / 64.f) * scene->cam.scale, 0, 0.5f);
+			, (radius * (6.f / 64.f)) * scene->cam.scale, 0, 0.5f);
+	}
+
+	void Monster::DrawShadow() {
+		gg.Quad().DrawFrame(gg.pics.c64_shadow, scene->cam.ToGLPos(pos)
+			, (radius * (1.f / 40.f)) * scene->cam.scale, 0, 1.f, { 188,188,188,188 });
 	}
 
 	void Monster::Dispose() {
