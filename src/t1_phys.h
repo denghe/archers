@@ -41,7 +41,7 @@ namespace Test1 {
 		// 初始化，capacity 是 nodes 的预分配数量
 		// maxNumNeighbors_ 视情况而定，如果对象都是相同大小， 3~4 就够了
 		// 体积相差 2 倍啥的则可能需要 15( 想象一下大圆圈周围需要多少个小圆圈能围满 )
-		void Init(Scene* scene_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_ = 3);
+		void Init(Scene* scene_, int32_t numRows_, int32_t numCols_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_ = 3);
 		// 添加对象( 复制数据到 nodes，并填充 indexAtGrid )
 		void Add(SceneItem* item_);
 		// 移除对象( 交换删除并同步 indexAtGrid )

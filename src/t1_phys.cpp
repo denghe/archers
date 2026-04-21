@@ -10,13 +10,10 @@ namespace Test1 {
 	}
 
 
-	void PhysSystem::Init(Scene* scene_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_) {
+	void PhysSystem::Init(Scene* scene_, int32_t numRows_, int32_t numCols_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_) {
 		scene = scene_;
 		maxNumNeighbors = maxNumNeighbors_;
-		pixelSize = scene->mapPixelSize;
-		numRows = std::ceilf(pixelSize.y / cellPixelSize_);
-		numCols = std::ceilf(pixelSize.x / cellPixelSize_);
-		Base::Init(cellPixelSize_, numRows, numCols, capacity_);
+		Base::Init(cellPixelSize_, numRows_, numCols_, capacity_);
 	}
 
 	void PhysSystem::Add(SceneItem* item_) {

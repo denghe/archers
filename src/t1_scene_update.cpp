@@ -30,6 +30,9 @@ namespace Test1 {
 		effectTexts.Update(time);
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
+		if (gg.mouse[GLFW_MOUSE_BUTTON_3](0.1f)) {
+			xx::CoutN(mp);
+		}
 		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁
 		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
 			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
@@ -39,9 +42,6 @@ namespace Test1 {
 				// 弓位
 				if (archerPoss.Find(cxy) != -1) {
 					GenArchers(1);
-					//for (size_t i = 0; i < 5; i++) {
-					//	archers.Emplace().Emplace()->Init(this, mp);
-					//}
 				}
 				// 进怪位
 				else if (enterPoss.Find(cxy) != -1) {
@@ -51,12 +51,16 @@ namespace Test1 {
 				}
 			}
 			// BOSS
-			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
+			if (gg.mouse[GLFW_MOUSE_BUTTON_2](0.1f)) {
+				// 进一步判断鼠标点击的部位
+				// 弓位
+				if (archerPoss.Find(cxy) != -1) {
+					GenArchers(100);
+				}
 				// 进怪位
 				if (enterPoss.Find(cxy) != -1) {
-					for (size_t i = 0; i < 1; i++) {
-						monsters.Emplace().Emplace<Boss>()->Init(this, mp);
-					}
+					// 创建一个怪物队伍
+					monsters.Emplace().Emplace<MonsterLeader>()->Init(this, mp, 0);
 				}
 			}
 		}

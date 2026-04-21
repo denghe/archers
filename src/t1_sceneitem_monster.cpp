@@ -4,10 +4,21 @@
 namespace Test1 {
 
 	void Monster::Init(Scene* scene_, XY pos_, float radius_) {
+		// 超出地图边界，硬拉?
+		auto s = scene_->mapPixelSize - cCellPixelSize;
+		if (pos_.x >= s.x) 
+			pos_.x = s.x;
+		else if (pos_.x < cCellPixelSize)
+			pos_.x = cCellPixelSize;
+		if (pos_.y >= s.y) 
+			pos_.y = s.y;
+		else if (pos_.y < cCellPixelSize)
+			pos_.y = cCellPixelSize;
+
 		typeId = cTypeId;
 		scene = scene_;
 		pos = pos_;
-		y = pos.y;
+		y = pos_.y;
 		radius = radius_;
 		static constexpr auto n = gg.pics.creature_1_.size() / 4;
 		auto i = gg.rnd.Next<int32_t>(n);
@@ -31,6 +42,8 @@ namespace Test1 {
 	}
 
 	void Monster::Update() {
+		// todo: 万一卡怪? 整个长超时自杀?
+
 		// 判断是否掉入岩浆. 是：自杀
 		if (scene->TryGetCrossLava(pos, radius)) {
 			// todo: 特效？
@@ -38,11 +51,29 @@ namespace Test1 {
 			return;
 		}
 
-		// 驱动 dots. 如果导致 Dispose 就自杀
+		// 驱动怪身上挂的 dots. 如果导致已 Dispose 就直接 return ( 指针已野 )
 		if (DotsUpdate(this)) return;
 
-		// 向前移动( 物理附加 加速度 )
-		scene->physMonsters->At(this).accel += XY{ -200, 0 };
+		// todo: 变速
+		static constexpr float cMoveSpeed{ 200.f };
+
+		if (leader) {
+			// 如果有队长，就用自己队内编号，找队长要目标坐标, 根据坐标来算前进方向
+			auto tar = leader->GetTargetPos(this);
+			auto d = tar - pos;
+			auto mag2 = d.x * d.x + d.y * d.y;
+			if (mag2 > 0.001f) {
+				auto norm = d / std::sqrtf(mag2);
+				// 如果距离过远 就适当加速
+				if (mag2 > 5) norm *= 3;
+				scene->physMonsters->At(this).accel += norm * cMoveSpeed;
+			}
+		}
+		else {
+			// 向前移动( 物理附加 加速度 )
+			scene->physMonsters->At(this).accel += XY{ -cMoveSpeed, 0 };
+		}
+
 
 		// 切帧动画
 		frameIndex += (15.f / gg.cFps);
@@ -121,4 +152,45 @@ namespace Test1 {
 		}
 		return r;
 	}
+
+	void Monster::Init(MonsterLeader* leader_) {
+		indexAtMembers = leader_->memberOffsets.len - 1;
+		leader = xx::WeakFromThis(leader_);
+		auto p = leader_->GetTargetPos(this);
+		Init(leader_->scene, p);
+	}
+
+	void MonsterLeader::Init(Scene* scene_, XY pos_, int32_t formationId_) {
+		Monster::Init(scene_, pos_, cBossRadius);
+		typeId = cTypeId;
+		// 稍微放大点显示 避免周围太空
+		scale *= 1.2f;
+
+		// 再次初始化数据面板( 覆盖一些数据 )
+		healthMaxDefault = 2000.f;
+		PropsInit();
+		PropsCalc();
+
+		// todo: 根据 formationId_ 填充 memberOffsets
+		// 顺便直接创建队员？？
+		switch (formationId_) {
+		case 0:
+			// 一字长蛇阵? 以怪半径为 margin
+			for (int32_t i = 0; i < 5; i++) {
+				memberOffsets.Emplace(0, radius + cMonsterRadius + cMonsterRadius * 3 * i);
+				scene->monsters.Emplace().Emplace()->Init(this);
+				memberOffsets.Emplace(0, -radius - cMonsterRadius - cMonsterRadius * 3 * i);
+				scene->monsters.Emplace().Emplace()->Init(this);
+			}
+			break;
+		default:
+			assert(false);
+			break;
+		}
+	}
+
+	XY MonsterLeader::GetTargetPos(Monster* member_) const {
+		return memberOffsets[member_->indexAtMembers] + pos;
+	}
+
 }

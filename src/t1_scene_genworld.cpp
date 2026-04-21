@@ -90,11 +90,20 @@ namespace Test1 {
 		mapSize = { mapWidth, mapHeight };
 		mapPixelSize = mapSize * cCellPixelSize;
 		cam.Init(gg.scale, 1.f, mapPixelSize / 2);
-		sortContainer.Resize<true>((int32_t)mapPixelSize.y);
 		gridWalls.Init(cCellPixelSize, mapHeight, mapWidth);
 		gridLavas.Init(cCellPixelSize, mapHeight, mapWidth);
-		physMonsters.Emplace()->Init(this, cBossRadius * 2, 5000, 15);
+		static constexpr auto cellSize = cBossRadius * 2;
+		physMonsters.Emplace()->Init(this
+			, std::ceilf(mapPixelSize.y / cellSize)
+			, std::ceilf(mapPixelSize.x / cellSize)
+			, cellSize, 5000, 15);
 		floorMaskTex.Emplace()->Make(mapPixelSize);
+
+		assert(gridWalls.pixelSize.x >= mapPixelSize.x);
+		assert(gridWalls.pixelSize.y >= mapPixelSize.y);
+		assert(physMonsters->pixelSize.x >= mapPixelSize.x);
+		assert(physMonsters->pixelSize.y >= mapPixelSize.y);
+		sortContainer.Resize<true>((int32_t)physMonsters->pixelSize.y);
 
 		// 逐行扫内容并 各种预生成 / 填充
 		for (int32_t y = 0; y < mapHeight; y++) {
