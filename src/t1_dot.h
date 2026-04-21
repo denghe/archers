@@ -13,7 +13,7 @@ namespace Test1 {
 		static constexpr float cLifespan{ 10.f };
 
 		// 每 ?? 秒产生 1 次伤害
-		static constexpr float cActiveInterval{ 0.1f };
+		static constexpr float cActiveInterval{ 0.2f };
 
 		Scene* scene{};
 		// 伤害值

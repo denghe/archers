@@ -23,21 +23,24 @@ namespace Test1 {
 	struct PhysSystem : xx::Grid2dCircle<SceneItem*, PhysCache> {
 		using Base = xx::Grid2dCircle<SceneItem*, PhysCache>;
 
+		// 下面这些计算相关参数随时可以修改
 		// 速度阻尼
-		static constexpr float cVelocityDamping{ 300.f };
+		float cVelocityDamping{ 300.f };
 		// 重力加速度( 每 Step 都会加在所有 item 的加速度上 )
-		static constexpr XY cGravity{ -200.f, 0 };
+		XY cGravity{ 0, 0 };
 		// 碰撞响应系数( 数值越大，碰撞后弹得越远 )
-		static constexpr float cResponseCoef{ 0.5f };
+		float cResponseCoef{ 0.5f };
 		// 物体最大速度( 超过这个速度会被强行限制 )
-		static constexpr float cMaxSpeed{ 500.f / gg.cFps };
-
+		float cMaxSpeed{ 500.f / gg.cFps };
 		// 最大邻居数( 检测次数限制 )
 		int32_t maxNumNeighbors{ 3 };
+
 		// 指向场景，方便访问场景数据( 比如地图尺寸，物体列表 )
 		Scene* scene{};
 
 		// 初始化，capacity 是 nodes 的预分配数量
+		// maxNumNeighbors_ 视情况而定，如果对象都是相同大小， 3~4 就够了
+		// 体积相差 2 倍啥的则可能需要 15( 想象一下大圆圈周围需要多少个小圆圈能围满 )
 		void Init(Scene* scene_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_ = 3);
 		// 添加对象( 复制数据到 nodes，并填充 indexAtGrid )
 		void Add(SceneItem* item_);
@@ -45,8 +48,8 @@ namespace Test1 {
 		void Remove(SceneItem* item_);
 		// 尝试移除对象（如果对象不在系统中，则不执行任何操作）
 		void TryRemove(SceneItem* item_);
-		// 定位到节点（方便直接改数据）
-		Node& At(SceneItem* item_) const;
+		// 定位到节点.cache（方便直接改数据）
+		PhysCache& At(SceneItem* item_) const;
 		// 帧逻辑. 调用 FillBuckets、Calc、Writeback 完成物理计算( 遍历 nodes )
 		void Step();
 		// 下面是 Step 的具体步骤

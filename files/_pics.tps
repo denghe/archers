@@ -185,6 +185,7 @@
             <key type="filename">pics/c128_floor.png</key>
             <key type="filename">pics/c128_lava.png</key>
             <key type="filename">pics/c128_monster.png</key>
+            <key type="filename">pics/c128_monster_portal.png</key>
             <key type="filename">pics/c128_player.png</key>
             <key type="filename">pics/c128_wall.png</key>
             <struct type="IndividualSpriteSettings">

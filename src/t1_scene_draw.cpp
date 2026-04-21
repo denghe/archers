@@ -31,6 +31,12 @@ namespace Test1 {
 				}
 			}
 
+			// 绘制出怪区
+			for (auto& o : enterPoss) {
+				auto p = o * cCellPixelSize;
+				gg.Quad().DrawTinyFrame(gg.pics.c128_monster_portal, cam.ToGLPos(p), { 0,1 }, cam.scale, 0);
+			}
+
 			// 背景部分绘制
 			for (auto& o : lavas) o->Draw();
 			for (auto& o : walls) o->Draw();

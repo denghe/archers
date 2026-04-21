@@ -6,11 +6,17 @@ namespace Test1 {
 	struct Monster : SceneProps12DotItem {
 		static constexpr int32_t cTypeId{ 4 };
 
-		// 怪物动画帧数组下标范围
+		// 每次挨打变白的时长
+		static constexpr float cWhiteColorDuration{ 0.1f };
+
+		// 动画帧数组下标范围
 		xx::FromTo<float> frameIndexRange;
+
+		// 动画帧游标
 		float frameIndex{};
 
-		// todo: 挨打变白
+		// 挨打变白结束时间点
+		float whiteColorEndTime{};
 
 		void Init(Scene* scene_, XY pos_, float radius_ = cMonsterRadius);
 		void Update() override;

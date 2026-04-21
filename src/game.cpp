@@ -55,7 +55,7 @@ namespace Global {
 		if (keyboard[GLFW_KEY_RIGHT_BRACKET](0.2f)) {
 			isLimitFPS = !isLimitFPS;
 		}
-		if (keyboard[GLFW_KEY_BACKSLASH](0.2f)) {
+		if (keyboard[GLFW_KEY_GRAVE_ACCENT](0.2f)) {
 			isShowDebugPanel = !isShowDebugPanel;			// todo
 		}
 

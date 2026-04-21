@@ -33,8 +33,8 @@ namespace Test1 {
 		}
 	}
 
-	PhysSystem::Node& PhysSystem::At(SceneItem* item_) const {
-		return NodeAt(item_->indexAtGrid);
+	PhysCache& PhysSystem::At(SceneItem* item_) const {
+		return NodeAt(item_->indexAtGrid).cache;
 	}
 
 	void PhysSystem::Step() {

@@ -35,12 +35,14 @@ namespace Test1 {
 		if (scene->TryGetCrossLava(pos, radius)) {
 			// todo: 特效？
 			Dispose();
+			return;
 		}
 
-		// 驱动 dots
+		// 驱动 dots. 如果导致 Dispose 就自杀
 		if (DotsUpdate(this)) return;
 
-		// todo: 向前移动( 设置 accel )
+		// 向前移动( 物理附加 加速度 )
+		scene->physMonsters->At(this).accel += XY{ -200, 0 };
 
 		// 切帧动画
 		frameIndex += (15.f / gg.cFps);
@@ -53,8 +55,10 @@ namespace Test1 {
 	void Monster::Draw() {
 		XY s{ scale * scene->cam.scale };
 		if (flipX) s.x = -s.x;
+		float cp{ 1 };
+		if (scene->time < whiteColorEndTime) cp = 10000.f;
 		gg.Quad().DrawFrame(gg.pics.creature_1_[frameIndex], scene->cam.ToGLPos(pos)
-			, s, radians);
+			, s, radians, cp);
 	}
 
 	void Monster::DrawHPBar() {
@@ -105,8 +109,14 @@ namespace Test1 {
 
 	std::pair<float, int> Monster::Hurt(float attackValue_) {
 		auto r = PropsDoHurt(gg.rnd, attackValue_);
-		if (r.second == 2) {
+		if (r.second == 0) {
+			// 变白
+			whiteColorEndTime = scene->time + cWhiteColorDuration;
+		}
+		else if (r.second == 2) {
+			// 爆炸特效
 			scene->exploders.Emplace().Emplace()->Init(this);
+			// 自杀
 			Dispose();
 		}
 		return r;

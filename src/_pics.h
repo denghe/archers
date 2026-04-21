@@ -15,6 +15,7 @@ struct _pics {
 	xx::Frame c128_floor;
 	xx::Frame c128_lava;
 	xx::Frame c128_monster;
+	xx::Frame c128_monster_portal;
 	xx::Frame c128_player;
 	xx::Frame c128_wall;
 	xx::Frame cursor_cross;
