@@ -38,9 +38,10 @@ namespace Test1 {
 				// 进一步判断鼠标点击的部位
 				// 弓位
 				if (archerPoss.Find(cxy) != -1) {
-					for (size_t i = 0; i < 5; i++) {
-						archers.Emplace().Emplace()->Init(this, mp);
-					}
+					GenArchers(1);
+					//for (size_t i = 0; i < 5; i++) {
+					//	archers.Emplace().Emplace()->Init(this, mp);
+					//}
 				}
 				// 进怪位
 				else if (enterPoss.Find(cxy) != -1) {

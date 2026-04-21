@@ -32,12 +32,16 @@ namespace Test1 {
 		// 所有伤害文字
 		xx::EffectTextManager effectTexts;
 
-		// 所有弓手放置坐标
+		// 所有弓手放置坐标( 对应 mapSize ) 
 		xx::List<XYi> archerPoss;
 		// 所有进怪点坐标
 		xx::List<XYi> enterPoss;
 		// 所有怪出口坐标
 		xx::List<XYi> outletPoss;
+
+		// 所有弓手放置坐标池( 对应 mapPixelSize )
+		xx::List<XY> archerPixelPosPool;
+
 
 		// for draw floorMaskTex, light ...
 		xx::FrameBuffer frameBuffer;
@@ -47,11 +51,16 @@ namespace Test1 {
 		// 地图生成
 		void GenWorld();
 
+		// 弓箭手生成
+		void GenArchers(int32_t n_);
+
 		// 处理建筑重叠( 圆形判断，会挪移 pos 令重叠消失 )
 		void HandleWallsCross(XY& pos_, float radius_);
 
 		// 尝试获取 pos 附近相交( 圆心足够近 )的 lava. 未找到或不够近返回 空
 		Lava* TryGetCrossLava(XY const& pos_, float radius_);
+
+
 
 		// todo
 		//// 尝试获取 pos 附近相交( 圆心足够近 )的 outlet. 未找到或不够近返回 空

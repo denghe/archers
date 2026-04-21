@@ -3,6 +3,16 @@
 
 namespace Test1 {
 
+	void Scene::GenArchers(int32_t n_) {
+		auto& ps = archerPixelPosPool;
+		if (n_ > ps.len) n_ = ps.len;
+		for (int32_t i = 0; i < n_; i++) {
+			auto idx = gg.rnd.Next(ps.len);
+			archers.Emplace().Emplace()->Init(this, ps[idx]);
+			ps.SwapRemoveAt(idx);
+		}
+	}
+
 	void Scene::HandleWallsCross(XY& pos_, float radius_) {
 		// 遍历 item 邻居建筑处理碰撞( 直接修改 pos_ 位置将其移到建筑范围外 )
 		using G = decltype(gridWalls);
@@ -42,4 +52,6 @@ namespace Test1 {
 		});
 		return rtv;
 	}
+
+
 }
