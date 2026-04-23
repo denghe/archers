@@ -17,10 +17,12 @@ namespace Test1 {
 		// 播放爆炸帧动画. 计算需要多少帧，每帧的帧编号增量
 		inc = cExplodeNumFrames / (cExplodeDuration * gg.cFps);
 		// 在地板上留下痕迹
+		XY s{ radius / frameSize.y * 2 };
+		if (tar_->flipX) s.x = -s.x;
 		scene->floorMasks.Emplace(FloorMask{
 			.frame = frame,
-			.pos = pos,
-			.scale = radius / frameSize.y * 2,
+			.pos = tar_->pos,
+			.scale = s,
 			.radians = 0,
 			.colorplus = 1.f,
 			.color = {0,0,0,222}

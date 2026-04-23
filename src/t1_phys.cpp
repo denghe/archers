@@ -140,7 +140,7 @@ namespace Test1 {
 			a = {};
 
 			// 处理当前对象和邻居建筑碰撞( 直接修改位置将其移到建筑范围外 )
-			scene->HandleWallsCross(p, o.cache.radius);
+			scene->HandleBuildingsCross(p, o.cache.radius);
 
 			// 超出地图边界，硬拉?
 			if (p.x >= pixelSize.x) p.x = pixelSize.x - 0.001f;

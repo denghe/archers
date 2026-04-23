@@ -55,7 +55,7 @@ namespace Test1 {
 		void GenArchers(int32_t n_);
 
 		// 处理建筑重叠( 圆形判断，会挪移 pos 令重叠消失 )
-		void HandleWallsCross(XY& pos_, float radius_);
+		void HandleBuildingsCross(XY& pos_, float radius_);
 
 		// 尝试获取 pos 附近相交( 圆心足够近 )的 lava. 未找到或不够近返回 空
 		Lava* TryGetCrossLava(XY const& pos_, float radius_);

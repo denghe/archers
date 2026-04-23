@@ -9,7 +9,7 @@ namespace Test1 {
 	static constexpr float cUIScale{ 0.5f };
 
 	static constexpr float cCellPixelSize{ 128 };
-	static constexpr float c1_CellPixelSize{ 1.f / 128 };
+	static constexpr float c1_CellPixelSize{ 1.f / cCellPixelSize };
 	static constexpr float cCellPixelHalfSize{ cCellPixelSize / 2.f };
 	static constexpr float cWallRadius{ cCellPixelSize / 2.f };
 	static constexpr float cMonsterRadius{ cWallRadius * 0.25f };

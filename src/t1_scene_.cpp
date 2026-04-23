@@ -13,7 +13,7 @@ namespace Test1 {
 		}
 	}
 
-	void Scene::HandleWallsCross(XY& pos_, float radius_) {
+	void Scene::HandleBuildingsCross(XY& pos_, float radius_) {
 		// 遍历 item 邻居建筑处理碰撞( 直接修改 pos_ 位置将其移到建筑范围外 )
 		using G = decltype(gridWalls);
 		auto& g = gridWalls;

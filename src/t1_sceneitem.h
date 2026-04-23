@@ -47,8 +47,8 @@ namespace Test1 {
 
 	struct FloorMask {
 		xx::Frame frame;
-		XY pos{};
-		float scale{ 1.f }, radians{}, colorplus{ 1.f };
+		XY pos{}, scale{ 1.f };
+		float radians{}, colorplus{ 1.f };
 		xx::RGBA8 color{ 0,0,0,127 };
 	};
 
