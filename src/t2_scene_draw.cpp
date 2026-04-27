@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
-#include "t1.h"
+#include "t2.h"
 
-namespace Test1 {
+namespace Test2 {
 
 	void Scene::Draw() {
 		// 设置内容绘制时不插值, 让图像清晰锐利
@@ -31,28 +31,23 @@ namespace Test1 {
 				}
 			}
 
-			// 绘制出怪区
-			for (auto& o : enterPoss) {
-				auto p = o * cCellPixelSize;
-				gg.Quad().DrawTinyFrame(gg.pics.c128_monster_portal, cam.ToGLPos(p), { 0,1 }, cam.scale, 0);
-			}
-
 			// 背景部分绘制
-			for (auto& o : lavas) o->Draw();
 			for (auto& o : walls) o->Draw();
 
 			// 地板污染痕迹绘制
 			gg.Quad().Draw(*floorMaskTex, *floorMaskTex, cam.ToGLPos(mapPixelSize * 0.5f), 0.5f, cam.scale, 0, 1.f, {222,222,222,222});
 
 			// 影子
-			for (auto& o : monsters) o->DrawShadow();
-			// todo: more shadow
+			for (auto& o : creatures) {
+				o->DrawShadow();
+				o->weapon->DrawShadow();
+			}
 
 			// sort order by y
-			for (auto& o : monsters) SortContainerAdd(o.pointer);
-			for (auto& o : archers) SortContainerAdd(o.pointer);
-			for (auto& o : archerArrows) SortContainerAdd(o.pointer);
-			for (auto& o : exploders) SortContainerAdd(o.pointer);
+			for (auto& o : creatures) {
+				SortContainerAdd(o.pointer);
+				SortContainerAdd(o->weapon.pointer);
+			}
 			SortContainerDraw();
 		});
 
@@ -65,10 +60,10 @@ namespace Test1 {
 		auto bgColor = xx::RGBA8{ 10,10,10,255 };
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
-			for (auto& o : monsters) o->DrawLight();
-			for (auto& o : archers) o->DrawLight();
-			for (auto& o : archerArrows) o->DrawLight();
-			for (auto& o : exploders) o->DrawLight();
+			for (auto& o : creatures) {
+				o->DrawLight();
+				o->weapon->DrawLight();
+			}
 			// ...
 		});
 		lightTex->SetParm(GL_LINEAR);
@@ -80,7 +75,7 @@ namespace Test1 {
 		gg.ShaderEnd();
 
 		// 血条
-		for (auto& o : monsters) o->DrawHPBar();
+		for (auto& o : creatures) o->DrawHPBar();
 
 		// 伤害文字
 		effectTexts.Draw();
@@ -89,7 +84,7 @@ namespace Test1 {
 		gg.picsTex->SetParm(GL_NEAREST);
 
 		// 设置顶部信息文字显示内容
-		gg.uiText->SetText(xx::ToString("archers.len = ", archers.len, "  archerArrows.len = ", archerArrows.len, " monsters.len = ", monsters.len));
+		gg.uiText->SetText(xx::ToString("creatures.len = ", creatures.len));
 		gg.DrawNode(ui);
 	}
 

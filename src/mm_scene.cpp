@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "mm_scene.h"
-#include "t1_.h"
+#include "t1.h"
+#include "t2.h"
 
 namespace MainMenu {
 
@@ -26,6 +27,12 @@ namespace MainMenu {
 		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"弓箭手隔岸射怪物v1")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test1::Scene>()->Init();
+			});
+		};
+
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"一只近战挥刀怪")).SetLabelBorder().onClicked = [this] {
+			SetDelayCmd([this] {
+				gg.MakeScene<Test2::Scene>()->Init();
 			});
 		};
 

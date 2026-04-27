@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
-#include "t1.h"
+#include "t2.h"
 
-namespace Test1 {
+namespace Test2 {
 
 	void PhysCache::operator=(SceneItem* p) {
 		lastPos = pos = p->pos;

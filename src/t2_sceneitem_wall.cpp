@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
-#include "t1.h"
+#include "t2.h"
 
-namespace Test1 {
+namespace Test2 {
 
 	void Wall::Init(Scene* scene_, XY pos_) {
 		typeId = cTypeId;
