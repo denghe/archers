@@ -24,6 +24,7 @@ namespace Test2 {
 	void Scene::FixedUpdate() {
 		UpdateItems(creatures);
 		physCreatures.Step();
+		for (auto& o : creatures) o->weapon->Update();
 		effectTexts.Update(time);
 
 		auto mp = cam.ToLogicPos(gg.mousePos);

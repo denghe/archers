@@ -8,52 +8,25 @@ namespace Test2 {
 		scene = owner_->scene;
 		owner = xx::WeakFromThis(owner_);
 
-		//indexAtContainer = scene->archerArrows.len - 1;
-		//assert(scene->archerArrows[indexAtContainer].pointer == this);
-
-		//// 算出每帧的步进
-		//auto d = tar_->pos - owner_->pos;
-		//auto mag2 = d.x * d.x + d.y * d.y;
-		//auto _1mag = 1.f / std::sqrtf(mag2);
-		//inc = d * _1mag * cSpeed * gg.cDelta;
-		//deathTime = scene->time + cMaxLifetime;
-
-		//pos = owner_->pos;
-		//y = pos.y;
-		//radius = cPlayerRadius * 0.5f;
-		//scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h;
-		//radians = std::atan2(d.y, d.x);
-
-		//// 复制玩家当前数值面板值以便于算伤害
-		//*(Props2*)this = *(Props2*)owner;
-		//leftPierceCount = cPierceCount;
+		pos = owner_->pos;
+		y = pos.y + 1.f;
+		radius = cCreatureRadius * 0.5f;
+		scale = radius * 2.f / gg.pics.c64_bullet.uvRect.h;
+		//radians = std::atan2(d.y, d.x);	// todo
 	}
 
 	void CreatureWeapon::Update() {
-		//// 超时自杀
-		//if (scene->time >= deathTime) {
-		//	Dispose();
-		//	return;
-		//}
+		// 移动( 同步 owner )
+		pos = owner->pos;
+		y = pos.y + 1.f;
 
-		//// 移动
-		//pos += inc;
-		//y = pos.y;
-
-		//// 步进帧动画
-		//frameNumber += cFrameNumberInc;
-		//if (frameNumber >= gg.pics.firearrow_.size()) {
-		//	frameNumber = 0.f;
-		//}
-
-		//assert(leftPierceCount > 0);
-		//// 移除名单里面已经过期 或 对象已失效 的那部分
-		//auto currTime = scene->time;
-		//for (auto i = pierceInfos.len - 1; i >= 0; --i) {
-		//	if (auto& o = pierceInfos[i]; !o.target || currTime >= o.elapsedTime) {
-		//		pierceInfos.SwapRemoveAt(i);
-		//	}
-		//}
+		// 移除名单里面已经过期 或 对象已失效 的那部分
+		auto currTime = scene->time;
+		for (auto i = pierceInfos.len - 1; i >= 0; --i) {
+			if (auto& o = pierceInfos[i]; !o.target || currTime >= o.elapsedTime) {
+				pierceInfos.SwapRemoveAt(i);
+			}
+		}
 
 		//// 查找子弹位置的怪
 		//auto cri = scene->physMonsters->PosToCRIndex(pos);
@@ -115,39 +88,16 @@ namespace Test2 {
 		//	}
 		//	return false;
 		//});
-
-		//bool needDispose{};
-		//if (leftPierceCount > 0) {
-		//	// 查找子弹位置的建筑. 如果有相交，子弹自杀
-		//	using G = decltype(scene->gridWalls);
-		//	auto& g = scene->gridWalls;
-		//	cri = g.PosToCRIndex(pos);
-		//	needDispose = g.ForeachBy9Break(cri.y, cri.x, [&](G::Node& node, float range)->bool {
-		//		auto d = pos - node.cache.pos;
-		//		auto mag2 = d.x * d.x + d.y * d.y;
-		//		auto r = node.cache.radius;	// +radius; 忽略子弹半径，让碰撞显得更贴墙
-		//		auto rr = r * r;
-		//		return mag2 < rr;
-		//	});
-		//}
-		//else {
-		//	needDispose = true;
-		//}
-		//if (needDispose) {
-		//	// todo: 弄点子弹命中建筑消失的粒子？
-		//	Dispose();
-		//	return;
-		//}
 	}
 
 	void CreatureWeapon::Draw() {
-		gg.Quad().DrawFrame(gg.pics.firearrow_[frameNumber], scene->cam.ToGLPos(pos)
+		gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
 			, scale * scene->cam.scale, radians);
 	}
 
 	void CreatureWeapon::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (128.f / 64.f) * scene->cam.scale, 0, 0.5f);
+			, (128.f / 32.f) * scene->cam.scale, 0, 0.5f);
 	}
 
 	void CreatureWeapon::Dispose() {

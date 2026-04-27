@@ -25,7 +25,7 @@ namespace Test2 {
 
 		// 下面这些计算相关参数随时可以修改
 		// 速度阻尼
-		float cVelocityDamping{ 300.f };
+		float cVelocityDamping{ 1000.f };
 		// 重力加速度( 每 Step 都会加在所有 item 的加速度上 )
 		XY cGravity{ 0, 0 };
 		// 碰撞响应系数( 数值越大，碰撞后弹得越远 )

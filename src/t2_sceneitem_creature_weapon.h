@@ -12,35 +12,19 @@ namespace Test2 {
 	};
 
 	struct Creature;
-	struct CreatureWeapon : SceneProps2Item {
-		static constexpr int32_t cTypeId{ 6 };
+	struct CreatureWeapon : SceneItem {
+		static constexpr int32_t cTypeId{ 3 };
 
-		// 移动速度
-		static constexpr XY cSpeed{ 1000.f };
-		// 最大存活时长
-		static constexpr float cMaxLifetime{ 5.f };
-		// 帧动画步进值
-		static constexpr float cFrameNumberInc{ 15.f / gg.cFps };
-		// 初始穿刺次数
-		static constexpr int32_t cPierceCount{ 5 };
 		// 穿刺间隔时长( 针对相同对象 )
 		static constexpr float cPierceInterval{ 0.1f };
 
-
 		// 指向拥有者
 		xx::Weak<Creature> owner;
-		// 每帧移动步进值
-		XY inc{};
-		// 死亡时间点 = 创建时时间 + 最大存活时长
-		float deathTime{};
-		// 当前帧下标
-		float frameNumber{};
 
-		// 箭矢的基础攻击力
+		// 基础攻击力
 		float baseDamage{ 1.f };
-		// 剩余穿刺次数( 命中 1 次，减 1 )
-		int32_t leftPierceCount{};
-		// 穿刺信息表( 黑名单, 避免子弹连续多帧判定同一个对象 )
+
+		// 穿刺信息表( 黑名单, 避免武器连续多帧判定同一个对象 )
 		xx::List<PierceInfo> pierceInfos;
 
 

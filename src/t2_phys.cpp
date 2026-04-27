@@ -79,7 +79,7 @@ namespace Test2 {
 	void PhysSystem::CalcNN(PhysCache& d1_, PhysCache& d2_) {
 		// 距离计算
 		auto d = d1_.pos - d2_.pos;
-		d.y *= 2.f;	// 椭圆效果
+		//d.y *= 2.f;	// 椭圆效果
 		auto mag2 = d.x * d.x + d.y * d.y;
 		auto r = d1_.radius + d2_.radius;
 		auto rr = r * r;

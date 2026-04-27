@@ -5,7 +5,7 @@ namespace Test2 {
 
 	struct CreatureWeapon;
 	struct Creature : SceneProps12DotItem {
-		static constexpr int32_t cTypeId{ 7 };
+		static constexpr int32_t cTypeId{ 2 };
 
 		// 搜索时间间隔( 模拟反应时间 同时省点 cpu )
 		static constexpr float cSearchInterval{ 0.2f };
@@ -14,7 +14,9 @@ namespace Test2 {
 		xx::Shared<CreatureWeapon> weapon;
 
 		// 阵营索引( 同时也是 gridCreaturess 的索引 )
-		int32_t campIndex{ -1 }, indexAtCampGrid{ -1 };
+		int32_t campIndex{ -1 };
+		// 在阵营空间索引中的位置，方便高速随机删除
+		int32_t indexAtCampGrid{ -1 };
 
 		void Init(Scene* scene_, XY pos_, int32_t campIndex_);
 		void Update() override;
