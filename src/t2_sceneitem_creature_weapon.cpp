@@ -29,6 +29,8 @@ namespace Test2 {
 
 	void CreatureWeapon::Swing() {
 		// 刀从当前角度 -?? 度旋转到 +?? 度，耗费 ?? 秒
+		// todo: 来回砍, 模拟雨刮器
+
 		XX_BEGIN(_1);
 		assert(swingStepCount == 0);
 		for(swingStepCount = cCount; swingStepCount > 0; --swingStepCount) {
@@ -145,6 +147,9 @@ namespace Test2 {
 	void CreatureWeapon::Draw() {
 		//gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
 		//	, scale * scene->cam.scale, radians);
+
+		// todo: 换成单图
+
 		auto& q = gg.Quad();
 		for (int32_t i = 0; i < cDensity; ++i) {
 			q.DrawFrame(gg.pics.c16, scene->cam.ToGLPos(pos + circlePositions[i])
@@ -165,6 +170,9 @@ namespace Test2 {
 	void CreatureWeapon::DrawLight() {
 		//gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
 		//	, (128.f / 32.f) * scene->cam.scale, 0, 0.5f);
+
+		// todo: 换成单图
+
 		auto& q = gg.Quad();
 		for (int32_t i = 0; i < cDensity; ++i) {
 			q.DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos + circlePositions[i])

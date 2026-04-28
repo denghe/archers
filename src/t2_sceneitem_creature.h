@@ -12,7 +12,7 @@ namespace Test2 {
 		static constexpr float cSearchInterval{ 0.5f };
 		static constexpr float cMoveInterval{ 0.5f };
 		static constexpr float cAttackInterval{ 0.2f };
-		static constexpr float cMoveSpeed{ 500.f };
+		static constexpr float cMoveSpeed{ 1500.f };
 
 		// 挂接武器
 		xx::Shared<CreatureWeapon> weapon;
