@@ -86,6 +86,15 @@ namespace Test2 {
 		// 设置顶部信息文字显示内容
 		gg.uiText->SetText(xx::ToString("creatures.len = ", creatures.len));
 		gg.DrawNode(ui);
+
+		// gizmos
+		if (gg.isShowDebugPanel) {
+			for (auto& o : creatures) {
+				//o->DrawGizmos();
+				o->weapon->DrawGizmos();
+			}
+			// ...
+		}
 	}
 
 	void Scene::OnResize(bool modeChanged_) {

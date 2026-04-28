@@ -18,6 +18,9 @@ namespace Test2 {
 		// 在阵营空间索引中的位置，方便高速随机删除
 		int32_t indexAtCampGrid{ -1 };
 
+		// 设置坐标( 会同步 grid & y ) 主用于 phys 调用
+		void SetPos(XY pos_);
+
 		void Init(Scene* scene_, XY pos_, int32_t campIndex_);
 		void Update() override;
 		void Draw() override;

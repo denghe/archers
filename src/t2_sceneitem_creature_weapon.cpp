@@ -12,7 +12,19 @@ namespace Test2 {
 		y = pos.y + 1.f;
 		radius = cCreatureRadius * 0.5f;
 		scale = radius * 2.f / gg.pics.c64_bullet.uvRect.h;
-		//radians = std::atan2(d.y, d.x);	// todo
+		radians = gg.rnd.NextRadians<float>();
+		FillCircles();
+	}
+
+	void CreatureWeapon::FillCircles() {
+		// 生成刀的圆形判定数据
+		// 先算出每个圆形的位置，间隔 cStep，数量 cDensity，半径 cWidth * 0.5f
+		// 使用旋转矩阵算出每个圆形的位置，旋转矩阵由 radians 计算得到
+		auto at = xx::AffineTransform::MakePosScaleRadians({}, 1.f, radians);
+		//auto r = cWidth * 0.5f;
+		for (int32_t i = 0; i < cDensity; ++i) {
+			circlePositions[i] = at.Apply({ i * cStep, 0.f });
+		}
 	}
 
 	void CreatureWeapon::Update() {
@@ -28,71 +40,97 @@ namespace Test2 {
 			}
 		}
 
-		//// 查找子弹位置的怪
-		//auto cri = scene->physMonsters->PosToCRIndex(pos);
-		//scene->physMonsters->ForeachBy9Break(cri.y, cri.x, [&](PhysSystem::Node& o, float range)->bool {
-		//	// 开始碰撞判定
-		//	auto d = o.cache.pos - pos;
-		//	d.y *= 2.0f;	// 椭圆效果
-		//	auto mag2 = d.x * d.x + d.y * d.y;
-		//	auto r = o.cache.radius + radius;
-		//	auto rr = r * r;
-		//	// 距离小于圆心和: 相交
-		//	if (mag2 < rr) {
-		//		// 开始穿刺处理
-		//		// 如果目标在名单里则忽略碰撞
-		//		if (pierceInfos.Exists([&](PierceInfo& pi)->bool {
-		//				// 这里不用 Try版 是因为 Foreach 过程中不会发生 target 删除行为
-		//				return pi.target.GetPointer() == o.value;
-		//			})) {
-		//			// 忽略碰撞 继续下次查询
-		//			return false;
-		//		}
-		//		// 防止怪物释放内存导致指针失效，先拿 weak ptr
-		//		auto w = xx::WeakFromThis((Monster*)o.value);
-		//		// 伤害目标
-		//		// 先算攻击力
-		//		auto [atkVal, isCritical] = PropsCalcAttackValue(gg.rnd, baseDamage);
-		//		// 得到实际造成的伤害
-		//		auto [actualDmg, state] = w->Hurt(atkVal);
-		//		if (state == 0) {
-		//			assert(w);
-		//			// 生成伤害数字特效( 暴击时颜色会不同 )
-		//			scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
-		//				, 2 * scene->cam.scale, -actualDmg, true);
-		//			// 在目标怪 身上挂 dot Fire
-		//			DotFire::Make(this, w.GetPointer());
-		//		}
-		//		else if(state == 1) {
-		//			assert(w);
-		//			// todo: miss 的特效表达
-		//		}
-		//		else {
-		//			assert(!w);
-		//		}
-		//		// 如果目标没死( 没被打死 或 miss )
-		//		if (w) {
-		//			// 记录到名单
-		//			pierceInfos.Emplace(PierceInfo{
-		//				.target = std::move(w),	// w 直接挪进去 后面不能再访问了
-		//				.elapsedTime = currTime + cPierceInterval
-		//				});
-		//		}
-		//		// 如果被 miss 则不消耗穿刺
-		//		if (state != 1) {
-		//			// 穿刺次数 -1
-		//			--leftPierceCount;
-		//			// 没有次数就终止整个查询
-		//			if (leftPierceCount <= 0) return true;
-		//		}
-		//	}
-		//	return false;
-		//});
+		// 临时逻辑：旋转一下
+		radians += gg.cDelta * gPI;
+		FillCircles();
+		
+		// 开始查找所有圆形位置的怪
+		// 先定位到敌对阵营的 gridCreatures
+		xx::Grid2dCircle<SceneItem*, GridCache>* g;
+		if (owner->campIndex == 1) {
+			g = &scene->gridCreaturess[0];
+		}
+		else {
+			g = &scene->gridCreaturess[1];
+		}
+		// 遍历所有圆形位置，查询周围的怪物，进行碰撞判定
+		for (int32_t i = 0; i < cDensity; ++i) {
+			auto p = pos + circlePositions[i];
+			auto cri = g->PosToCRIndex(p);
+			// 因为圆形体积不大，直接判断每个圆形位置所在格子和周围八个格子就行了
+			g->ForeachBy9(cri.y, cri.x, [&](auto& o, float range)->bool {
+				// 开始碰撞判定
+				auto d = o.cache.pos - p;
+				//d.y *= 2.0f;	// 椭圆效果
+				auto mag2 = d.x * d.x + d.y * d.y;
+				auto r = o.cache.radius + cWidth * 0.5f;
+				auto rr = r * r;
+				// 距离小于圆心和: 相交
+				if (mag2 < rr) {
+					// 开始穿刺处理
+					// 如果目标在名单里则忽略碰撞
+					if (pierceInfos.Exists([&](PierceInfo& pi)->bool {
+						// 这里不用 Try版 是因为 Foreach 过程中不会发生 target 删除行为
+						return pi.target.GetPointer() == o.value;
+						})) {
+						// 忽略碰撞 继续下次查询
+						return false;
+					}
+					// 防止怪物释放内存导致指针失效，先拿 weak ptr
+					auto w = xx::WeakFromThis((Creature*)o.value);
+					// 伤害目标
+					// 先算攻击力
+					auto [atkVal, isCritical] = owner->PropsCalcAttackValue(gg.rnd, baseDamage);
+					// 得到实际造成的伤害
+					auto [actualDmg, state] = w->Hurt(atkVal);
+					if (state == 0) {
+						assert(w);
+						// 生成伤害数字特效( 暴击时颜色会不同 )
+						scene->effectTexts.Add(p, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
+							, 2 * scene->cam.scale, -actualDmg, true);
+					}
+					else if (state == 1) {
+						assert(w);
+						// todo: miss 的特效表达
+					}
+					else {
+						assert(!w);
+					}
+					// 如果目标没死( 没被打死 或 miss )
+					if (w) {
+						// 击退效果
+						d = o.cache.pos - pos;
+						mag2 = d.x * d.x + d.y * d.y;
+						if (mag2 > 0.01f) {
+							auto v = d / std::sqrtf(mag2) * 5000.f;
+							scene->physCreatures.At((Creature*)o.value).accel += v;
+						}
+
+						// 记录到名单
+						pierceInfos.Emplace(PierceInfo{
+							.target = std::move(w),	// w 直接挪进去 后面不能再访问了
+							.elapsedTime = currTime + cPierceInterval
+						});
+					}
+				}
+				return false;
+			});
+		}
 	}
 
 	void CreatureWeapon::Draw() {
 		gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, -radians);
+	}
+
+	void CreatureWeapon::DrawGizmos() {
+		// 绘制刀的圆形判定数据
+		// 先算出每个圆形的位置，间隔 cStep，数量 cDensity，半径 cWidth * 0.5f
+		// 使用旋转矩阵算出每个圆形的位置，旋转矩阵由 radians 计算得到
+		for (int32_t i = 0; i < cDensity; ++i) {
+			gg.Line().DrawCircle(scene->cam.ToGLPos(pos + circlePositions[i])
+				, cWidth * 0.5f * scene->cam.scale, radians, 8);
+		}
 	}
 
 	void CreatureWeapon::DrawLight() {

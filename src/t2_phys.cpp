@@ -3,7 +3,7 @@
 
 namespace Test2 {
 
-	void PhysCache::operator=(SceneItem* p) {
+	void PhysCache::operator=(Creature* p) {
 		lastPos = pos = p->pos;
 		accel = {};
 		radius = p->radius;
@@ -16,21 +16,21 @@ namespace Test2 {
 		Base::Init(cellPixelSize_, numRows_, numCols_, capacity_);
 	}
 
-	void PhysSystem::Add(SceneItem* item_) {
+	void PhysSystem::Add(Creature* item_) {
 		return Base::Add(item_->indexAtGrid, item_);
 	}
 
-	void PhysSystem::Remove(SceneItem* item_) {
+	void PhysSystem::Remove(Creature* item_) {
 		return Base::Remove(item_->indexAtGrid, item_);
 	}
 
-	void PhysSystem::TryRemove(SceneItem* item_) {
+	void PhysSystem::TryRemove(Creature* item_) {
 		if (item_->indexAtGrid >= 0) {
 			Remove(item_);
 		}
 	}
 
-	PhysCache& PhysSystem::At(SceneItem* item_) const {
+	PhysCache& PhysSystem::At(Creature* item_) const {
 		return NodeAt(item_->indexAtGrid).cache;
 	}
 
@@ -152,8 +152,7 @@ namespace Test2 {
 			auto cri = PosToCRIndex(p);
 			Base::Base::Update(ni, cri.y, cri.x);
 			if (o.value->pos != p) {
-				o.value->pos = p;
-				o.value->y = p.y;
+				o.value->SetPos(p);
 			}
 		}
 	}

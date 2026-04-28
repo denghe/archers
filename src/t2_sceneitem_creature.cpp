@@ -3,6 +3,12 @@
 
 namespace Test2 {
 
+	void Creature::SetPos(XY pos_) {
+		pos = pos_;
+		y = pos.y;
+		scene->gridCreaturess[campIndex].Update(indexAtCampGrid, this);
+	}
+
 	void Creature::Init(Scene* scene_, XY pos_, int32_t campIndex_) {
 		typeId = cTypeId;
 		scene = scene_;
@@ -37,8 +43,10 @@ namespace Test2 {
 	}
 
 	void Creature::Draw() {
+		auto c = xx::RGBA8_Blue;
+		if (campIndex == 1) c = xx::RGBA8_Red;
 		gg.Quad().DrawFrame(gg.pics.c128_monster, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, radians, 1.f, c);
 	}
 
 	void Creature::DrawLight() {

@@ -6,10 +6,10 @@ namespace Test2 {
 
 	// 物理系统，负责处理物体的运动和碰撞
 	// 依赖 Scene 的 gridBuildings pixelSize
-	// 依赖 SceneItem 的 pos radius indexAtGrid typeId
+	// 依赖 Creature 的 pos radius indexAtGrid typeId
 
 	struct Scene;
-	struct SceneItem;
+	struct Creature;
 
 	// 对象池 / 缓存
 	struct PhysCache {
@@ -17,11 +17,11 @@ namespace Test2 {
 		XY pos, lastPos, accel;
 		// 碰撞半径
 		float radius{};
-		void operator=(SceneItem* p);
+		void operator=(Creature* p);
 	};
 
-	struct PhysSystem : xx::Grid2dCircle<SceneItem*, PhysCache> {
-		using Base = xx::Grid2dCircle<SceneItem*, PhysCache>;
+	struct PhysSystem : xx::Grid2dCircle<Creature*, PhysCache> {
+		using Base = xx::Grid2dCircle<Creature*, PhysCache>;
 
 		// 下面这些计算相关参数随时可以修改
 		// 速度阻尼
@@ -43,13 +43,13 @@ namespace Test2 {
 		// 体积相差 2 倍啥的则可能需要 15( 想象一下大圆圈周围需要多少个小圆圈能围满 )
 		void Init(Scene* scene_, int32_t numRows_, int32_t numCols_, int32_t cellPixelSize_, int32_t capacity_, int32_t maxNumNeighbors_ = 3);
 		// 添加对象( 复制数据到 nodes，并填充 indexAtGrid )
-		void Add(SceneItem* item_);
+		void Add(Creature* item_);
 		// 移除对象( 交换删除并同步 indexAtGrid )
-		void Remove(SceneItem* item_);
+		void Remove(Creature* item_);
 		// 尝试移除对象（如果对象不在系统中，则不执行任何操作）
-		void TryRemove(SceneItem* item_);
+		void TryRemove(Creature* item_);
 		// 定位到节点.cache（方便直接改数据）
-		PhysCache& At(SceneItem* item_) const;
+		PhysCache& At(Creature* item_) const;
 		// 帧逻辑. 调用 FillBuckets、Calc、Writeback 完成物理计算( 遍历 nodes )
 		void Step();
 		// 下面是 Step 的具体步骤

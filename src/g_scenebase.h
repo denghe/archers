@@ -41,6 +41,7 @@ namespace Global {
 
 		// 绘制
 		virtual void Draw() {};
+		virtual void DrawGizmos() {};
 		virtual void DrawShadow() {};
 		virtual void DrawLight() {};
 
