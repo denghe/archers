@@ -12,7 +12,7 @@ namespace Test2 {
 		y = pos.y + 1.f;
 		radius = cCreatureRadius * 0.5f;
 		scale = radius * 2.f / gg.pics.c64_bullet.uvRect.h;
-		radians = gg.rnd.NextRadians<float>();
+		radians = owner_->radians - (cRadiansRange * 0.5f);
 		FillCircles();
 	}
 
@@ -20,17 +20,53 @@ namespace Test2 {
 		// 生成刀的圆形判定数据
 		// 先算出每个圆形的位置，间隔 cStep，数量 cDensity，半径 cWidth * 0.5f
 		// 使用旋转矩阵算出每个圆形的位置，旋转矩阵由 radians 计算得到
-		auto at = xx::AffineTransform::MakePosScaleRadians({}, 1.f, radians);
+		auto at = xx::AffineTransform::MakePosScaleRadians({}, 1.f, -radians);
 		//auto r = cWidth * 0.5f;
 		for (int32_t i = 0; i < cDensity; ++i) {
 			circlePositions[i] = at.Apply({ i * cStep, 0.f });
 		}
 	}
 
+	void CreatureWeapon::Swing() {
+		// 刀从当前角度 -?? 度旋转到 +?? 度，耗费 ?? 秒
+		XX_BEGIN(_1);
+		assert(swingStepCount == 0);
+		for(swingStepCount = cCount; swingStepCount > 0; --swingStepCount) {
+			radians += cRotateFrameStep;
+			FillCircles();
+			XX_YIELD(_1);
+		}
+		_1 = 0;
+		XX_END(_1);
+	}
+
+	bool CreatureWeapon::IsSwinging() const {
+		return _1 > 0;
+	}
+
+
 	void CreatureWeapon::Update() {
-		// 移动( 同步 owner )
+		// 同步 owner 坐标
 		pos = owner->pos;
 		y = pos.y + 1.f;
+
+#if 0
+		// 这段为了找bug
+		radians = owner->radians;// -(cRadiansRange * 0.5f);
+		FillCircles();
+		return;
+#endif
+
+		// 挥刀
+		if (IsSwinging()) {
+			// 正在挥刀? 继续
+			Swing();
+		}
+		else {
+			// 不在挥刀? 则保持和 owner 同步
+			radians = owner->radians - (cRadiansRange * 0.5f);
+			FillCircles();
+		}
 
 		// 移除名单里面已经过期 或 对象已失效 的那部分
 		auto currTime = scene->time;
@@ -40,20 +76,9 @@ namespace Test2 {
 			}
 		}
 
-		// 临时逻辑：旋转一下
-		radians += gg.cDelta * gPI;
-		FillCircles();
-		
 		// 开始查找所有圆形位置的怪
-		// 先定位到敌对阵营的 gridCreatures
-		xx::Grid2dCircle<SceneItem*, GridCache>* g;
-		if (owner->campIndex == 1) {
-			g = &scene->gridCreaturess[0];
-		}
-		else {
-			g = &scene->gridCreaturess[1];
-		}
 		// 遍历所有圆形位置，查询周围的怪物，进行碰撞判定
+		auto g = owner->enemyGrid;
 		for (int32_t i = 0; i < cDensity; ++i) {
 			auto p = pos + circlePositions[i];
 			auto cri = g->PosToCRIndex(p);
@@ -61,7 +86,6 @@ namespace Test2 {
 			g->ForeachBy9(cri.y, cri.x, [&](auto& o, float range)->bool {
 				// 开始碰撞判定
 				auto d = o.cache.pos - p;
-				//d.y *= 2.0f;	// 椭圆效果
 				auto mag2 = d.x * d.x + d.y * d.y;
 				auto r = o.cache.radius + cWidth * 0.5f;
 				auto rr = r * r;
@@ -119,8 +143,8 @@ namespace Test2 {
 	}
 
 	void CreatureWeapon::Draw() {
-		gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, -radians);
+		//gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
+		//	, scale * scene->cam.scale, -radians);
 	}
 
 	void CreatureWeapon::DrawGizmos() {

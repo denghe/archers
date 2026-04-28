@@ -21,10 +21,10 @@ namespace Test2 {
 
 		// 生物空间索引( 分阵营 )
 		std::unique_ptr<xx::Grid2dCircle<SceneItem*, GridCache>[]> gridCreaturess;
-		// 生物物理系统
+		// 所有生物( 分阵营 )
+		xx::List<xx::List<xx::Shared<Creature>>> creaturess;
+		// 生物物理系统( 不分阵营，统一处理移动和碰撞 )
 		PhysSystem physCreatures;
-		// 所有生物
-		xx::List<xx::Shared<Creature>> creatures;
 
 		// 所有伤害文字
 		xx::EffectTextManager effectTexts;

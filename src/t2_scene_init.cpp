@@ -13,11 +13,12 @@ namespace Test2 {
 		GenWorld();
 
 		mapPixelSize = mapSize * cCellPixelSize;
-		cam.Init(gg.scale, 1.f, mapPixelSize / 2);
+		cam.Init(gg.scale, gg.designSize.y / mapPixelSize.y, mapPixelSize / 2);
 		gridWalls.Init(cCellPixelSize, mapSize.y, mapSize.x);
 		gridCreaturess = std::make_unique<xx::Grid2dCircle<SceneItem*, GridCache>[]>(2);	// 预设两阵营
 		gridCreaturess[0].Init(cCellPixelSize, mapSize.y, mapSize.x);
 		gridCreaturess[1].Init(cCellPixelSize, mapSize.y, mapSize.x);
+		creaturess.Resize(2);	// 预设两阵营
 		static constexpr auto cellSize = cCreatureRadius * 2;
 		physCreatures.Init(this
 			, std::ceilf(mapPixelSize.y / cellSize)

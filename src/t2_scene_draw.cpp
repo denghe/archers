@@ -38,15 +38,19 @@ namespace Test2 {
 			gg.Quad().Draw(*floorMaskTex, *floorMaskTex, cam.ToGLPos(mapPixelSize * 0.5f), 0.5f, cam.scale, 0, 1.f, {222,222,222,222});
 
 			// 影子
-			for (auto& o : creatures) {
-				o->DrawShadow();
-				o->weapon->DrawShadow();
+			for (auto& oo : creaturess) {
+				for (auto& o : oo) {
+					o->DrawShadow();
+					o->weapon->DrawShadow();
+				}
 			}
 
 			// sort order by y
-			for (auto& o : creatures) {
-				SortContainerAdd(o.pointer);
-				SortContainerAdd(o->weapon.pointer);
+			for (auto& oo : creaturess) {
+				for (auto& o : oo) {
+					SortContainerAdd(o.pointer);
+					SortContainerAdd(o->weapon.pointer);
+				}
 			}
 			SortContainerDraw();
 		});
@@ -60,9 +64,11 @@ namespace Test2 {
 		auto bgColor = xx::RGBA8{ 10,10,10,255 };
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
-			for (auto& o : creatures) {
-				o->DrawLight();
-				o->weapon->DrawLight();
+			for (auto& oo : creaturess) {
+				for (auto& o : oo) {
+					o->DrawLight();
+					o->weapon->DrawLight();
+				}
 			}
 			// ...
 		});
@@ -75,7 +81,11 @@ namespace Test2 {
 		gg.ShaderEnd();
 
 		// 血条
-		for (auto& o : creatures) o->DrawHPBar();
+		for (auto& oo : creaturess) {
+			for (auto& o : oo) {
+				o->DrawHPBar();
+			}
+		}
 
 		// 伤害文字
 		effectTexts.Draw();
@@ -84,14 +94,18 @@ namespace Test2 {
 		gg.picsTex->SetParm(GL_NEAREST);
 
 		// 设置顶部信息文字显示内容
-		gg.uiText->SetText(xx::ToString("creatures.len = ", creatures.len));
+		int32_t count{};
+		for (auto& oo : creaturess) count += oo.len;
+		gg.uiText->SetText(xx::ToString("creatures.len = ", count));
 		gg.DrawNode(ui);
 
 		// gizmos
 		if (gg.isShowDebugPanel) {
-			for (auto& o : creatures) {
-				//o->DrawGizmos();
-				o->weapon->DrawGizmos();
+			for (auto& oo : creaturess) {
+				for (auto& o : oo) {
+					//o->DrawGizmos();
+					o->weapon->DrawGizmos();
+				}
 			}
 			// ...
 		}
