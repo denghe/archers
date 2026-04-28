@@ -144,7 +144,12 @@ namespace Test2 {
 
 	void CreatureWeapon::Draw() {
 		//gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
-		//	, scale * scene->cam.scale, -radians);
+		//	, scale * scene->cam.scale, radians);
+		auto& q = gg.Quad();
+		for (int32_t i = 0; i < cDensity; ++i) {
+			q.DrawFrame(gg.pics.c16, scene->cam.ToGLPos(pos + circlePositions[i])
+				, cWidth / 16.f * scene->cam.scale, radians);
+		}
 	}
 
 	void CreatureWeapon::DrawGizmos() {
@@ -158,8 +163,13 @@ namespace Test2 {
 	}
 
 	void CreatureWeapon::DrawLight() {
-		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (128.f / 32.f) * scene->cam.scale, 0, 0.5f);
+		//gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
+		//	, (128.f / 32.f) * scene->cam.scale, 0, 0.5f);
+		auto& q = gg.Quad();
+		for (int32_t i = 0; i < cDensity; ++i) {
+			q.DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos + circlePositions[i])
+				, cWidth / 64.f * 5.f * scene->cam.scale, radians);
+		}
 	}
 
 	void CreatureWeapon::Dispose() {

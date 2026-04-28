@@ -39,10 +39,10 @@ namespace Test2 {
 		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
 			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
 			XYi cxy = mp * c1_CellPixelSize;
-			if (gg.mouse[GLFW_MOUSE_BUTTON_1](0.2f)) {
+			if (gg.mouse[GLFW_MOUSE_BUTTON_1](0.02f)) {
 				creaturess[0].Emplace().Emplace()->Init(this, mp, 0);
 			}
-			if (gg.mouse[GLFW_MOUSE_BUTTON_2](0.2f)) {
+			if (gg.mouse[GLFW_MOUSE_BUTTON_2](0.02f)) {
 				creaturess[1].Emplace().Emplace()->Init(this, mp, 1);
 			}
 		}

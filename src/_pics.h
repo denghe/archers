@@ -3,6 +3,7 @@
 #include <xx_frame.h>
 
 struct _pics {
+	xx::Frame c16;
 	xx::Frame c32;
 	xx::Frame c32_bullet;
 	xx::Frame c64;
