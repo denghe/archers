@@ -20,8 +20,8 @@ namespace Test2 {
 	struct CreatureWeapon : SceneItem {
 		static constexpr int32_t cTypeId{ 3 };
 
-		static constexpr float cRadiansRange{ gPI / 2.f };
-		static constexpr float cDuration{ 0.5f };
+		static constexpr float cRadiansRange{ 120.f / 180.f * gPI };
+		static constexpr float cDuration{ 0.3f };
 		static constexpr int32_t cCount{ int32_t(cDuration / gg.cDelta) };
 		static constexpr float cRotateFrameStep{ cRadiansRange / cCount };
 
@@ -52,6 +52,9 @@ namespace Test2 {
 
 		int32_t _1{};
 		int32_t swingStepCount{};
+
+		// 当前挥刀方向( 1: 正向 或 -1: 反向 )
+		int32_t swingDirection{ 1 };
 
 		// 基础攻击力
 		float baseDamage{ 1.f };

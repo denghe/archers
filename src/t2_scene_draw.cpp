@@ -52,6 +52,7 @@ namespace Test2 {
 					SortContainerAdd(o->weapon.pointer);
 				}
 			}
+			for (auto& o : exploders) SortContainerAdd(o.pointer);
 			SortContainerDraw();
 		});
 
@@ -70,6 +71,7 @@ namespace Test2 {
 					o->weapon->DrawLight();
 				}
 			}
+			for (auto& o : exploders) o->DrawLight();
 			// ...
 		});
 		lightTex->SetParm(GL_LINEAR);

@@ -21,16 +21,16 @@ namespace MainMenu {
 			.LeftMargin(cMargin)
 			.DefaultLineHeight(cLineHeight);
 
-		L.Append(C->Make<xx::Label>()->Init(2, 0, 0, fontSize * 3)(U"一堆弓箭手模拟")).SetBorder();
+		L.Append(C->Make<xx::Label>()->Init(2, 0, 0, fontSize * 3)(U"两队小兵对冲模拟器")).SetBorder();
 		L.EndLine();
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"弓箭手隔岸射怪物v1")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"弓箭手隔岸射怪物(鼠标左右键点岩浆左边或最右边出怪区)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test1::Scene>()->Init();
 			});
 		};
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"一只近战挥刀怪")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"近战挥刀怪((鼠标左右键分阵营)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test2::Scene>()->Init();
 			});

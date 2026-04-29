@@ -22,14 +22,13 @@ namespace Test2 {
 	}
 
 	void Scene::FixedUpdate() {
+		effectTexts.Update(time);
+		UpdateItems(exploders);
 		for (auto& oo : creaturess) {
 			UpdateItems(oo);
-		}
-		physCreatures.Step();
-		for (auto& oo : creaturess) {
 			for (auto& o : oo) o->weapon->Update();
 		}
-		effectTexts.Update(time);
+		physCreatures.Step();
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
 		if (gg.mouse[GLFW_MOUSE_BUTTON_3](0.1f)) {
@@ -39,10 +38,10 @@ namespace Test2 {
 		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
 			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
 			XYi cxy = mp * c1_CellPixelSize;
-			if (gg.mouse[GLFW_MOUSE_BUTTON_1](0.02f)) {
+			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
 				creaturess[0].Emplace().Emplace()->Init(this, mp, 0);
 			}
-			if (gg.mouse[GLFW_MOUSE_BUTTON_2](0.02f)) {
+			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
 				creaturess[1].Emplace().Emplace()->Init(this, mp, 1);
 			}
 		}

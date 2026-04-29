@@ -48,6 +48,21 @@ namespace Test2 {
 		}
 	}
 
+	std::pair<float, int> Creature::Hurt(float attackValue_) {
+		auto r = PropsDoHurt(gg.rnd, attackValue_);
+		if (r.second == 0) {
+			// 变白
+			whiteColorEndTime = scene->time + cWhiteColorDuration;
+		}
+		else if (r.second == 2) {
+			// 爆炸特效
+			scene->exploders.Emplace().Emplace()->Init(this);
+			// 自杀
+			Dispose();
+		}
+		return r;
+	}
+
 	Creature* Creature::SearchNearestEnemy(float searchRange_) {
 		Creature* tar{};
 		float minMag2{}, currentBatchRange{};
@@ -102,14 +117,18 @@ namespace Test2 {
 			// 继续 search
 			goto LabSearch;
 		}
-		else {
-			// 判断距离是否在攻击范围内. 是: 攻击. 否: 移动
+		// 平滑转向目标, 对准之后再下一步
+		while (!xx::AngleStep(radians, xx::Atan2(target->pos - pos), cRotationFrameLimit)) {
+			XX_YIELD(_1);
+			// 转向目标过程中如果目标死了 就继续 search
+			if (!target) goto LabSearch;
+		}
+		// 如果目标还活着, 判断距离
+		if (target) {
 			auto d = target->pos - pos;
-			// 转向目标
-			radians = std::atan2f(d.y, d.x);
-			// 判断距离
 			auto mag2 = d.x * d.x + d.y * d.y;
 			auto r = weapon->cLength;
+			// 在攻击范围内? 直接攻击. 否则移动
 			if (mag2 < r * r) goto LabAttack;
 			else if (mag2 > 0.01f) {
 				auto mag = std::sqrtf(mag2);
@@ -121,6 +140,10 @@ namespace Test2 {
 	LabMove:
 		// 朝目标方向移动一段时间
 		for (nextActionTime = scene->time + cMoveInterval; nextActionTime > scene->time;) {
+			if (target) {
+				// 平滑转向目标
+				xx::AngleStep(radians, xx::Atan2(target->pos - pos), cRotationFrameLimit);
+			}
 			Move();
 			XX_YIELD(_1);
 		}
@@ -134,39 +157,45 @@ namespace Test2 {
 		while (weapon->IsSwinging()) {
 			XX_YIELD(_1);
 		}
-		// 等待攻击冷却时间. 等待过程中继续向目标靠近
-		{
+		if (target) {
+			// 计算移动方向( 并不每帧都计算，让跟随显得滞后笨拙一些 )
 			auto d = target->pos - pos;
-			// 转向目标
-			radians = std::atan2f(d.y, d.x);
 			auto mag2 = d.x * d.x + d.y * d.y;
 			if (mag2 > 0.01f) {
 				auto mag = std::sqrtf(mag2);
 				moveDirection = d / mag;
 			}
 		}
+		// 等待攻击冷却时间. 等待过程中继续按 moveDirection 移动, 并且转向目标( 怪就算死了也要等待 )
 		for (nextActionTime = scene->time + cAttackInterval; nextActionTime > scene->time;) {
-			Move();
+			if (target) {
+				// 平滑转向目标
+				xx::AngleStep(radians, xx::Atan2(target->pos - pos), cRotationFrameLimit);
+				Move();
+			}
 			XX_YIELD(_1);
 		}
-		// 如果目标还在攻击范围内 就继续攻击. 否则继续 search
-		{
+		// 如果目标没死, 还在攻击范围内 就继续攻击. 否则继续 search
+		if (target) {
 			auto d = target->pos - pos;
-			// 转向目标
-			radians = std::atan2f(d.y, d.x);
 			auto mag2 = d.x * d.x + d.y * d.y;
 			auto r = weapon->cLength;
 			if (mag2 < r * r) goto LabAttack;
-			else goto LabSearch;
 		}
+		goto LabSearch;
 		XX_END(_1);
 	}
 
 	void Creature::Draw() {
 		auto c = xx::RGBA8_Blue;
 		if (campIndex == 1) c = xx::RGBA8_Red;
+		float cp{ 1 };
+		if (scene->time < whiteColorEndTime) {
+			cp = 10000.f;
+			c = xx::RGBA8_White;
+		}
 		gg.Quad().DrawFrame(gg.pics.c128_monster, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians, 1.f, c);
+			, scale * scene->cam.scale, radians, cp, c);
 	}
 
 	void Creature::DrawLight() {

@@ -5,3 +5,4 @@
 #include "t2_sceneitem_creature.h"
 #include "t2_sceneitem_creature_weapon.h"
 #include "t2_sceneitem_wall.h"
+#include "t2_sceneitem_exploder.h"

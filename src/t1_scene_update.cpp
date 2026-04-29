@@ -22,12 +22,12 @@ namespace Test1 {
 	}
 
 	void Scene::FixedUpdate() {
+		effectTexts.Update(time);
+		UpdateItems(exploders);
 		UpdateItems(monsters);
 		UpdateItems(archers);
 		UpdateItems(archerArrows);
-		UpdateItems(exploders);
 		physMonsters->Step();
-		effectTexts.Update(time);
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
 		if (gg.mouse[GLFW_MOUSE_BUTTON_3](0.1f)) {

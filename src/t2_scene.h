@@ -26,6 +26,8 @@ namespace Test2 {
 		// 生物物理系统( 不分阵营，统一处理移动和碰撞 )
 		PhysSystem physCreatures;
 
+		// 所有怪物爆炸特效
+		xx::List<xx::Shared<Exploder>> exploders;
 		// 所有伤害文字
 		xx::EffectTextManager effectTexts;
 

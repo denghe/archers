@@ -12,8 +12,12 @@ namespace Test2 {
 		y = pos.y + 1.f;
 		radius = cCreatureRadius * 0.5f;
 		scale = radius * 2.f / gg.pics.c64_bullet.uvRect.h;
-		radians = owner_->radians - (cRadiansRange * 0.5f);
+
+		swingDirection = 1;
+		radians = owner_->radians - (cRadiansRange * 0.5f) * swingDirection;
 		FillCircles();
+
+		baseDamage = gg.rnd.Next<int32_t>(1, 10);
 	}
 
 	void CreatureWeapon::FillCircles() {
@@ -29,21 +33,22 @@ namespace Test2 {
 
 	void CreatureWeapon::Swing() {
 		// 刀从当前角度 -?? 度旋转到 +?? 度，耗费 ?? 秒
-		// todo: 来回砍, 模拟雨刮器
-
+		// 来回砍, 模拟雨刮器
 		XX_BEGIN(_1);
 		assert(swingStepCount == 0);
 		for(swingStepCount = cCount; swingStepCount > 0; --swingStepCount) {
-			radians += cRotateFrameStep;
+			radians += cRotateFrameStep * swingDirection;
 			FillCircles();
 			XX_YIELD(_1);
 		}
+		swingDirection = -swingDirection;
+		XX_YIELD(_1);
 		_1 = 0;
 		XX_END(_1);
 	}
 
 	bool CreatureWeapon::IsSwinging() const {
-		return _1 > 0;
+		return swingStepCount > 0;
 	}
 
 
@@ -66,7 +71,7 @@ namespace Test2 {
 		}
 		else {
 			// 不在挥刀? 则保持和 owner 同步
-			radians = owner->radians - (cRadiansRange * 0.5f);
+			radians = owner->radians - (cRadiansRange * 0.5f) * swingDirection;
 			FillCircles();
 		}
 
@@ -113,7 +118,7 @@ namespace Test2 {
 						assert(w);
 						// 生成伤害数字特效( 暴击时颜色会不同 )
 						scene->effectTexts.Add(p, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
-							, 2 * scene->cam.scale, -actualDmg, true);
+							, 2, -actualDmg, true);
 					}
 					else if (state == 1) {
 						assert(w);
@@ -145,21 +150,9 @@ namespace Test2 {
 	}
 
 	void CreatureWeapon::Draw() {
-		//gg.Quad().DrawFrame(gg.pics.c64_bullet, scene->cam.ToGLPos(pos)
-		//	, scale * scene->cam.scale, radians);
-
-		// todo: 换成单图
-#if 1
 		auto& f = gg.pics.sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
 			, cWidth / 7.f * scene->cam.scale, radians);
-#else
-		auto& q = gg.Quad();
-		for (int32_t i = 0; i < cDensity; ++i) {
-			q.DrawFrame(gg.pics.c16, scene->cam.ToGLPos(pos + circlePositions[i])
-				, cWidth / 16.f * scene->cam.scale, radians);
-		}
-#endif
 	}
 
 	void CreatureWeapon::DrawGizmos() {
@@ -173,21 +166,9 @@ namespace Test2 {
 	}
 
 	void CreatureWeapon::DrawLight() {
-		//gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-		//	, (128.f / 32.f) * scene->cam.scale, 0, 0.5f);
-
-		// todo: 换成单图
-#if 1
 		auto& f = gg.pics.light_sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
 			, cWidth / 7.f * scene->cam.scale, radians);
-#else
-		auto& q = gg.Quad();
-		for (int32_t i = 0; i < cDensity; ++i) {
-			q.DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos + circlePositions[i])
-				, cWidth / 64.f * 5.f * scene->cam.scale, radians);
-		}
-#endif
 	}
 
 	void CreatureWeapon::Dispose() {

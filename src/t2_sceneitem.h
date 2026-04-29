@@ -27,7 +27,10 @@ namespace Test2 {
 	// 场景对象之 带完整数值 能上DOT 版( 大多数怪继承它 )
 	struct SceneProps12DotItem : SceneItem, Global::Props12, Global::DotContainer {
 		// 令目标受伤
-		virtual std::pair<float, int> Hurt(float attackValue_) { return {}; };
+		virtual std::pair<float, int> Hurt(float attackValue_) {
+			assert(false);	// 需要实现
+			return {};
+		};
 
 		// 绘制血条的功能函数
 		virtual void DrawHPBar() {};
@@ -57,6 +60,7 @@ namespace Test2 {
 	struct Creature;
 	struct CreatureWeapon;
 	struct PhysSystem;
+	struct Exploder;
 	// ...
 
 }
