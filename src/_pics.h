@@ -21,6 +21,8 @@ struct _pics {
 	xx::Frame c128_wall;
 	xx::Frame cursor_cross;
 	xx::Frame cursor_default;
+	xx::Frame light_sword1;
+	xx::Frame sword1;
 	std::array<xx::Frame, 484> creature_1_;
 	std::array<xx::Frame, 8> explosion_1_;
 	std::array<xx::Frame, 9> firearrow_;

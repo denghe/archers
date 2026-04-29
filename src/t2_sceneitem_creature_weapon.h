@@ -30,9 +30,9 @@ namespace Test2 {
 		static constexpr float cPierceInterval{ 0.1f };
 
 		// 刀长
-		static constexpr float cLength{ 256.f };
+		static constexpr float cLength{ 128.f };
 		// 刀宽
-		static constexpr float cWidth{ 16.f };
+		static constexpr float cWidth{ cLength / 6.f };
 		// 刀的圆形数量( 密度 )
 		static constexpr int32_t cDensity{ (int32_t)(cLength / cWidth * 2) };
 		// 刀的圆形间隔

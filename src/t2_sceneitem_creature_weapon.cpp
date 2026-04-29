@@ -149,12 +149,17 @@ namespace Test2 {
 		//	, scale * scene->cam.scale, radians);
 
 		// todo: 换成单图
-
+#if 1
+		auto& f = gg.pics.sword1;
+		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
+			, cWidth / 7.f * scene->cam.scale, radians);
+#else
 		auto& q = gg.Quad();
 		for (int32_t i = 0; i < cDensity; ++i) {
 			q.DrawFrame(gg.pics.c16, scene->cam.ToGLPos(pos + circlePositions[i])
 				, cWidth / 16.f * scene->cam.scale, radians);
 		}
+#endif
 	}
 
 	void CreatureWeapon::DrawGizmos() {
@@ -172,12 +177,17 @@ namespace Test2 {
 		//	, (128.f / 32.f) * scene->cam.scale, 0, 0.5f);
 
 		// todo: 换成单图
-
+#if 1
+		auto& f = gg.pics.light_sword1;
+		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
+			, cWidth / 7.f * scene->cam.scale, radians);
+#else
 		auto& q = gg.Quad();
 		for (int32_t i = 0; i < cDensity; ++i) {
 			q.DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos + circlePositions[i])
 				, cWidth / 64.f * 5.f * scene->cam.scale, radians);
 		}
+#endif
 	}
 
 	void CreatureWeapon::Dispose() {
