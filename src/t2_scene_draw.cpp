@@ -41,7 +41,7 @@ namespace Test2 {
 			for (auto& oo : creaturess) {
 				for (auto& o : oo) {
 					o->DrawShadow();
-					o->weapon->DrawShadow();
+					//o->weapon->DrawShadow();
 				}
 			}
 
@@ -49,7 +49,7 @@ namespace Test2 {
 			for (auto& oo : creaturess) {
 				for (auto& o : oo) {
 					SortContainerAdd(o.pointer);
-					SortContainerAdd(o->weapon.pointer);
+					//SortContainerAdd(o->weapon.pointer);
 				}
 			}
 			for (auto& o : exploders) SortContainerAdd(o.pointer);
@@ -68,7 +68,7 @@ namespace Test2 {
 			for (auto& oo : creaturess) {
 				for (auto& o : oo) {
 					o->DrawLight();
-					o->weapon->DrawLight();
+					//o->weapon->DrawLight();
 				}
 			}
 			for (auto& o : exploders) o->DrawLight();

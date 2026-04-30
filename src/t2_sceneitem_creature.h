@@ -15,7 +15,7 @@ namespace Test2 {
 		static constexpr float cMoveSpeed{ 1500.f };
 		static constexpr float cRotationFrameLimit{ g2PI / gg.cFps };
 		// 每次挨打变白的时长
-		static constexpr float cWhiteColorDuration{ 0.1f };
+		static constexpr float cWhiteColorDuration{ 0.05f };
 
 		// 挂接武器
 		xx::Shared<CreatureWeapon> weapon;
@@ -55,6 +55,8 @@ namespace Test2 {
 		void Update() override;
 		void Draw() override;
 		void DrawLight() override;
+		void DrawShadow() override;
+		void DrawHPBar() override;
 		void Dispose() override;
 	};
 

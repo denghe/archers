@@ -196,11 +196,31 @@ namespace Test2 {
 		}
 		gg.Quad().DrawFrame(gg.pics.c128_monster, scene->cam.ToGLPos(pos)
 			, scale * scene->cam.scale, radians, cp, c);
+		weapon->Draw();
 	}
 
 	void Creature::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
 			, (256.f / 64.f) * scene->cam.scale, 0, 0.5f);
+		weapon->DrawLight();
+	}
+
+	void Creature::DrawShadow() {
+		// todo
+		weapon->DrawShadow();
+	}
+
+	void Creature::DrawHPBar() {
+		// 显示触发条件：带属性, 非满血
+		if (health == healthMax) return;
+		auto percent = (float)health / healthMax;
+		auto& f = gg.pics.c128_player;
+		XY siz{ 100 * scale, 12 };
+		auto p = pos + XY{ -siz.x * 0.5f, (f.uvRect.h * f.anchor.y + 1) * scale };
+		siz *= scene->cam.scale;
+		if (siz.x < 20) siz.x = 20;
+		if (siz.y < 6) siz.y = 6;
+		gg.HPBar().Alloc()->Fill(scene->cam.ToGLPos(p), siz, xx::RGBA8_Black, xx::RGBA8_White, {100,0,0,255}, percent);
 	}
 
 	void Creature::Dispose() {
