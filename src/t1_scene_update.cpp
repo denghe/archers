@@ -30,7 +30,7 @@ namespace Test1 {
 		physMonsters->Step();
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
-		if (gg.mouse[GLFW_MOUSE_BUTTON_3](0.1f)) {
+		if (gg.mouse[GLFW_MOUSE_BUTTON_5](0.1f)) {
 			xx::CoutN(mp);
 		}
 		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁

@@ -30,7 +30,7 @@ namespace Test2 {
 		static constexpr float cPierceInterval{ 0.1f };
 
 		// 刀长
-		static constexpr float cLength{ 128.f };
+		static constexpr float cLength{ cCreatureRadius * 3.f };
 		// 刀宽
 		static constexpr float cWidth{ cLength / 6.f };
 		// 刀的圆形数量( 密度 )

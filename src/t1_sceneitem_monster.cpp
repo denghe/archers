@@ -171,8 +171,7 @@ namespace Test1 {
 		PropsInit();
 		PropsCalc();
 
-		// todo: 根据 formationId_ 填充 memberOffsets
-		// 顺便直接创建队员？？
+		// 根据 formationId_ 填充 memberOffsets. 顺便直接创建队员
 		switch (formationId_) {
 		case 0:
 			// 一字长蛇阵? 以怪半径为 margin
@@ -183,6 +182,7 @@ namespace Test1 {
 				scene->monsters.Emplace().Emplace()->Init(this);
 			}
 			break;
+		// todo: more formations support here
 		default:
 			assert(false);
 			break;

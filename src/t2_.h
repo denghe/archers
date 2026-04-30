@@ -12,7 +12,7 @@ namespace Test2 {
 	static constexpr float c1_CellPixelSize{ 1.f / cCellPixelSize };
 	static constexpr float cCellPixelHalfSize{ cCellPixelSize / 2.f };
 	static constexpr float cWallRadius{ cCellPixelSize / 2.f };
-	static constexpr float cCreatureRadius{ cWallRadius };
+	static constexpr float cCreatureRadius{ cWallRadius / 2.f };
 
 	// ...
 }

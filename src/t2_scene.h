@@ -11,6 +11,10 @@ namespace Test2 {
 		XYi mapSize{};
 		// 地图总像素尺寸
 		XY mapPixelSize{};
+
+		// 
+		bool flag{};
+
 		// 地图布局数据( 值为 类型::cTypeId )
 		xx::List<int32_t> mapData;
 

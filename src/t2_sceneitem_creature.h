@@ -8,6 +8,7 @@ namespace Test2 {
 		static constexpr int32_t cTypeId{ 2 };
 
 		// 各类时间间隔( 模拟反应时间 同时省点 cpu )
+		static constexpr float cBornDuration{ 0.5f };
 		static constexpr float cSearchRange{ 512.f };
 		static constexpr float cSearchInterval{ 0.5f };
 		static constexpr float cMoveInterval{ 0.5f };

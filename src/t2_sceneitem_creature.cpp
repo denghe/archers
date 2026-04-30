@@ -93,6 +93,10 @@ namespace Test2 {
 
 	void Creature::Update() {
 		XX_BEGIN(_1);
+		// 出生后发呆一会儿( 方便物理挤开啥的 )
+		for (nextActionTime = scene->time + cBornDuration; nextActionTime > scene->time;) {
+			XX_YIELD(_1);
+		}
 	LabSearch:
 		{
 			// 查找 search 范围内的敌人，找出最近的
