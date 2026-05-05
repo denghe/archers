@@ -82,14 +82,16 @@ namespace Test1 {
 				}
 				return false;
 			});
+
 			// 如果找到了最近的怪，再找最近怪的邻居，随机选一个
 			if (tar) {
-				auto p = tar->pos;
+				searchRange = cCellPixelSize * 4.f;
+				// 直接将搜索范围右移一些, 增加活力覆盖范围
+				auto p = tar->pos + XY{ gg.rnd.Next<float>(searchRange * 0.5f) , 0};
 				cri = g->PosToCRIndex(p);
-				searchRange = cCellPixelSize * 3.f;
 				g->ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
 					searchResultCache.Add((Monster*)node.value);
-					return searchResultCache.len > 100; // 最多从 ??? 个当中随机
+					return searchResultCache.len > 200; // 最多从 ??? 个当中随机
 				});
 				if (searchResultCache.len) {
 					tar = gg.rnd.NextElement(searchResultCache);
