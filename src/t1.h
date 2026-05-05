@@ -8,5 +8,6 @@
 #include "t1_sceneitem_lava.h"
 #include "t1_sceneitem_archer.h"
 #include "t1_sceneitem_archer_arrow.h"
+#include "t1_sceneitem_archer_arrow2.h"
 #include "t1_sceneitem_wall.h"
 #include "t1_sceneitem_exploder.h"

@@ -152,8 +152,7 @@ namespace Test1 {
 			auto cri = PosToCRIndex(p);
 			Base::Base::Update(ni, cri.y, cri.x);
 			if (o.value->pos != p) {
-				o.value->pos = p;
-				o.value->y = p.y;
+				o.value->SetPos(p);
 			}
 		}
 	}

@@ -37,7 +37,7 @@ namespace Test1 {
 		// 初始化数据面板
 		healthMaxDefault = 100.f;
 		PropsInit();
-		dodgePreset = dodgeFactor;	// 测试下闪避效果。 1/2 概率挨打
+		//dodgePreset = dodgeFactor;	// 测试下闪避效果。 1/2 概率挨打
 		PropsCalc();
 	}
 

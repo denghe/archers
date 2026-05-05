@@ -7,13 +7,15 @@ namespace Test1 {
 		static constexpr int32_t cTypeId{ 7 };
 
 		// 搜索时间间隔( 模拟反应时间 同时省点 cpu )
-		static constexpr float cSearchInterval{ 0.2f };
+		static constexpr float cSearchInterval{ 0.5f };
 
 		// 射击时间间隔
-		static constexpr float cShootInterval{ 2.f };
+		static constexpr float cShootInterval{ 0.2f };
 
 		// 下次射击时间
 		float nextShootTime{};
+
+		xx::List<Monster*> searchResultCache;
 
 		void Init(Scene* scene_, XY pos_);
 		void Update() override;

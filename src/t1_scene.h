@@ -26,7 +26,7 @@ namespace Test1 {
 		// 所有弓箭手
 		xx::List<xx::Shared<Archer>> archers;
 		// 所有弓箭手的箭矢
-		xx::List<xx::Shared<ArcherArrow>> archerArrows;
+		xx::List<xx::Shared<SceneProps2Item>> archerArrows;
 		// 所有怪物爆炸特效
 		xx::List<xx::Shared<Exploder>> exploders;
 		// 所有伤害文字

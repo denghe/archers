@@ -15,9 +15,6 @@ namespace Test1 {
 	struct ArcherArrow : SceneProps2Item {
 		static constexpr int32_t cTypeId{ 6 };
 
-		// todo: 抛物线效果( 以及更多子弹攻击类型？
-		// todo: 因为是锁定怪物的模式，所以只有当 arrow 落地后才判定，并且判定只是看指针是否未失效
-
 		// 移动速度
 		static constexpr XY cSpeed{ 1000.f };
 		// 最大存活时长

@@ -84,8 +84,8 @@ namespace Global {
 		float attackSpeedMin{ 1.f / 120.f };
 		float attackSpeedMax{ 120.f };
 		// 移动相关
-		float moveSpeedBase{ 500.f };
-		float moveSpeedMax{ 3000.f };
+		float movementSpeedBase{ 500.f };
+		float movementSpeedMax{ 3000.f };
 		// ...
 
 		// 各种运行时状态变量

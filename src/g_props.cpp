@@ -34,7 +34,7 @@ namespace Global {
 		attackSpeed = std::max(std::min(1.f / attackSpeedRatio, attackSpeedMin), attackSpeedMax);
 		criticalChance = std::max(std::min(criticalChancePreset * criticalChanceRatio, 1.f), 0.f);
 		criticalDamage = std::max(criticalDamagePreset * criticalDamageRatio, 1.f);
-		movementSpeed = std::max(std::min(moveSpeedBase * movementSpeedRatio, moveSpeedMax), 0.f);
+		movementSpeed = std::max(std::min(movementSpeedBase * movementSpeedRatio, movementSpeedMax), 0.f);
 	}
 
 	float& Props12::PropsAt(int32_t idx_) const {

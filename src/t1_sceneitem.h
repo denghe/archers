@@ -17,11 +17,21 @@ namespace Test1 {
 		// 为方便使用，指向所在场景指针( 生命周期通常长于 item )
 		Scene* scene{};
 
+		// 上一帧的位置( 用于简单估算移动速度 )
+		XY lastPos{};
+
 		// 用于注册回调函数
 		xx::List<std::function<void()>> disposeCallbacks;
 
 		// 用于 Dispose 时调用回调函数
 		void CallDisposeCallbacks();
+
+		// 设置位置的功能函数，自动更新 y 成员以方便显示排序 
+		void SetPos(XY pos_) {
+			lastPos = pos;
+			pos = pos_;
+			y = pos.y;
+		}
 	};
 
 	// 场景对象之 带完整数值 能上DOT 版( 大多数怪继承它 )

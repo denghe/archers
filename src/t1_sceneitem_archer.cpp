@@ -30,7 +30,10 @@ namespace Test1 {
 			auto searchRange = scene->mapPixelSize.x * 0.5f;
 			// 从找到第一个开始判断后续 range 值如果变化就不是同一批了. 在同一批中选最近
 			float minMag2{}, currentBatchRange{};
+
 			Monster* tar{};
+#if 0
+			// 找最近
 			auto g = scene->physMonsters.pointer;
 			auto cri = g->PosToCRIndex(pos);
 			g->ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
@@ -51,9 +54,54 @@ namespace Test1 {
 				}
 				return false;
 			});
+#else
+			//// 追求输出利益最大化：随机选一个先，看看效果
+			//if (scene->monsters.len) {
+			//	tar = gg.rnd.NextElement(scene->monsters).pointer;
+			//}
+
+			// 在最近的一批怪物中随机选一个( 先找最近，再找最近怪的邻居 )
+			// 找最近
+			auto g = scene->physMonsters.pointer;
+			auto cri = g->PosToCRIndex(pos);
+			g->ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
+				auto d = pos - node.cache.pos;
+				auto mag2 = d.x * d.x + d.y * d.y;
+				// todo: 精确射程检测?
+				if (!tar) {
+					minMag2 = mag2;
+					currentBatchRange = range;
+					tar = (Monster*)node.value;
+				}
+				else {
+					if (currentBatchRange != range) return true;
+					if (mag2 < minMag2) {
+						minMag2 = mag2;
+						tar = (Monster*)node.value;
+					}
+				}
+				return false;
+			});
+			// 如果找到了最近的怪，再找最近怪的邻居，随机选一个
+			if (tar) {
+				auto p = tar->pos;
+				cri = g->PosToCRIndex(p);
+				searchRange = cCellPixelSize * 3.f;
+				g->ForeachByRange(cri.y, cri.x, searchRange, gg.sgrdd, [&](PhysSystem::Node& node, float range)->bool {
+					searchResultCache.Add((Monster*)node.value);
+					return searchResultCache.len > 100; // 最多从 ??? 个当中随机
+				});
+				if (searchResultCache.len) {
+					tar = gg.rnd.NextElement(searchResultCache);
+					searchResultCache.Clear();
+				}
+			}
+#endif
 			if (tar) {
 				nextShootTime = scene->time + cShootInterval;
-				scene->archerArrows.Emplace().Emplace()->Init(this, tar);
+				// todo: 如果距离很近就创建 ArcherArrow
+
+				scene->archerArrows.Emplace().Emplace<ArcherArrow2>()->Init(this, tar);
 			}
 			else {
 				nextShootTime = scene->time + cSearchInterval;
