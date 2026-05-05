@@ -93,7 +93,7 @@ namespace Test1 {
 			if (state == 0) {
 				assert(w);
 				// 生成伤害数字特效( 暴击时颜色会不同 )
-				scene->effectTexts.Add(pos, { 0,-1 }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
+				scene->effectTexts.Add(pos, { 0, -1.f * (120.f / gg.cFps) }, isCritical ? xx::RGBA8_Red : xx::RGBA8_Yellow
 					, 2, -actualDmg, true);
 			}
 			else if (state == 1) {

@@ -31,7 +31,7 @@ namespace Test1 {
 			if (state == 2) return -1;
 			// 正常状态
 			if (state == 0) {
-				scene->effectTexts.Add(self->pos, { 0,-1 }, xx::RGBA8_Blue, 2, -damage, true);
+				scene->effectTexts.Add(self->pos, { 0, -1.f * (120.f / gg.cFps) }, xx::RGBA8_Blue, 2, -damage, true);
 			}
 			// miss
 			else {
