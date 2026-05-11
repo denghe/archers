@@ -22,6 +22,9 @@ struct _pics {
 	xx::Frame cursor_cross;
 	xx::Frame cursor_default;
 	xx::Frame light_sword1;
+	xx::Frame snake_body;
+	xx::Frame snake_face;
+	xx::Frame snake_tail;
 	xx::Frame sword1;
 	std::array<xx::Frame, 484> creature_1_;
 	std::array<xx::Frame, 8> explosion_1_;

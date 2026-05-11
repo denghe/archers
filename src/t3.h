@@ -1,0 +1,9 @@
+﻿#pragma once
+#include "t3_.h"
+#include "t3_phys.h"
+#include "t3_scene.h"
+#include "t3_sceneitem_creature.h"
+#include "t3_sceneitem_creature_weapon.h"
+#include "t3_sceneitem_wall.h"
+#include "t3_sceneitem_exploder.h"
+#include "t3_sceneitem_snake.h"
