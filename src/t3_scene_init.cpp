@@ -157,7 +157,7 @@ namespace Test3 {
 
 		// init snakes
 		for (auto& pw : pathways) {
-			snakes.Emplace().Emplace<Snake>()->Init(this, pw.pointer, 200);
+			snakes.Emplace().Emplace<Snake>()->Init(this, pw.pointer, 300);
 		}
 
 	}

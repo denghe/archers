@@ -8,10 +8,8 @@ namespace Test3 {
 
 		// 蛇尾移动速度( 像素/帧 )
 		static constexpr float cMoveSpeed{ 200.f * gg.cDelta };
-		// 蛇身跟随( 断开后的恢复 )速度( 像素/帧 )
-		static constexpr float cFollowSpeed{ cMoveSpeed * 3.f };
-		// 蛇身跟随距离( 像素 ) 如果和理论坐标差值在此范围内就直接使用理论坐标
-		static constexpr float cFollowDistance{ 10.f };
+		// 蛇身重连( 断开后的恢复 )速度( 像素/帧 )
+		static constexpr float cLinkSpeed{ cMoveSpeed * 3.f };
 		// 身体节点之间的距离占两节点半径和的比例( 越大越稀疏 )
 		static constexpr float cNodeDistanceRatio{ 0.6f };
 		// 绘制缩放( 可以令身体看上去比实际半径更大 或 更小 )
@@ -27,6 +25,8 @@ namespace Test3 {
 		static constexpr float cHeadSize{ (cRadiusRange.from + cRadiusRange.to) * 0.5f * 1.7f };
 		// 尾部半径
 		static constexpr float cTailSize{ (cRadiusRange.from + cRadiusRange.to) * 0.5f * 0.7f };
+		// 蛇身跟随距离( 像素 ) 如果和理论坐标差值在此范围内就直接使用理论坐标
+		static constexpr float cFollowDistance{ cMaxRadius * 0.3f };
 
 		// 指向所在蛇的指针( 生命周期通常长于 element )
 		Snake* owner{};
@@ -51,14 +51,19 @@ namespace Test3 {
 		// 基于前一个节点的位置更新自己位置，返回 1 则需要被移除
 		void BaseUpdate();
 		// 替代 Update，返回 1 则需要被移除
-		virtual int32_t ElementUpdate() { return 0; }	// return 1 to remove self
+		virtual int32_t ElementUpdate() { return 0; }
 
 		void DrawLight() override;
 	};
 
 	struct Snake : SceneItem {
+		// 存储所有身体节点. 第一个成员是 tail, 倒序, 方便计算身体位置
+		xx::List<xx::Shared<SnakeElement>> elements;
+		// 指向蛇当前线路
 		Pathway* pathway{};
-		xx::List<xx::Shared<SnakeElement>> elements;	// [0].elementType == Tail
+		// 1 / pathway->stepDistance
+		float pathway_1_stepDistance{};
+		// bodyLen_ 身体节数( 不算头和尾 )
 		void Init(Scene* scene_, Pathway* pathway_, int32_t bodyLen_);
 		void Update() override;
 	};
