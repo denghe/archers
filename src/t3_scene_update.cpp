@@ -51,23 +51,23 @@ namespace Test3 {
 			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
 			XYi cxy = mp * c1_CellPixelSize;
 			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
-				creaturess[0].Emplace().Emplace()->Init(this, mp, 0);
+				static constexpr float cMouseHitRange{ 16.f };
+				auto cri = gridSnakes.PosToCRIndex(mp);
+				gridSnakes.ForeachBy9(cri.y, cri.x, [this, mp](decltype(gridSnakes)::Node& o, float range) {
+					if (o.value->HitCheck(mp, cMouseHitRange)) {
+						effectTexts.Add(o.cache.pos, { 0, -1 * cam.scale }, xx::RGBA8_Red, 2.f, 123);
+						o.value->Remove();	// unsafe
+					}
+				});
 			}
-			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
-				creaturess[1].Emplace().Emplace()->Init(this, mp, 1);
-			}
-			if (gg.keyboard[GLFW_KEY_1]) {
-				for (int32_t i = 0; i < 50; ++i) {
-					XY offset{ gg.rnd.Next<float>(-11,11), gg.rnd.Next<float>(-11,11) };
-					creaturess[0].Emplace().Emplace()->Init(this, mp + offset, 0);
-				}
-			}
-			if (gg.keyboard[GLFW_KEY_2]) {
-				for (int32_t i = 0; i < 50; ++i) {
-					XY offset{ gg.rnd.Next<float>(-11,11), gg.rnd.Next<float>(-11,11) };
-					creaturess[1].Emplace().Emplace()->Init(this, mp + offset, 1);
-				}
-			}
+			//if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
+			//	static constexpr int32_t cHitRange{ 256 };
+			//	auto cInnerRange = cHitRange - gridSnakes.cellSize * 0.5f * 1.4142f;
+			//	auto mp = cam.ToLogicPos(gg.mousePos);
+			//	auto cri = gridSnakes.PosToCRIndex(mp);
+			//	gridSnakes.ForeachByRange(cri.y, cri.x, cHitRange, gg.sgrdd, [this, mp, cInnerRange](decltype(gridSnakes)::Node& o, float range) {
+			//	});
+			//}
 		}
 	}
 

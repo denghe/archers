@@ -64,9 +64,69 @@ namespace Test3 {
 		}
 
 		// todo: more logic here
-		// 生成一些蛇看看
 
-		// init pathways
+		// 生成一些蛇看看
+		// 初始化 pathways
+		auto basePos = mapPixelSize * 0.5f;
+#if 1
+
+		/*
+ -300        0      300  360
+   /--------<o-----------\	     -450
+  o                       |		 -400
+   \----------------\	  |		 -350
+					 o	  |		 -300
+   /----------------/	  |		 -250
+  o						  |		 -200
+   \----------------\	  |		 -150
+					 o	  |		 -100
+   /----------------/	  |		 -50
+  o						  |		 0
+   \----------------\	  |		 50
+					 o	  |		 100
+   /----------------/	  |		 150
+  o						  |		 200
+   \----------------\	  |		 250
+					 o	  |		 300
+   /----------------/	  |		 350
+  o						  |		 400
+   \---------------------/		 450
+
+		*/
+
+		auto bp = basePos;
+		XY scale{ 1.6f, 0.7f };
+		std::vector<xx::CurvePoint> cps{ xx::CurvePoint
+			{ bp + XY{ 0, -450} * scale, 0.05f },
+			{ bp + XY{ -300, -450 - 25} * scale, 0.05f },
+			{ bp + XY{ -300, -350 - 25} * scale, 0.05f },
+			{ bp + XY{ 300, -350 + 25} * scale, 0.05f },
+			{ bp + XY{ 300, -250 + 25} * scale, 0.05f },
+			{ bp + XY{ -300, -250 - 25} * scale, 0.05f },
+			{ bp + XY{ -300, -150 - 25} * scale, 0.05f },
+			{ bp + XY{ 300, -150 + 25} * scale, 0.05f },
+			{ bp + XY{ 300, -50 + 25} * scale, 0.05f },
+			{ bp + XY{ -300, -50 - 25} * scale, 0.05f },
+			{ bp + XY{ -300, 50 - 25} * scale, 0.05f },
+			{ bp + XY{ 300, 50 + 25} * scale, 0.05f },
+			{ bp + XY{ 300, 150 + 25} * scale, 0.05f },
+			{ bp + XY{ -300, 150 - 25} * scale, 0.05f },
+			{ bp + XY{ -300, 250 - 25} * scale, 0.05f },
+			{ bp + XY{ 300, 250 + 25} * scale, 0.05f },
+			{ bp + XY{ 300, 350 + 25} * scale, 0.05f },
+			{ bp + XY{ -300, 350 - 25} * scale, 0.05f },
+			{ bp + XY{ -300, 450 - 25} * scale, 0.05f },
+
+			{ bp + XY{ 300, 450 + 25} * scale, 0.05f },
+			{ bp + XY{ 360, 400 + 25} * scale, 0.05f },
+			{ bp + XY{ 360, -400} * scale, 0.05f },
+			{ bp + XY{ 300, -450} * scale, 0.05f },
+		};
+		xx::MovePath mp;
+		mp.FillCurve(true, cps);
+		pathways.Emplace().Emplace()->Init(mp, 0.1f);
+
+#else
 		/*
 -300  0 300
 	*1       -200
@@ -80,28 +140,8 @@ namespace Test3 {
   \   /
 	*4       200
 		*/
-
-		auto basePos = mapPixelSize * 0.5f;
-#if 0
-		for (int32_t x = -1200; x < 1200; x += 100) {
-			for (int32_t y = -600; y < 600; y += 100) {
-				auto bp = XY{ x, y } + basePos;
-				std::vector<xx::CurvePoint> cps{ xx::CurvePoint
-					{ bp + XY{ 0, -200} },
-					{ bp + XY{ 300, -100} },
-					{ bp + XY{ -300, 100} },
-					{ bp + XY{ 0, 200} },
-					{ bp + XY{ 300, 100} },
-					{ bp + XY{ -300, -100} },
-				};
-				xx::MovePath mp;
-				mp.FillCurve(true, cps);
-				pathways.Emplace().Emplace()->Init(mp, 0.1f);
-			}
-		}
-#else
 		auto bp = basePos;
-		auto scale = 3.f;
+		auto scale = 1.5f;
 		std::vector<xx::CurvePoint> cps{ xx::CurvePoint
 			{ bp + XY{ 0, -200} * scale },
 			{ bp + XY{ 300, -100} * scale },
@@ -117,7 +157,7 @@ namespace Test3 {
 
 		// init snakes
 		for (auto& pw : pathways) {
-			snakes.Emplace().Emplace<Snake>()->Init(this, pw.pointer, 100);
+			snakes.Emplace().Emplace<Snake>()->Init(this, pw.pointer, 200);
 		}
 
 	}

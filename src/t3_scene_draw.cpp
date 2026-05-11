@@ -77,6 +77,11 @@ namespace Test3 {
 					//o->weapon->DrawLight();
 				}
 			}
+			for (auto& oo : snakes) {
+				for (auto& o : oo->elements) {
+					o->DrawLight();
+				}
+			}
 			for (auto& o : exploders) o->DrawLight();
 			// ...
 		});
@@ -104,8 +109,8 @@ namespace Test3 {
 
 		// 设置顶部信息文字显示内容
 		int32_t count{};
-		for (auto& oo : creaturess) count += oo.len;
-		gg.uiText->SetText(xx::ToString("creatures.len = ", count));
+		for (auto& oo : snakes) count += oo->elements.len;
+		gg.uiText->SetText(xx::ToString("snake elements count = ", count));
 		gg.DrawNode(ui);
 
 		// gizmos
@@ -114,6 +119,18 @@ namespace Test3 {
 				for (auto& o : oo) {
 					//o->DrawGizmos();
 					o->weapon->DrawGizmos();
+				}
+			}
+
+			// pathway
+			auto& q = gg.Quad();
+			for (auto& pathway : pathways) {
+				for (int32_t s = (int32_t)pathway->points.size(), i = 0; i < s; /*++i*/i += 200) {
+					q.DrawFrame(
+						gg.pics.c64
+						, cam.ToGLPos(pathway->points[i].pos)
+						, cam.scale
+					);
 				}
 			}
 			// ...
