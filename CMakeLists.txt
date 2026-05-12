@@ -15,9 +15,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(
 	src/
+	src/g
+	src/t1
+	src/t2
+	src/t3
 )
 
-file(GLOB sources
+file(GLOB_RECURSE sources
 	src/*.cpp
 	src/*.c
 	src/*.h
