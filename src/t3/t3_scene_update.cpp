@@ -41,6 +41,8 @@ namespace Test3 {
 		flag = !flag;
 		physCreatures.Step();
 		UpdateItems(snakes);
+		UpdateItems(playerBullets);
+		if (player) player->Update();
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
 		if (gg.mouse[GLFW_MOUSE_BUTTON_5](0.1f)) {

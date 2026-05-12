@@ -43,6 +43,13 @@ namespace Test3 {
 			for (int32_t x = 0; x < mapSize.x; x++) {
 				auto i = y * mapSize.x + x;
 				switch (mapData[i]) {
+				case U'玩': {
+					// 计算出左上角坐标
+					auto p = XY{ x, y } * cCellPixelSize;
+					// todo: 查找玩家左右两边区域，看是否有障碍，从而确定左右移动的最大限制
+					player.Emplace<Player>()->Init(this, p + cCellPixelHalfSize);
+					break;
+				}
 				case U'墙':
 				{
 					// 计算出左上角坐标
@@ -94,7 +101,7 @@ namespace Test3 {
 
 		*/
 
-		auto bp = basePos;
+		auto bp = basePos + XY{ 0, -70.f };
 		XY scale{ 1.6f, 0.7f };
 		std::vector<xx::CurvePoint> cps{ xx::CurvePoint
 			{ bp + XY{ 0, -450} * scale, 0.05f },

@@ -45,6 +45,8 @@ namespace Test3 {
 					o->weapon->DrawShadow();
 				}
 			}
+			for (auto& o : playerBullets) o->DrawShadow();
+			if (player) player->DrawShadow();
 
 			// sort order by y
 			for (auto& oo : creaturess) {
@@ -59,6 +61,8 @@ namespace Test3 {
 				}
 			}
 			for (auto& o : exploders) SortContainerAdd(o.pointer);
+			for (auto& o : playerBullets) SortContainerAdd(o.pointer);
+			if (player) SortContainerAdd(player.pointer);
 			SortContainerDraw();
 		});
 
@@ -82,7 +86,9 @@ namespace Test3 {
 					o->DrawLight();
 				}
 			}
+			for (auto& o : playerBullets) o->DrawLight();
 			for (auto& o : exploders) o->DrawLight();
+			if (player) player->DrawLight();
 			// ...
 		});
 		lightTex->SetParm(GL_LINEAR);

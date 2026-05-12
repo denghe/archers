@@ -4,7 +4,7 @@
 namespace Test3 {
 
 	// 玩家的枪械发射的子弹
-	struct PlayerBullet : SceneItem {
+	struct PlayerBullet : SceneProps2Item {
 		static constexpr int32_t cTypeId{ 6 };
 		static constexpr float cWidth{ 10.f };
 

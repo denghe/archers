@@ -8,10 +8,10 @@ namespace Test3 {
 		y = pos.y;
 	}
 
-	void Player::Init(Scene* scene_) {
+	void Player::Init(Scene* scene_, XY pos_) {
 		typeId = cTypeId;
 		scene = scene_;
-		pos = {};	// todo
+		pos = pos_;
 		y = pos.y;
 		radius = cCreatureRadius;
 		scale = radius * 2.f / gg.pics.c128_player.uvRect.w;
@@ -31,10 +31,15 @@ namespace Test3 {
 
 	void Player::Update() {
 		// todo: 读鼠标位置并对齐 x, 横着移动. 但也有范围限制
+		auto mp = scene->cam.ToLogicPos(gg.mousePos);
+		SetPos({ mp.x, pos.y });
+
+		weapon->Update();
+		//Scene::UpdateItems(weapons);
 	}
 
 	void Player::Draw() {
-		gg.Quad().DrawFrame(gg.pics.c128_monster, scene->cam.ToGLPos(pos)
+		gg.Quad().DrawFrame(gg.pics.c128_player, scene->cam.ToGLPos(pos)
 			, scale * scene->cam.scale, radians);
 		weapon->Draw();
 	}

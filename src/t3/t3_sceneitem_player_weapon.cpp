@@ -13,7 +13,7 @@ namespace Test3 {
 		radius = cCreatureRadius * 0.5f;
 		scale = radius * 2.f / gg.pics.c64_bullet.uvRect.h;
 
-		radians = 0;
+		radians = -gPI_2;
 
 		baseDamage = gg.rnd.Next<int32_t>(1, 10);
 	}

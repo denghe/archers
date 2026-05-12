@@ -16,7 +16,7 @@ namespace Test3 {
 		// 设置坐标( 会同步 y )
 		void SetPos(XY pos_);
 
-		void Init(Scene* scene_);
+		void Init(Scene* scene_, XY pos_);
 		void Update() override;
 		void Draw() override;
 		void DrawLight() override;

@@ -10,6 +10,7 @@ namespace Test3 {
 
 		// 　：怪活动区域
 		// 墙：容器外边框，避免怪物挤出去
+		// 玩：玩家出生点
 		std::u32string_view mapText = UR"(
 墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙
 墙　　　　　　　　　　　　　　　　　　　　　　　　　　墙
@@ -25,7 +26,7 @@ namespace Test3 {
 墙　　　　　　　　　　　　　　　　　　　　　　　　　　墙
 墙　　　　　　　　　　　　　　　　　　　　　　　　　　墙
 墙　　　　　　　　　　　　　　　　　　　　　　　　　　墙
-墙　　　　　　　　　　　　　　　　　　　　　　　　　　墙
+墙　　　　　　　　　　　　玩　　　　　　　　　　　　　墙
 墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙墙
 )";
 
@@ -85,6 +86,7 @@ namespace Test3 {
 				++y;
 				continue;
 			case U'墙':
+			case U'玩':
 				mapData[y * mapWidth + x] = c; break;
 			}
 			++x;
