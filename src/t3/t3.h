@@ -7,3 +7,6 @@
 #include "t3_sceneitem_wall.h"
 #include "t3_sceneitem_exploder.h"
 #include "t3_sceneitem_snake.h"
+#include "t3_sceneitem_player.h"
+#include "t3_sceneitem_player_weapon.h"
+#include "t3_sceneitem_player_bullet.h"

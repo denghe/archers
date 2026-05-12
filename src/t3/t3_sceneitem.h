@@ -73,6 +73,14 @@ namespace Test3 {
 		// todo: move target funcs?
 	};
 
+	// 穿刺信息
+	struct PierceInfo {
+		// 目标
+		xx::Weak<SceneItem> target;
+		// 过期时间点
+		float elapsedTime;
+	};
+
 	// 一系列预声明就放在这以方便使用
 	struct Wall;
 	struct Creature;
@@ -80,6 +88,9 @@ namespace Test3 {
 	struct PhysSystem;
 	struct Exploder;
 	struct Snake;
+	struct Player;
+	struct PlayerWeapon;
+	struct PlayerBullet;
 	// ...
 
 }

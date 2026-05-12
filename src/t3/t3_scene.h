@@ -12,7 +12,7 @@ namespace Test3 {
 		// 地图总像素尺寸
 		XY mapPixelSize{};
 
-		// 
+		// 为了公平 翻转以切换 update creaturess 的顺序
 		bool flag{};
 
 		// 地图布局数据( 值为 类型::cTypeId )
@@ -36,6 +36,11 @@ namespace Test3 {
 		xx::List<xx::Shared<Snake>> snakes;
 		// 蛇的路径
 		xx::List<xx::Shared<Pathway>> pathways;
+
+		// 在场景下方发射子弹攻击蛇的玩家本体
+		xx::Shared<Player> player;
+		// 所有玩家子弹
+		xx::List<xx::Shared<PlayerBullet>> playerBullets;
 
 		// 所有怪物爆炸特效
 		xx::List<xx::Shared<Exploder>> exploders;

@@ -3,17 +3,6 @@
 
 namespace Test3 {
 
-	// 穿刺信息
-	struct PierceInfo {
-		// 目标
-		xx::Weak<SceneItem> target;
-		// 过期时间点
-		float elapsedTime;
-	};
-
-	// todo:
-	// 需要提前计算构成刀的圆形于每个角度的位置，以便于碰撞检测( 精度大概是 1 度，360 个圆形数组 )
-
 	// 近战武器，刀。由一串圆形构成（类似糖葫芦）
 	// 刀在一个角度范围内来回挥动
 	struct Creature;

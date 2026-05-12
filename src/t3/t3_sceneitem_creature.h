@@ -5,7 +5,7 @@ namespace Test3 {
 
 	struct CreatureWeapon;
 	struct Creature : SceneProps12DotItem {
-		static constexpr int32_t cTypeId{ 2 };
+		static constexpr int32_t cTypeId{ 4 };
 
 		// 各类时间间隔( 模拟反应时间 同时省点 cpu )
 		static constexpr float cBornDuration{ 0.5f };
