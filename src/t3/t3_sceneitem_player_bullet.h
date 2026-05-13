@@ -8,7 +8,7 @@ namespace Test3 {
 		static constexpr int32_t cTypeId{ 6 };
 
 		// 最大存活时长
-		static constexpr float cMaxLifetime{ 5.f };
+		static constexpr float cMaxLifetime{ 50.f };
 		// 帧动画步进值
 		static constexpr float cFrameNumberInc{ 15.f / gg.cFps };
 		// 穿刺间隔时长( 针对相同对象 )
