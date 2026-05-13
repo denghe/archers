@@ -180,8 +180,6 @@ namespace Test3 {
 	void SnakeHead::Draw() {
 		auto& f1 = gg.pics.snake_body;
 		auto& f2 = gg.pics.snake_face;
-		assert(f1.tex == f2.tex);
-		assert(f1.uvRect.w == f2.uvRect.w);
 
 		auto& c = owner->scene->cam;
 		auto p = c.ToGLPos(pos);
@@ -258,13 +256,13 @@ namespace Test3 {
 		if (health == healthMax) return;
 		auto percent = (float)health / healthMax;
 		auto& f = gg.pics.snake_body;
-		auto s = radius * 2.f / f.uvRect.w;
-		XY siz{ 200 * s, 12 };
-		siz *= scene->cam.scale;
+		auto s = scene->cam.scale;
+		XY siz{ radius * s, 12 * s };
 		if (siz.x < 20) siz.x = 20;
 		if (siz.y < 6) siz.y = 6;
-		auto p = pos + XY{ -siz.x * 0.5f, f.uvRect.w * 0.5f * s };
-		gg.HPBar().Alloc()->Fill(scene->cam.ToGLPos(p), siz, xx::RGBA8_Black, xx::RGBA8_White, { 200,0,0,255 }, percent);
+		auto p = scene->cam.ToGLPos(pos);
+		p += XY{ -siz.x * 0.5f, -radius * s };
+		gg.HPBar().Alloc()->Fill(p, siz, xx::RGBA8_Black, xx::RGBA8_White, { 200,0,0,255 }, percent);
 	}
 
 	/***********************************************************************************/
