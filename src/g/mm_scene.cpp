@@ -31,13 +31,13 @@ namespace MainMenu {
 			});
 		};
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"近战挥刀怪((鼠标左右键分阵营 键盘12巨量投放)")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"近战挥刀怪((鼠标左右键分阵营 键盘 1 2 巨量投放)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test2::Scene>()->Init();
 			});
 		};
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"蛇形移动模拟器")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"蛇形移动模拟器( 键盘 1: 加攻强 2: 加弹数 3: 加射速 4: 加穿透次数 R: 生蛇 )")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test3::Scene>()->Init();
 			});

@@ -32,6 +32,8 @@ namespace Test3 {
 	void Player::Update() {
 		// todo: 读鼠标位置并对齐 x, 横着移动. 但也有范围限制
 		auto mp = scene->cam.ToLogicPos(gg.mousePos);
+		if (mp.x < cCellPixelSize) mp.x = cCellPixelSize;
+		else if (mp.x >= scene->mapPixelSize.x - cCellPixelSize) mp.x = scene->mapPixelSize.x - cCellPixelSize - 0.001f;
 		SetPos({ mp.x, pos.y });
 
 		weapon->Update();

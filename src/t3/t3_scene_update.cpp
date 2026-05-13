@@ -44,32 +44,8 @@ namespace Test3 {
 		UpdateItems(playerBullets);
 		if (player) player->Update();
 
-		auto mp = cam.ToLogicPos(gg.mousePos);
-		if (gg.mouse[GLFW_MOUSE_BUTTON_5](0.1f)) {
-			xx::CoutN(mp);
-		}
-		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁
-		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
-			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
-			XYi cxy = mp * c1_CellPixelSize;
-			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
-				static constexpr float cMouseHitRange{ 16.f };
-				auto cri = gridSnakes.PosToCRIndex(mp);
-				gridSnakes.ForeachBy9(cri.y, cri.x, [this, mp](decltype(gridSnakes)::Node& o, float range) {
-					if (o.value->HitCheck(mp, cMouseHitRange)) {
-						effectTexts.Add(o.cache.pos, { 0, -1 * cam.scale }, xx::RGBA8_Red, 2.f, 123);
-						o.value->Remove();	// unsafe
-					}
-				});
-			}
-			//if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
-			//	static constexpr int32_t cHitRange{ 256 };
-			//	auto cInnerRange = cHitRange - gridSnakes.cellSize * 0.5f * 1.4142f;
-			//	auto mp = cam.ToLogicPos(gg.mousePos);
-			//	auto cri = gridSnakes.PosToCRIndex(mp);
-			//	gridSnakes.ForeachByRange(cri.y, cri.x, cHitRange, gg.sgrdd, [this, mp, cInnerRange](decltype(gridSnakes)::Node& o, float range) {
-			//	});
-			//}
+		if (gg.keyboard[GLFW_KEY_R](0.1f)) {
+			GenSnake();
 		}
 	}
 

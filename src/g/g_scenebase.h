@@ -46,7 +46,9 @@ namespace Global {
 		virtual void DrawLight() {};
 
 		// 删除对象
-		virtual void Dispose() {};
+		virtual void Dispose() {
+			assert(false);
+		};
 
 		// 试着删除对象
 		void TryDispose();

@@ -61,6 +61,9 @@ namespace Test3 {
 		// 处理建筑重叠( 圆形判断，会挪移 pos 令重叠消失 )
 		void HandleBuildingsCross(XY& pos_, float radius_);
 
+		// 在 pathway 上生成蛇
+		void GenSnake();
+
 		void Init() override;
 		void Update() override;
 		void FixedUpdate() override;

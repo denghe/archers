@@ -4,10 +4,10 @@
 namespace Test3 {
 
 	struct Snake;
-	struct SnakeElement : SceneItem {
+	struct SnakeElement : SceneProps12DotItem {
 
 		// 蛇尾移动速度( 像素/帧 )
-		static constexpr float cMoveSpeed{ 200.f * gg.cDelta };
+		static constexpr float cMoveSpeed{ 100.f * gg.cDelta };
 		// 蛇身重连( 断开后的恢复 )速度( 像素/帧 )
 		static constexpr float cLinkSpeed{ cMoveSpeed * 3.f };
 		// 身体节点之间的距离占两节点半径和的比例( 越大越稀疏 )
@@ -39,8 +39,8 @@ namespace Test3 {
 		void PreInit(Snake* owner_, SnakeElementTypes elementType_);
 		// 继续初始化
 		void Init(float radius_);
-		// 从蛇身上移除
-		void Remove();
+		// 从蛇身上移除( 自杀 )
+		void Dispose() override;
 		// 碰撞检测，返回是否被击中( 头尾不参与碰撞 )
 		bool HitCheck(XY p_, float hitRadius_);
 		// 获取前一个节点，返回 nullptr 则没有
@@ -84,6 +84,14 @@ namespace Test3 {
 	struct SnakeBody : SnakeElement {
 		int32_t U1_n{};
 		void U1_RadiusAnim();
+
+		// 每次挨打变白的时长
+		static constexpr float cWhiteColorDuration{ 0.05f };
+		// 挨打变白结束时间点
+		float whiteColorEndTime{};
+
+		// 受伤( attackValue_ 来自攻击方的 PropsCalcAttackValue 计算结果 )
+		std::pair<float, int> Hurt(float attackValue_);
 
 		void Init();
 		int32_t ElementUpdate() override;

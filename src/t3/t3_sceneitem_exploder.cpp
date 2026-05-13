@@ -3,7 +3,7 @@
 
 namespace Test3 {
 
-	void Exploder::Init(Creature* tar_) {
+	void Exploder::Init(SceneItem* tar_) {
 		typeId = cTypeId;
 		scene = tar_->scene;
 		auto& frame = gg.pics.c128_monster;

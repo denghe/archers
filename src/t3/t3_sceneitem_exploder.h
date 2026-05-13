@@ -15,7 +15,7 @@ namespace Test3 {
 		int32_t _1{};
 		float frameIndex{}, inc{};
 
-		void Init(Creature* tar_);
+		void Init(SceneItem* tar_);
 		void Update() override;
 		void Draw() override;
 		void DrawLight() override;

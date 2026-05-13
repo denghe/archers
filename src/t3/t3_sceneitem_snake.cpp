@@ -40,7 +40,7 @@ namespace Test3 {
 		owner->scene->gridSnakes.Add(indexAtGrid, this);
 	}
 
-	void SnakeElement::Remove() {
+	void SnakeElement::Dispose() {
 		// 从蛇的 grid 索引中移除
 		assert(owner->elements[indexAtContainer].pointer == this);
 		owner->scene->gridSnakes.Remove(indexAtGrid, this);	// grid sync
@@ -124,7 +124,7 @@ namespace Test3 {
 
 	void SnakeElement::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, radius * 8.f / 64.f * scene->cam.scale, 0, 1.f);
+			, radius * 8.f / 64.f * scene->cam.scale, 0, 0.7f);
 	}
 
 	/***********************************************************************************/
@@ -153,7 +153,7 @@ namespace Test3 {
 		assert(elements.len);
 		for (auto i = 0; i < elements.len;) {
 			if (elements[i]->ElementUpdate()) {
-				elements[i]->Remove();
+				elements[i]->Dispose();
 			}
 			else {
 				++i;
@@ -199,6 +199,11 @@ namespace Test3 {
 		auto step = d / len;
 		auto r = cRadiusRange.from + step * (indexAtContainer - 1);
 		SnakeElement::Init(r);
+
+		// 初始化数据面板
+		healthMaxDefault = 100.f;
+		PropsInit();
+		PropsCalc();
 	}
 
 	void SnakeBody::U1_RadiusAnim() {
@@ -215,6 +220,21 @@ namespace Test3 {
 		XX_END(U1_n);
 	}
 
+	std::pair<float, int> SnakeBody::Hurt(float attackValue_) {
+		auto r = PropsDoHurt(gg.rnd, attackValue_);
+		if (r.second == 0) {
+			// 变白
+			whiteColorEndTime = scene->time + cWhiteColorDuration;
+		}
+		else if (r.second == 2) {
+			// 爆炸特效
+			scene->exploders.Emplace().Emplace()->Init(this);
+			// 自杀
+			Dispose();
+		}
+		return r;
+	}
+
 	int32_t SnakeBody::ElementUpdate() {
 		//U1_RadiusAnim();
 		BaseUpdate();
@@ -223,10 +243,14 @@ namespace Test3 {
 
 	void SnakeBody::Draw() {
 		auto& f = gg.pics.snake_body;
-		auto& c = owner->scene->cam;
-		gg.Quad().DrawFrame(f, c.ToGLPos(pos)
-			, radius * (2.f * cDrawScale) / f.uvRect.w * c.scale
-			, radians);
+		auto& cam = owner->scene->cam;
+		float cp{ 1 };
+		if (scene->time < whiteColorEndTime) {
+			cp = 10000.f;
+		}
+		gg.Quad().DrawFrame(f, cam.ToGLPos(pos)
+			, radius * (2.f * cDrawScale) / f.uvRect.w * cam.scale
+			, radians, cp);
 	}
 
 	/***********************************************************************************/

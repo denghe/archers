@@ -162,11 +162,7 @@ namespace Test3 {
 		pathways.Emplace().Emplace()->Init(mp, 0.1f);
 #endif
 
-		// init snakes
-		for (auto& pw : pathways) {
-			snakes.Emplace().Emplace<Snake>()->Init(this, pw.pointer, 300);
-		}
-
+		GenSnake();
 	}
 
 }
