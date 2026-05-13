@@ -253,6 +253,20 @@ namespace Test3 {
 			, radians, cp);
 	}
 
+	void SnakeBody::DrawHPBar() {
+		// 显示触发条件：带属性, 非满血
+		if (health == healthMax) return;
+		auto percent = (float)health / healthMax;
+		auto& f = gg.pics.snake_body;
+		auto s = radius * 2.f / f.uvRect.w;
+		XY siz{ 200 * s, 12 };
+		siz *= scene->cam.scale;
+		if (siz.x < 20) siz.x = 20;
+		if (siz.y < 6) siz.y = 6;
+		auto p = pos + XY{ -siz.x * 0.5f, f.uvRect.w * 0.5f * s };
+		gg.HPBar().Alloc()->Fill(scene->cam.ToGLPos(p), siz, xx::RGBA8_Black, xx::RGBA8_White, { 200,0,0,255 }, percent);
+	}
+
 	/***********************************************************************************/
 
 	void SnakeTail::Init() {

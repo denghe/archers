@@ -12,7 +12,7 @@ namespace Test3 {
 		}
 
 		// fixed update
-		auto d = float(std::min((float)gg.delta, gg.cMaxDelta) * timeScale);
+		auto d = float(std::min((float)gg.delta, gg.cMaxDelta) * cGameSpeed /*timeScale*/);
 		timePool += d;
 		while (timePool >= gg.cDelta) {
 			time += gg.cDelta;
@@ -53,6 +53,8 @@ namespace Test3 {
 				player->weapon->pierceCount = cBulletPierceCount;
 				player->weapon->bulletFlySpeed = cBulletFlySpeed;
 			}
+			player->criticalChance = cBulletCriticalChance / 100.f;
+			player->criticalDamage = cBulletCriticalDamage / 100.f;
 		}
 	}
 

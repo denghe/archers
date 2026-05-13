@@ -105,7 +105,11 @@ namespace Test3 {
 				o->DrawHPBar();
 			}
 		}
-		// todo: snake's hpbar
+		for (auto& oo : snakes) {
+			for (auto& o : oo->elements) {
+				o->DrawHPBar();
+			}
+		}
 
 		// 伤害文字
 		effectTexts.Draw();

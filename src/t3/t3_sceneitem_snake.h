@@ -96,6 +96,7 @@ namespace Test3 {
 		void Init();
 		int32_t ElementUpdate() override;
 		void Draw() override;
+		void DrawHPBar() override;
 	};
 
 }

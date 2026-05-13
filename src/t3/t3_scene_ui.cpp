@@ -27,11 +27,15 @@ namespace Test3 {
 			tarSlider_->SetAlphaRecursive(0.5f);
 		};
 
+		MakeSlider(uiGameSpeed, &cGameSpeed, cGameSpeedRange, U"游戏速度");
+
 		MakeSlider(uiBulletAttack, &cBulletAttack, cBulletAttackRange, U"子弹威力");
 		MakeSlider(uiBulletCount, &cBulletCount, cBulletCountRange, U"子弹数量");
 		MakeSlider(uiBulletFlySpeed, &cBulletFlySpeed, cBulletFlySpeedRange, U"子弹飞速");
 		MakeSlider(uiBulletShootSpeed, &cBulletShootSpeed, cBulletShootSpeedRange, U"子弹射速");
 		MakeSlider(uiBulletPierceCount, &cBulletPierceCount, cBulletPierceCountRange, U"子弹穿透次数");
+		MakeSlider(uiBulletCriticalChance, &cBulletCriticalChance, cBulletCriticalChanceRange, U"暴击率%");
+		MakeSlider(uiBulletCriticalDamage, &cBulletCriticalDamage, cBulletCriticalDamageRange, U"暴击倍率%");
 
 		offset.y -= cLineHeight;
 		ui->Make<xx::LabelButton>()->Init(2, offset, anchor, fontSize)(U"生成1蛇").SetLabelBorder().onClicked = [this] {

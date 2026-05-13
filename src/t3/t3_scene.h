@@ -35,6 +35,22 @@ namespace Test3 {
 		int32_t cBulletPierceCount{ cBulletPierceCountRange.from };
 		xx::Shared<xx::Slider> uiBulletPierceCount;
 
+		// 暴击率
+		static constexpr xx::FromTo<int32_t> cBulletCriticalChanceRange{ 0, 100 };
+		int32_t cBulletCriticalChance{ cBulletCriticalChanceRange.from };
+		xx::Shared<xx::Slider> uiBulletCriticalChance;
+
+		// 暴击倍率
+		static constexpr xx::FromTo<int32_t> cBulletCriticalDamageRange{ 200, 500 };
+		int32_t cBulletCriticalDamage{ cBulletCriticalDamageRange.from };
+		xx::Shared<xx::Slider> uiBulletCriticalDamage;
+
+		// 游戏速度
+		static constexpr xx::FromTo<int32_t> cGameSpeedRange{ 1, 50 };
+		int32_t cGameSpeed{ cGameSpeedRange.from };
+		xx::Shared<xx::Slider> uiGameSpeed;
+
+
 		// UI area
 		/********************************/
 
