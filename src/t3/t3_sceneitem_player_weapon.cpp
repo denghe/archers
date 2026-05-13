@@ -18,20 +18,6 @@ namespace Test3 {
 	}
 
 	void PlayerWeapon::Update() {
-		if (gg.keyboard[GLFW_KEY_1](0.1f)) {
-			++baseDamage;
-		}
-		if (gg.keyboard[GLFW_KEY_2](0.1f)) {
-			++shootCountPerRound;
-		}
-		if (gg.keyboard[GLFW_KEY_3](0.1f)) {
-			shootDelay *= 0.8f;
-			if (shootDelay < gg.cDelta) shootDelay = gg.cDelta;
-		}
-		if (gg.keyboard[GLFW_KEY_4](0.1f)) {
-			++pierceCount;
-		}
-
 		// 同步 owner 坐标
 		pos = owner->pos;
 		y = pos.y + 1.f;

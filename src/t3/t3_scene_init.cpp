@@ -7,6 +7,7 @@ namespace Test3 {
 		frameBuffer.Init();
 		effectTexts.Init(&cam, 10000);
 		ui.Emplace()->InitRoot(gg.scale * cUIScale);
+		MakeUI();
 		cursor.Emplace()->Init();
 		cursor->frame = gg.pics.cursor_cross;
 

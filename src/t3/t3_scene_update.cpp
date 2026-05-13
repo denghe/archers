@@ -44,8 +44,15 @@ namespace Test3 {
 		UpdateItems(playerBullets);
 		if (player) player->Update();
 
-		if (gg.keyboard[GLFW_KEY_R](0.1f)) {
-			GenSnake();
+		// 从 UI 同步数据
+		if (player) {
+			if (player->weapon) {
+				player->weapon->baseDamage = cBulletAttack;
+				player->weapon->shootDelay = 1.f / cBulletShootSpeed;
+				player->weapon->shootCountPerRound = cBulletCount;
+				player->weapon->pierceCount = cBulletPierceCount;
+				player->weapon->bulletFlySpeed = cBulletFlySpeed;
+			}
 		}
 	}
 

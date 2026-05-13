@@ -11,8 +11,11 @@ namespace Test3 {
 		// 指向拥有者
 		xx::Weak<Player> owner;
 
-		// 武器基础伤害
+		// 子弹基础伤害
 		float baseDamage{ 10.f };
+
+		// 子弹飞行速度
+		float bulletFlySpeed{ 100.f };
 
 		// 每轮射击延迟
 		float shootDelay{ 1.f };

@@ -7,8 +7,6 @@ namespace Test3 {
 	struct PlayerBullet : SceneProps2Item {
 		static constexpr int32_t cTypeId{ 6 };
 
-		// 移动速度
-		static constexpr float cSpeed{ 1000.f };
 		// 最大存活时长
 		static constexpr float cMaxLifetime{ 5.f };
 		// 帧动画步进值
@@ -25,6 +23,8 @@ namespace Test3 {
 		// 当前帧下标
 		float frameNumber{};
 
+		// 飞行速度( Init 时从 weapon 复制 )
+		float flySpeed{};
 		// 箭矢的基础攻击力( Init 时从 weapon 复制 )
 		float baseDamage{};
 		// 剩余穿刺次数( 命中 1 次，减 1 )( 从 weapon 初始化初始次数 )

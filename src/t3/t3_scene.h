@@ -7,6 +7,37 @@ namespace Test3 {
 
 	using SceneBase = Global::SceneBase;
 	struct Scene : SceneBase {
+		/********************************/
+		// UI area
+
+		// 子弹威力
+		static constexpr xx::FromTo<int32_t> cBulletAttackRange{ 1, 100 };
+		int32_t cBulletAttack{ cBulletAttackRange.from };
+		xx::Shared<xx::Slider> uiBulletAttack;
+
+		// 子弹数量
+		static constexpr xx::FromTo<int32_t> cBulletCountRange{ 1, 10 };
+		int32_t cBulletCount{ cBulletCountRange.from };
+		xx::Shared<xx::Slider> uiBulletCount;
+
+		// 子弹飞速
+		static constexpr xx::FromTo<int32_t> cBulletFlySpeedRange{ 100, 2000 };
+		int32_t cBulletFlySpeed{ cBulletFlySpeedRange.from };
+		xx::Shared<xx::Slider> uiBulletFlySpeed;
+
+		// 子弹射速
+		static constexpr xx::FromTo<int32_t> cBulletShootSpeedRange{ 1, 120 };
+		int32_t cBulletShootSpeed{ cBulletShootSpeedRange.from };
+		xx::Shared<xx::Slider> uiBulletShootSpeed;
+
+		// 子弹穿透次数
+		static constexpr xx::FromTo<int32_t> cBulletPierceCountRange{ 1, 10 };
+		int32_t cBulletPierceCount{ cBulletPierceCountRange.from };
+		xx::Shared<xx::Slider> uiBulletPierceCount;
+
+		// UI area
+		/********************************/
+
 		// 地图逻辑格子尺寸
 		XYi mapSize{};
 		// 地图总像素尺寸
@@ -64,6 +95,7 @@ namespace Test3 {
 		// 在 pathway 上生成蛇
 		void GenSnake();
 
+		void MakeUI();
 		void Init() override;
 		void Update() override;
 		void FixedUpdate() override;

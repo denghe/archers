@@ -12,7 +12,8 @@ namespace Test3 {
 		assert(scene->playerBullets[indexAtContainer].pointer == this);
 
 		// 算出每帧的步进
-		inc = { 0.f, -cSpeed * gg.cDelta };
+		flySpeed = weapon_->bulletFlySpeed;
+		inc = { 0.f, -flySpeed * gg.cDelta };
 		deathTime = scene->time + cMaxLifetime;
 
 		pos = pos_;
