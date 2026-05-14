@@ -852,6 +852,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">pics/light_firearrow.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.652632,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>24,18,47,36</rect>
+                <key>scale9Paddings</key>
+                <rect>24,18,47,36</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">pics/light_sword1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

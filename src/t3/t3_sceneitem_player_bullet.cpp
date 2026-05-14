@@ -155,8 +155,8 @@ namespace Test3 {
 	}
 
 	void PlayerBullet::DrawLight() {
-		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, radians * (10.f / 64.f) * scene->cam.scale, 0, 0.8f);
+		gg.Quad().DrawFrame(gg.pics.light_firearrow, scene->cam.ToGLPos(pos)
+			, scale * scene->cam.scale, radians, 0.8f);
 	}
 
 	void PlayerBullet::Dispose() {

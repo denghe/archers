@@ -21,6 +21,7 @@ struct _pics {
 	xx::Frame c128_wall;
 	xx::Frame cursor_cross;
 	xx::Frame cursor_default;
+	xx::Frame light_firearrow;
 	xx::Frame light_sword1;
 	xx::Frame snake_body;
 	xx::Frame snake_face;
