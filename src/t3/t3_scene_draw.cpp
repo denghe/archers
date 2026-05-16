@@ -72,7 +72,7 @@ namespace Test3 {
 		// 准备光照贴图
 		auto lightTexScale{ 270.f / gg.windowSize.y };	// 用更小的绘制比例以节省填充率( 太小会画质恶劣 )
 		cam.SetBaseScale(gg.scale * lightTexScale);
-		auto bgColor = xx::RGBA8{ 10,10,10,255 };
+		auto bgColor = xx::RGBA8{ 30,30,30,255 };
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
 			for (auto& oo : creaturess) {
