@@ -3,7 +3,7 @@
 
 namespace Test4 {
 
-	void Wall::Init1(Scene* scene_, XYi cr_) {
+	void Wall::Init(Scene* scene_, XYi cr_) {
 		typeId = cTypeId;
 		scene = scene_;
 
@@ -21,16 +21,10 @@ namespace Test4 {
 		scene_->gridWalls.Add(indexAtGrid, this);
 	}
 
-	void Wall::Init2() {
-		// todo: 考虑面向玩家这一侧的斜坡
-		// 根据周围邻居的情况，选择合适的 uv 映射范围
-
-	}
-
 	void Wall::Draw() {
-		// todo: 自定义 uv
-		gg.Quad().DrawFrame(gg.pics.c128_wall, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+		// todo: 根据邻居情况来选 tile frame
+		auto& f = gg.wallsTiles[0][0];
+		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
 	}
 
 	void Wall::Dispose() {

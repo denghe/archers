@@ -27,7 +27,7 @@ namespace Test4 {
 			for (int32_t i = 0; i < mapSize.y; ++i) {
 				for (int32_t j = 0; j < mapSize.x; ++j) {
 					XY p{ j * cCellPixelSize, i * cCellPixelSize };
-					gg.Quad().DrawTinyFrame(gg.pics.c128_floor, cam.ToGLPos(p), { 0,1 }, cam.scale, 0);
+					gg.Quad().DrawTinyFrame(gg.pics.floor_[0], cam.ToGLPos(p), { 0,1 }, cCellPixelSize / 32.f * cam.scale, 0);
 				}
 			}
 
@@ -48,7 +48,8 @@ namespace Test4 {
 		// 准备光照贴图
 		auto lightTexScale{ 270.f / gg.windowSize.y };	// 用更小的绘制比例以节省填充率( 太小会画质恶劣 )
 		cam.SetBaseScale(gg.scale * lightTexScale);
-		auto bgColor = xx::RGBA8{ 30,30,30,255 };
+		//auto bgColor = xx::RGBA8{ 30,30,30,255 };
+		auto bgColor = xx::RGBA8{ 255,255,255,255 };
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
 			// ...

@@ -34,6 +34,11 @@ namespace Global {
 		xx::Shared<xx::GLTexture> picsTex;
 		// ...
 
+		// 映射到 pics.walls_*
+		std::array<std::array<xx::TinyFrame, 256>, 1> wallsTiles{};
+		// todo: 墙壁斜坡
+		// ...
+
 		void Init() override;
 		void GLInit() override;
 		void Update() override;
