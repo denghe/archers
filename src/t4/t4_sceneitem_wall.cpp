@@ -7,8 +7,8 @@ namespace Test4 {
 		typeId = cTypeId;
 		scene = scene_;
 
-		// todo: cr to pos
 		// pos 的坐标可以是 左上角，y 值可以是 底边, 参与显示排序
+		cr = cr_;
 		pos = cr_ * cCellPixelSize;
 		y = pos.y;
 		radius = cWallRadius;
@@ -22,8 +22,67 @@ namespace Test4 {
 	}
 
 	void Wall::Draw() {
-		// todo: 根据邻居情况来选 tile frame
-		auto& f = gg.wallsTiles[0][0];
+		// todo: 当 walls 内容变化时 再算 idx
+
+		// 根据邻居情况来选 tile frame
+		auto s = scene->mapSize;
+		auto& d = scene->mapData;
+		uint32_t i{};
+
+		//// x..
+		//// .o.
+		//// ...
+		//if (cr.x == 0 || cr.y == 0 || d[(cr.y - 1) * s.x + cr.x - 1] != U'墙') i |= 0b1;
+		//// .x.
+		//// .o.
+		//// ...
+		//if (cr.y == 0 || d[(cr.y - 1) * s.x + cr.x] != U'墙') i |= 0b10;
+		//// ..x
+		//// .o.
+		//// ...
+		//if (cr.x == s.x - 1 || cr.y == 0 || d[(cr.y - 1) * s.x + cr.x + 1] != U'墙') i |= 0b100;
+		//// ...
+		//// xo.
+		//// ...
+		//if (cr.x == 0 || d[cr.y * s.x + cr.x - 1] != U'墙') i |= 0b10000000;
+		//// ...
+		//// .ox
+		//// ...
+		//if (cr.x == s.x - 1 || d[cr.y * s.x + cr.x + 1] != U'墙') i |= 0b1000;
+		//// ...
+		//// .o.
+		//// x..
+		//if (cr.x == 0 || cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x - 1] != U'墙') i |= 0b1000000;
+		//// ...
+		//// .o.
+		//// .x.
+		//if (cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x] != U'墙') i |= 0b100000;
+		//// ...
+		//// .o.
+		//// ..x
+		//if (cr.x == s.x - 1 || cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x + 1] != U'墙') i |= 0b10000;
+
+		// .x.
+		// .o.
+		// ...
+		if (cr.y == 0 || d[(cr.y - 1) * s.x + cr.x] != U'墙') i |= 0b111;
+		// ...
+		// xo.
+		// ...
+		if (cr.x == 0 || d[cr.y * s.x + cr.x - 1] != U'墙') i |= 0b11000001;
+		// ...
+		// .ox
+		// ...
+		if (cr.x == s.x - 1 || d[cr.y * s.x + cr.x + 1] != U'墙') i |= 0b11100;
+		// ...
+		// .o.
+		// .x.
+		if (cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x] != U'墙') i |= 0b1110000;
+
+		// todo: 斜坡
+
+		auto& f = gg.wallsTiles[0][i];
+		assert(f.tex);
 		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
 	}
 
