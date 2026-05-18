@@ -3,6 +3,7 @@
 #include "t1.h"
 #include "t2.h"
 #include "t3.h"
+#include "t4.h"
 
 namespace MainMenu {
 
@@ -40,6 +41,12 @@ namespace MainMenu {
 		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"蛇模拟")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test3::Scene>()->Init();
+			});
+		};
+
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试来自 below the stone 游戏的地貌")).SetLabelBorder().onClicked = [this] {
+			SetDelayCmd([this] {
+				gg.MakeScene<Test4::Scene>()->Init();
 			});
 		};
 

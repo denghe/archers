@@ -1,0 +1,37 @@
+﻿#pragma once
+#include "t4_sceneitem.h"
+#include <xx_grid2d_circle.h>
+
+namespace Test4 {
+
+	using SceneBase = Global::SceneBase;
+	struct Scene : SceneBase {
+		// 地图逻辑格子尺寸
+		XYi mapSize{};
+		// 地图总像素尺寸
+		XY mapPixelSize{};
+		// 地图布局数据( 值为 类型::cTypeId )
+		xx::List<int32_t> mapData;
+
+		// 墙壁空间索引
+		xx::Grid2dCircle<SceneItem*, GridCache> gridWalls;
+		// 所有墙壁
+		xx::List<xx::Shared<Wall>> walls;
+
+		// for draw floorMaskTex, light ...
+		xx::FrameBuffer frameBuffer;
+		xx::Shared<xx::GLTexture> floorMaskTex;
+		xx::List<FloorMask> floorMasks;
+
+		// 地图生成
+		void GenWorld();
+
+		void MakeUI();
+		void Init() override;
+		void Update() override;
+		void FixedUpdate() override;
+		void Draw() override;
+		void OnResize(bool modeChanged_) override;
+	};
+
+}

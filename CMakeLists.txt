@@ -19,6 +19,7 @@ include_directories(
 	src/t1
 	src/t2
 	src/t3
+	src/t4
 )
 
 file(GLOB_RECURSE sources

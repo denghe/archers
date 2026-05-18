@@ -27,9 +27,12 @@ struct _pics {
 	xx::Frame snake_face;
 	xx::Frame snake_tail;
 	xx::Frame sword1;
+	xx::Frame walls_shadowmask;
 	std::array<xx::Frame, 484> creature_1_;
 	std::array<xx::Frame, 8> explosion_1_;
 	std::array<xx::Frame, 9> firearrow_;
+	std::array<xx::Frame, 1> floor_;
+	std::array<xx::Frame, 1> walls_;
 
 	xx::Shared<xx::GLTexture> Load(std::string picFN_, bool generateMipmap_ = true);
 };
