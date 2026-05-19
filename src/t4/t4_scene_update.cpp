@@ -37,6 +37,25 @@ namespace Test4 {
 		//	player->criticalChance = cBulletCriticalChance / 100.f;
 		//	player->criticalDamage = cBulletCriticalDamage / 100.f;
 		//}
+
+		// todo: 鼠标左键 画 wall，右键 挖 wall
+
+		auto mp = cam.ToLogicPos(gg.mousePos);
+		if (gg.mouse[GLFW_MOUSE_BUTTON_5](0.1f)) {
+			xx::CoutN(mp);
+		}
+		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁
+		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
+			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
+			XYi cr = mp * c1_CellPixelSize;
+			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
+				GenWall(cr);
+			}
+			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
+				DigWall(cr);
+			}
+		}
+
 	}
 
 }

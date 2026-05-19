@@ -175,7 +175,7 @@ namespace Global {
 		FillShadowMaskUV(0, 1, 7);
 		FillShadowMaskUV(0, 2, 31);
 		FillShadowMaskUV(0, 3, 209);
-		FillShadowMaskUV(0, 4, 235);
+		FillShadowMaskUV(0, 4, 92);
 		FillShadowMaskUV(0, 5, 215);
 		FillShadowMaskUV(0, 6, 95);
 		FillShadowMaskUV(0, 7, 223);

@@ -14,7 +14,7 @@ namespace Test4 {
 		xx::List<int32_t> mapData;
 
 		// 墙壁空间索引
-		xx::Grid2dCircle<SceneItem*, GridCache> gridWalls;
+		xx::Grid2dCircle<Wall*> gridWalls;
 		// 所有墙壁
 		xx::List<xx::Shared<Wall>> walls;
 
@@ -25,6 +25,11 @@ namespace Test4 {
 
 		// 地图生成
 		void GenWorld();
+
+		// 建墙
+		void GenWall(XYi cr_);
+		// 挖墙
+		void DigWall(XYi cr_);
 
 		void MakeUI();
 		void Init() override;
