@@ -35,7 +35,7 @@ namespace Global {
 		// ...
 
 		// 映射到 pics.walls_*
-		std::array<std::array<xx::TinyFrame, 256>, 1> wallsTiles{};
+		std::array<std::array<xx::TinyFrame, 256>, 3> wallsTiles{};
 		std::array<xx::TinyFrame, 256> wallsShadowMaskTiles{};
 		// ...
 

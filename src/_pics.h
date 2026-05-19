@@ -19,7 +19,7 @@ struct _pics {
 	xx::Frame c128_monster_portal;
 	xx::Frame c128_player;
 	xx::Frame c128_wall;
-	xx::Frame c512_light;
+	xx::Frame c256_light;
 	xx::Frame cursor_cross;
 	xx::Frame cursor_default;
 	xx::Frame light_firearrow;
@@ -32,8 +32,9 @@ struct _pics {
 	std::array<xx::Frame, 484> creature_1_;
 	std::array<xx::Frame, 8> explosion_1_;
 	std::array<xx::Frame, 9> firearrow_;
-	std::array<xx::Frame, 1> floor_;
-	std::array<xx::Frame, 1> walls_;
+	std::array<xx::Frame, 5> floor_;
+	std::array<xx::Frame, 9> ore_;
+	std::array<xx::Frame, 3> walls_;
 
 	xx::Shared<xx::GLTexture> Load(std::string picFN_, bool generateMipmap_ = true);
 };

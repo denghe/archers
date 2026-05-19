@@ -56,8 +56,12 @@ namespace Test4 {
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
 
-			// 先打个光看效果
-			gg.Quad().DrawFrame(gg.pics.c512_light, gg.mousePos * lightTexScale, 1.f, 0);
+			// 在鼠标处打个光看效果
+#if 0
+			gg.Quad().DrawFrame(gg.pics.c512_light, gg.mousePos * lightTexScale, 1.f);
+#else
+			gg.Quad().DrawFrame(gg.pics.c256_light, gg.mousePos * lightTexScale, 2.f);
+#endif
 
 			// ...
 		});
@@ -65,7 +69,7 @@ namespace Test4 {
 		cam.SetBaseScale(gg.scale);
 
 		// 合并绘制: 内容 + 光照
-		gg.QuadLight().Draw(tex, lightTex, xx::RGBA8_White, 1.2f);	// 1.2: 稍微弄点曝光过度
+		gg.QuadLight().Draw(tex, lightTex, xx::RGBA8_White, 1.f);
 		// 立即提交以防止 tex, lightTex 出函数后失效
 		gg.ShaderEnd();
 

@@ -74,7 +74,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png8</enum>
+        <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
         <uint>8</uint>
         <key>maxTextureSize</key>
@@ -173,7 +173,7 @@
             <key>heuristicMask</key>
             <false/>
             <key>defaultPivotPoint</key>
-            <point_f>0.69,0.53</point_f>
+            <point_f>0.5,0.5</point_f>
             <key>writePivotPoints</key>
             <true/>
         </struct>
@@ -217,6 +217,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">pics/c256_light.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>64,64,128,128</rect>
+                <key>scale9Paddings</key>
+                <rect>64,64,128,128</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">pics/c32.png</key>
             <key type="filename">pics/c32_bullet.png</key>
             <key type="filename">pics/explosion_1_1.png</key>
@@ -228,6 +243,10 @@
             <key type="filename">pics/explosion_1_7.png</key>
             <key type="filename">pics/explosion_1_8.png</key>
             <key type="filename">pics/floor_1.png</key>
+            <key type="filename">pics/floor_2.png</key>
+            <key type="filename">pics/floor_3.png</key>
+            <key type="filename">pics/floor_4.png</key>
+            <key type="filename">pics/floor_5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -239,21 +258,6 @@
                 <rect>8,8,16,16</rect>
                 <key>scale9Paddings</key>
                 <rect>8,8,16,16</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">pics/c512_light.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>128,128,256,256</rect>
-                <key>scale9Paddings</key>
-                <rect>128,128,256,256</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -898,6 +902,29 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">pics/ore_0.png</key>
+            <key type="filename">pics/ore_1.png</key>
+            <key type="filename">pics/ore_2.png</key>
+            <key type="filename">pics/ore_3.png</key>
+            <key type="filename">pics/ore_4.png</key>
+            <key type="filename">pics/ore_5.png</key>
+            <key type="filename">pics/ore_6.png</key>
+            <key type="filename">pics/ore_7.png</key>
+            <key type="filename">pics/ore_8.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,15,16,29</rect>
+                <key>scale9Paddings</key>
+                <rect>8,15,16,29</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">pics/snake_body.png</key>
             <key type="filename">pics/snake_face.png</key>
             <key type="filename">pics/snake_tail.png</key>
@@ -931,6 +958,8 @@
                 <false/>
             </struct>
             <key type="filename">pics/walls_1.png</key>
+            <key type="filename">pics/walls_2.png</key>
+            <key type="filename">pics/walls_3.png</key>
             <key type="filename">pics/walls_shadowmask.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

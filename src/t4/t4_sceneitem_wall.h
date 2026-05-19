@@ -12,6 +12,8 @@ namespace Test4 {
 		int32_t wallsIndex{ -1 };
 		// 根据相邻关系推算出的 gg.wallsTiles 2级下标
 		int32_t tilesIndex{ -1 };
+		// 先随机弄点矿叠加显示
+		int32_t oreIndex{ -1 };
 
 		// cr: column, row
 		void Init(Scene* scene_, XYi cr_, int32_t wallsIndex_ = 0);

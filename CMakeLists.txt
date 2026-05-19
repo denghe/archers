@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.24)
+﻿cmake_minimum_required(VERSION 4.0)
 
 # Default to release build if not specified
 if(NOT CMAKE_BUILD_TYPE)
@@ -32,8 +32,9 @@ file(GLOB_RECURSE sources
 
 add_executable(${name} ${sources})
 
-source_group("" FILES ${sources})
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src FILES ${sources})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" 
+             PREFIX "Source Files" 
+             FILES ${sources})
 
 add_subdirectory(../xx2 xx)
 target_link_libraries(${name} xx)

@@ -21,6 +21,8 @@ namespace Test4 {
 		scene_->gridWalls.Add(indexAtGrid, this);
 
 		wallsIndex = wallsIndex_;
+
+		oreIndex = gg.rnd.Next<int32_t>( gg.pics.ore_.size() );
 	}
 
 	void Wall::FillTilesIndex() {
@@ -65,15 +67,21 @@ namespace Test4 {
 	}
 
 	void Wall::Draw() {
-		auto& f = gg.wallsTiles[wallsIndex][tilesIndex];
-		assert(f.tex);
-		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
+		{
+			auto& f = gg.wallsTiles[wallsIndex][tilesIndex];
+			assert(f.tex);
+			gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
+		}
+		if (oreIndex >= 0) {
+			auto& f = gg.pics.ore_[oreIndex];
+			gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
+		}
 	}
 
 	void Wall::DrawLightMask() {
 		auto& f = gg.wallsShadowMaskTiles[tilesIndex];
 		assert(f.tex);
-		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
+		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians, 1.5f);
 	}
 
 	void Wall::Dispose() {
