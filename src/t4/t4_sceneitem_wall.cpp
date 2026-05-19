@@ -3,7 +3,7 @@
 
 namespace Test4 {
 
-	void Wall::Init(Scene* scene_, XYi cr_) {
+	void Wall::Init(Scene* scene_, XYi cr_, int32_t wallsIndex_) {
 		typeId = cTypeId;
 		scene = scene_;
 
@@ -19,69 +19,59 @@ namespace Test4 {
 		assert(scene_->walls[indexAtContainer].pointer == this);
 
 		scene_->gridWalls.Add(indexAtGrid, this);
+
+		wallsIndex = wallsIndex_;
 	}
 
-	void Wall::Draw() {
-		// todo: 当 walls 内容变化时 再算 idx
-
+	void Wall::FillTilesIndex() {
 		// 根据邻居情况来选 tile frame
 		auto s = scene->mapSize;
 		auto& d = scene->mapData;
-		uint32_t i{};
-
-		//// x..
-		//// .o.
-		//// ...
-		//if (cr.x == 0 || cr.y == 0 || d[(cr.y - 1) * s.x + cr.x - 1] != U'墙') i |= 0b1;
-		//// .x.
-		//// .o.
-		//// ...
-		//if (cr.y == 0 || d[(cr.y - 1) * s.x + cr.x] != U'墙') i |= 0b10;
-		//// ..x
-		//// .o.
-		//// ...
-		//if (cr.x == s.x - 1 || cr.y == 0 || d[(cr.y - 1) * s.x + cr.x + 1] != U'墙') i |= 0b100;
-		//// ...
-		//// xo.
-		//// ...
-		//if (cr.x == 0 || d[cr.y * s.x + cr.x - 1] != U'墙') i |= 0b10000000;
-		//// ...
-		//// .ox
-		//// ...
-		//if (cr.x == s.x - 1 || d[cr.y * s.x + cr.x + 1] != U'墙') i |= 0b1000;
-		//// ...
-		//// .o.
-		//// x..
-		//if (cr.x == 0 || cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x - 1] != U'墙') i |= 0b1000000;
-		//// ...
-		//// .o.
-		//// .x.
-		//if (cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x] != U'墙') i |= 0b100000;
-		//// ...
-		//// .o.
-		//// ..x
-		//if (cr.x == s.x - 1 || cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x + 1] != U'墙') i |= 0b10000;
-
-		// .x.
+		uint32_t i{ 0b11111111u };
+		// .2.
 		// .o.
 		// ...
-		if (cr.y == 0 || d[(cr.y - 1) * s.x + cr.x] != U'墙') i |= 0b111;
+		if (cr.y > 0 && d[(cr.y - 1) * s.x + cr.x] == U'墙') i &= 0b11111101u;
 		// ...
-		// xo.
+		// 8o.
 		// ...
-		if (cr.x == 0 || d[cr.y * s.x + cr.x - 1] != U'墙') i |= 0b11000001;
+		if (cr.x > 0 && d[cr.y * s.x + cr.x - 1] == U'墙') i &= 0b01111111u;
 		// ...
-		// .ox
+		// .o4
 		// ...
-		if (cr.x == s.x - 1 || d[cr.y * s.x + cr.x + 1] != U'墙') i |= 0b11100;
+		if (cr.x < s.x - 1 && d[cr.y * s.x + cr.x + 1] == U'墙') i &= 0b11110111u;
 		// ...
 		// .o.
-		// .x.
-		if (cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x] != U'墙') i |= 0b1110000;
+		// .6.
+		if (cr.y < s.y - 1 && d[(cr.y + 1) * s.x + cr.x] == U'墙') i &= 0b11011111u;
+		//// 12.
+		//// 8o.
+		//// ...
+		if ((~i & 0b10000010u) == 0b10000010u && d[(cr.y - 1) * s.x + cr.x - 1] == U'墙')  i &= 0b11111110u;
+		//// .23
+		//// .o4
+		//// ...
+		if ((~i & 0b00001010u) == 0b00001010u && d[(cr.y - 1) * s.x + cr.x + 1] == U'墙')  i &= 0b11111011u;
+		//// ...
+		//// 8o.
+		//// 76.
+		if ((~i & 0b10100000u) == 0b10100000u && d[(cr.y + 1) * s.x + cr.x - 1] == U'墙')  i &= 0b10111111u;
+		//// ...
+		//// .o4
+		//// .65
+		if ((~i & 0b00101000u) == 0b00101000u && d[(cr.y + 1) * s.x + cr.x + 1] == U'墙')  i &= 0b11101111u;
 
-		// todo: 斜坡
+		tilesIndex = i;
+	}
 
-		auto& f = gg.wallsTiles[0][i];
+	void Wall::Draw() {
+		auto& f = gg.wallsTiles[wallsIndex][tilesIndex];
+		assert(f.tex);
+		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
+	}
+
+	void Wall::DrawLightMask() {
+		auto& f = gg.wallsShadowMaskTiles[tilesIndex];
 		assert(f.tex);
 		gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
 	}

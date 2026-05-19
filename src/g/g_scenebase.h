@@ -44,6 +44,7 @@ namespace Global {
 		virtual void DrawGizmos() {};
 		virtual void DrawShadow() {};
 		virtual void DrawLight() {};
+		virtual void DrawLightMask() {};
 
 		// 删除对象
 		virtual void Dispose() {

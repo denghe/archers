@@ -36,7 +36,7 @@ namespace Global {
 
 		// 映射到 pics.walls_*
 		std::array<std::array<xx::TinyFrame, 256>, 1> wallsTiles{};
-		// todo: 墙壁斜坡
+		std::array<xx::TinyFrame, 256> wallsShadowMaskTiles{};
 		// ...
 
 		void Init() override;

@@ -38,6 +38,9 @@ namespace Test4 {
 			}
 		}
 
+		// 计算墙壁使用的 tile
+		for (auto& w : walls) w->FillTilesIndex();
+
 		// todo: more logic here
 
 	}

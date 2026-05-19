@@ -19,6 +19,7 @@ struct _pics {
 	xx::Frame c128_monster_portal;
 	xx::Frame c128_player;
 	xx::Frame c128_wall;
+	xx::Frame c512_light;
 	xx::Frame cursor_cross;
 	xx::Frame cursor_default;
 	xx::Frame light_firearrow;

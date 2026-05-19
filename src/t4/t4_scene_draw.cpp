@@ -23,7 +23,7 @@ namespace Test4 {
 
 		// 准备内容贴图( 需要被 light 照亮的部分 )
 		auto tex = frameBuffer.Draw(gg.windowSize, true, xx::RGBA8{ 0,0,0,0 }, [&]() {
-			// 绘制地板纹理
+			// 绘制地板纹理	// todo: 理论上讲可以合并成使用 1 个 shader + 4 个顶点画所有
 			for (int32_t i = 0; i < mapSize.y; ++i) {
 				for (int32_t j = 0; j < mapSize.x; ++j) {
 					XY p{ j * cCellPixelSize, i * cCellPixelSize };
@@ -48,10 +48,17 @@ namespace Test4 {
 		// 准备光照贴图
 		auto lightTexScale{ 270.f / gg.windowSize.y };	// 用更小的绘制比例以节省填充率( 太小会画质恶劣 )
 		cam.SetBaseScale(gg.scale * lightTexScale);
-		//auto bgColor = xx::RGBA8{ 30,30,30,255 };
+#if 1
+		auto bgColor = xx::RGBA8{ 0,0,0,255 };
+#else
 		auto bgColor = xx::RGBA8{ 255,255,255,255 };
+#endif
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
+
+			// 先打个光看效果
+			gg.Quad().DrawFrame(gg.pics.c512_light, gg.mousePos * lightTexScale, 1.f, 0);
+
 			// ...
 		});
 		lightTex->SetParm(GL_LINEAR);
@@ -61,6 +68,9 @@ namespace Test4 {
 		gg.QuadLight().Draw(tex, lightTex, xx::RGBA8_White, 1.2f);	// 1.2: 稍微弄点曝光过度
 		// 立即提交以防止 tex, lightTex 出函数后失效
 		gg.ShaderEnd();
+
+		// 遮黑层
+		for (auto& o : walls) o->DrawLightMask();
 
 		// 血条
 		// 伤害文字

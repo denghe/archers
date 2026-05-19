@@ -37,7 +37,6 @@ namespace Global {
 		// begin load res
 		picsTex = pics.Load("res/_pics.png");
 
-
 		// 预生成针对 gg.pics.walls_? 贴图的 uv 布局. 整张图 256 * 348, 一共 8 列, 每列 32
 		// 第一排高度是 32 第二排是 26，如此交替 6 次, (32 + 26) * 6. 26 高度的是面向玩家的斜壁, 独立处理
 		// 每张 tile 按 外围描边 开口, 分为 8 格
@@ -49,13 +48,13 @@ namespace Global {
 		// 可以建立 256 长度的数组，用 "1 byte 数字" 作为下标来定位 uv
 		// 对于 567 部位带描边的情况，可对应 4 种斜坡，可以放到另一个 256 长度的数组
 		// 
-		// 当前 walls 图例，内容布局如下( 不算斜壁 )：( 215 好像是重复图 )
+		// 当前 walls 图例，内容布局如下
 		// 
 		// 123|123|123|1  |  3|123|123|123
 		// 8  |   |  4|8  |  4|8  |  4|8 4
 		// 7  |   |  5|7 5|7 5|7 5|7 5|7 5
 		// ---+---+---+---+---+---+---+---
-		// 199|  7| 31|208|235|215| 95|223
+		// 199|  7| 31|209| 92|215| 95|223
 		// ---+---+---+---+---+---+---+---
 		// 1  |   |  3|1 3|1 3|1 3|1 3|1 3
 		// 8  |   |  4|8  |  4|8  |  4|8 4
@@ -64,10 +63,10 @@ namespace Global {
 		// 193|  0| 28|197| 29|245|125|221
 		// ---+---+---+---+---+---+---+---
 		// 1  |   |  3|123|123|1 3|123|1 3
-		// 8  |   |  4|8  |   |8  |   |8 4
-		// 765|765|765|7 5|7  |7 5|7 5|765
+		// 8  |   |  4|   |   |8  |   |8 4
+		// 765|765|765|  5|7  |7 5|7 5|765
 		// ---+---+---+---+---+---+---+---
-		// 241|112|124|215| 71|213| 87|253
+		// 241|112|124| 23| 71|213| 87|253
 		// ---+---+---+---+---+---+---+---
 		//   3|   |1  |  3|1  |1 3|1 3|123
 		//    |   |   |   |   |   |  4|8 4
@@ -91,12 +90,18 @@ namespace Global {
 
 		// row, col  从表的左上角开始算( 0, 0 )
 		assert(wallsTiles.size() == pics.walls_.size());
-		auto FillUV = [this](size_t i, int32_t r, int32_t c, uint8_t b) {
+		auto FillUV = [this](size_t i, int32_t r, int32_t c, uint8_t b, bool includeFront = false) {
 			auto& f = pics.walls_[i];
 			auto& t = wallsTiles[i][b];
 			t.tex = f.tex;
 			auto& uv = t.uvRect;
-			uv.w = uv.h = 32;
+			if (includeFront) {
+				uv.w = 32;
+				uv.h = 32 + 26;
+			}
+			else {
+				uv.w = uv.h = 32;
+			}
 			uv.x = f.uvRect.x + 32 * c;
 			uv.y = f.uvRect.y + (32 + 26) * r;
 		};
@@ -105,8 +110,8 @@ namespace Global {
 			FillUV(i, 0, 0, 199);
 			FillUV(i, 0, 1, 7);
 			FillUV(i, 0, 2, 31);
-			FillUV(i, 0, 3, 208);
-			FillUV(i, 0, 4, 235);
+			FillUV(i, 0, 3, 209);
+			FillUV(i, 0, 4, 92);
 			FillUV(i, 0, 5, 215);
 			FillUV(i, 0, 6, 95);
 			FillUV(i, 0, 7, 223);
@@ -116,36 +121,36 @@ namespace Global {
 			FillUV(i, 1, 2, 28);
 			FillUV(i, 1, 3, 197);
 			FillUV(i, 1, 4, 29);
-			FillUV(i, 1, 5, 245);
-			FillUV(i, 1, 6, 125);
+			FillUV(i, 1, 5, 245, true);
+			FillUV(i, 1, 6, 125, true);
 			FillUV(i, 1, 7, 221);
 
-			FillUV(i, 2, 0, 241);
-			FillUV(i, 2, 1, 112);
-			FillUV(i, 2, 2, 124);
-			FillUV(i, 2, 3, 215);
+			FillUV(i, 2, 0, 241, true);
+			FillUV(i, 2, 1, 112, true);
+			FillUV(i, 2, 2, 124, true);
+			FillUV(i, 2, 3, 23);
 			FillUV(i, 2, 4, 71);
 			FillUV(i, 2, 5, 213);
 			FillUV(i, 2, 6, 87);
-			FillUV(i, 2, 7, 253);
+			FillUV(i, 2, 7, 253, true);
 
 			FillUV(i, 3, 0, 84);
 			FillUV(i, 3, 1, 80);
 			FillUV(i, 3, 2, 81);
-			FillUV(i, 3, 3, 116);
-			FillUV(i, 3, 4, 113);
-			FillUV(i, 3, 5, 117);
+			FillUV(i, 3, 3, 116, true);
+			FillUV(i, 3, 4, 113, true);
+			FillUV(i, 3, 5, 117, true);
 			FillUV(i, 3, 6, 93);
-			FillUV(i, 3, 7, 255);
+			FillUV(i, 3, 7, 255, true);
 
 			FillUV(i, 4, 0, 20);
 			FillUV(i, 4, 1, 85);
 			FillUV(i, 4, 2, 65);
 			FillUV(i, 4, 3, 16);
 			FillUV(i, 4, 4, 64);
-			FillUV(i, 4, 5, 247);
-			FillUV(i, 4, 6, 119);
-			FillUV(i, 4, 7, 127);
+			FillUV(i, 4, 5, 247, true);
+			FillUV(i, 4, 6, 119, true);
+			FillUV(i, 4, 7, 127, true);
 
 			FillUV(i, 5, 0, 21);
 			FillUV(i, 5, 1, 5);
@@ -155,6 +160,69 @@ namespace Global {
 			FillUV(i, 5, 5, 68);
 			FillUV(i, 5, 6, 17);
 		}
+
+		auto FillShadowMaskUV = [this](int32_t r, int32_t c, uint8_t b) {
+			auto& f = pics.walls_shadowmask;
+			auto& t = wallsShadowMaskTiles[b];
+			t.tex = f.tex;
+			auto& uv = t.uvRect;
+			uv.w = uv.h = 32;
+			uv.x = f.uvRect.x + 32 * c;
+			uv.y = f.uvRect.y + (32 + 26) * r;
+		};
+
+		FillShadowMaskUV(0, 0, 199);
+		FillShadowMaskUV(0, 1, 7);
+		FillShadowMaskUV(0, 2, 31);
+		FillShadowMaskUV(0, 3, 209);
+		FillShadowMaskUV(0, 4, 235);
+		FillShadowMaskUV(0, 5, 215);
+		FillShadowMaskUV(0, 6, 95);
+		FillShadowMaskUV(0, 7, 223);
+
+		FillShadowMaskUV(1, 0, 193);
+		FillShadowMaskUV(1, 1, 0);
+		FillShadowMaskUV(1, 2, 28);
+		FillShadowMaskUV(1, 3, 197);
+		FillShadowMaskUV(1, 4, 29);
+		FillShadowMaskUV(1, 5, 245);
+		FillShadowMaskUV(1, 6, 125);
+		FillShadowMaskUV(1, 7, 221);
+
+		FillShadowMaskUV(2, 0, 241);
+		FillShadowMaskUV(2, 1, 112);
+		FillShadowMaskUV(2, 2, 124);
+		FillShadowMaskUV(2, 3, 23);
+		FillShadowMaskUV(2, 4, 71);
+		FillShadowMaskUV(2, 5, 213);
+		FillShadowMaskUV(2, 6, 87);
+		FillShadowMaskUV(2, 7, 253);
+
+		FillShadowMaskUV(3, 0, 84);
+		FillShadowMaskUV(3, 1, 80);
+		FillShadowMaskUV(3, 2, 81);
+		FillShadowMaskUV(3, 3, 116);
+		FillShadowMaskUV(3, 4, 113);
+		FillShadowMaskUV(3, 5, 117);
+		FillShadowMaskUV(3, 6, 93);
+		FillShadowMaskUV(3, 7, 255);
+
+		FillShadowMaskUV(4, 0, 20);
+		FillShadowMaskUV(4, 1, 85);
+		FillShadowMaskUV(4, 2, 65);
+		FillShadowMaskUV(4, 3, 16);
+		FillShadowMaskUV(4, 4, 64);
+		FillShadowMaskUV(4, 5, 247);
+		FillShadowMaskUV(4, 6, 119);
+		FillShadowMaskUV(4, 7, 127);
+
+		FillShadowMaskUV(5, 0, 21);
+		FillShadowMaskUV(5, 1, 5);
+		FillShadowMaskUV(5, 2, 69);
+		FillShadowMaskUV(5, 3, 4);
+		FillShadowMaskUV(5, 4, 1);
+		FillShadowMaskUV(5, 5, 68);
+		FillShadowMaskUV(5, 6, 17);
 
 		// ...
 
