@@ -25,28 +25,17 @@ namespace Test4 {
 		//effectTexts.Update(time);
 		//UpdateItems(exploders);
 
-		//// 从 UI 同步数据
-		//if (player) {
-		//	if (player->weapon) {
-		//		player->weapon->baseDamage = cBulletAttack;
-		//		player->weapon->shootDelay = 1.f / cBulletShootSpeed;
-		//		player->weapon->shootCountPerRound = cBulletCount;
-		//		player->weapon->pierceCount = cBulletPierceCount;
-		//		player->weapon->bulletFlySpeed = cBulletFlySpeed;
-		//	}
-		//	player->criticalChance = cBulletCriticalChance / 100.f;
-		//	player->criticalDamage = cBulletCriticalDamage / 100.f;
-		//}
-
-		// todo: 鼠标左键 画 wall，右键 挖 wall
+		// 从 UI 同步数据
+		for (auto& o : walls) {
+			o->wallsIndex = cWallTexIndex;
+		}
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
-		if (gg.mouse[GLFW_MOUSE_BUTTON_5](0.1f)) {
-			xx::CoutN(mp);
-		}
-		// 确保鼠标点击的位置是地图内部, 避开外圈墙壁
-		if (mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
+		// 确保鼠标点击的位置是地图内部, 避开 ui & 外圈墙壁
+		if (!gg.uiHandler
+			&& mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
 			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
+			// 鼠标左键 画 wall，右键 挖 wall
 			XYi cr = mp * c1_CellPixelSize;
 			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
 				GenWall(cr);

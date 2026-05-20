@@ -27,7 +27,7 @@ namespace Test4 {
 			for (int32_t i = 0; i < mapSize.y; ++i) {
 				for (int32_t j = 0; j < mapSize.x; ++j) {
 					XY p{ j * cCellPixelSize, i * cCellPixelSize };
-					gg.Quad().DrawTinyFrame(gg.pics.floor_[0], cam.ToGLPos(p), { 0,1 }, cCellPixelSize / 32.f * cam.scale, 0);
+					gg.Quad().DrawTinyFrame(gg.pics.floor_[cFloorTexIndex], cam.ToGLPos(p), { 0,1 }, cCellPixelSize / 32.f * cam.scale, 0);
 				}
 			}
 
@@ -84,7 +84,7 @@ namespace Test4 {
 
 		// 设置顶部信息文字显示内容
 		//gg.uiText->SetText(xx::ToString("snake elements count = ", count));
-		//gg.DrawNode(ui);
+		gg.DrawNode(ui);
 
 		// gizmos
 		if (gg.isShowDebugPanel) {

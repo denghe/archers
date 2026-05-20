@@ -6,6 +6,24 @@ namespace Test4 {
 
 	using SceneBase = Global::SceneBase;
 	struct Scene : SceneBase {
+
+		/********************************/
+		// UI area
+
+		// 墙壁图切换
+		static constexpr xx::FromTo<int32_t> cWallTexIndexRange{ 0, 2 };
+		int32_t cWallTexIndex{ cWallTexIndexRange.from };
+		xx::Shared<xx::Slider> uiWallTexIndex;
+
+		// 地板图切换
+		static constexpr xx::FromTo<int32_t> cFloorTexIndexRange{ 0, 4 };
+		int32_t cFloorTexIndex{ cFloorTexIndexRange.from };
+		xx::Shared<xx::Slider> uiFloorTexIndex;
+
+		// UI area
+		/********************************/
+
+
 		// 地图逻辑格子尺寸
 		XYi mapSize{};
 		// 地图总像素尺寸
