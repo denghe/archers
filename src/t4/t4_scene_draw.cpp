@@ -37,6 +37,7 @@ namespace Test4 {
 			gg.Quad().Draw(*floorMaskTex, *floorMaskTex, cam.ToGLPos(mapPixelSize * 0.5f), 0.5f, cam.scale, 0, 1.f, {222,222,222,222});
 
 			// 影子
+			if (player) player->DrawShadow();
 
 			// 需要按 y 排序的内容
 			for (auto& o : walls) SortContainerAdd(o.pointer);
