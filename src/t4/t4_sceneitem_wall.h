@@ -19,6 +19,8 @@ namespace Test4 {
 		void Init(Scene* scene_, XYi cr_, int32_t wallsIndex_ = 0);
 		// 根据周围邻居填充 tilesIndex( 发生于地型创建后或改变后 )
 		void FillTilesIndex();
+		// 随机填矿
+		void RndOre();
 
 		void Draw() override;
 		void DrawLightMask() override;

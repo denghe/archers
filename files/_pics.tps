@@ -787,6 +787,9 @@
             <key type="filename">pics/creature_1_234.png</key>
             <key type="filename">pics/creature_1_235.png</key>
             <key type="filename">pics/creature_1_236.png</key>
+            <key type="filename">pics/slime1_walk_1.png</key>
+            <key type="filename">pics/slime1_walk_25.png</key>
+            <key type="filename">pics/slime1_walk_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
@@ -922,6 +925,379 @@
                 <rect>8,15,16,29</rect>
                 <key>scale9Paddings</key>
                 <rect>8,15,16,29</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_attack_0.png</key>
+            <key type="filename">pics/slime1_attack_1.png</key>
+            <key type="filename">pics/slime1_attack_10.png</key>
+            <key type="filename">pics/slime1_attack_11.png</key>
+            <key type="filename">pics/slime1_attack_12.png</key>
+            <key type="filename">pics/slime1_attack_13.png</key>
+            <key type="filename">pics/slime1_attack_14.png</key>
+            <key type="filename">pics/slime1_attack_15.png</key>
+            <key type="filename">pics/slime1_attack_16.png</key>
+            <key type="filename">pics/slime1_attack_17.png</key>
+            <key type="filename">pics/slime1_attack_18.png</key>
+            <key type="filename">pics/slime1_attack_19.png</key>
+            <key type="filename">pics/slime1_attack_2.png</key>
+            <key type="filename">pics/slime1_attack_20.png</key>
+            <key type="filename">pics/slime1_attack_21.png</key>
+            <key type="filename">pics/slime1_attack_22.png</key>
+            <key type="filename">pics/slime1_attack_23.png</key>
+            <key type="filename">pics/slime1_attack_24.png</key>
+            <key type="filename">pics/slime1_attack_25.png</key>
+            <key type="filename">pics/slime1_attack_26.png</key>
+            <key type="filename">pics/slime1_attack_27.png</key>
+            <key type="filename">pics/slime1_attack_28.png</key>
+            <key type="filename">pics/slime1_attack_29.png</key>
+            <key type="filename">pics/slime1_attack_3.png</key>
+            <key type="filename">pics/slime1_attack_30.png</key>
+            <key type="filename">pics/slime1_attack_31.png</key>
+            <key type="filename">pics/slime1_attack_32.png</key>
+            <key type="filename">pics/slime1_attack_33.png</key>
+            <key type="filename">pics/slime1_attack_34.png</key>
+            <key type="filename">pics/slime1_attack_35.png</key>
+            <key type="filename">pics/slime1_attack_36.png</key>
+            <key type="filename">pics/slime1_attack_37.png</key>
+            <key type="filename">pics/slime1_attack_38.png</key>
+            <key type="filename">pics/slime1_attack_39.png</key>
+            <key type="filename">pics/slime1_attack_4.png</key>
+            <key type="filename">pics/slime1_attack_5.png</key>
+            <key type="filename">pics/slime1_attack_6.png</key>
+            <key type="filename">pics/slime1_attack_7.png</key>
+            <key type="filename">pics/slime1_attack_8.png</key>
+            <key type="filename">pics/slime1_attack_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,8,32,17</rect>
+                <key>scale9Paddings</key>
+                <rect>16,8,32,17</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_idle_0.png</key>
+            <key type="filename">pics/slime1_idle_1.png</key>
+            <key type="filename">pics/slime1_idle_10.png</key>
+            <key type="filename">pics/slime1_idle_11.png</key>
+            <key type="filename">pics/slime1_idle_12.png</key>
+            <key type="filename">pics/slime1_idle_13.png</key>
+            <key type="filename">pics/slime1_idle_14.png</key>
+            <key type="filename">pics/slime1_idle_15.png</key>
+            <key type="filename">pics/slime1_idle_16.png</key>
+            <key type="filename">pics/slime1_idle_17.png</key>
+            <key type="filename">pics/slime1_idle_18.png</key>
+            <key type="filename">pics/slime1_idle_19.png</key>
+            <key type="filename">pics/slime1_idle_2.png</key>
+            <key type="filename">pics/slime1_idle_20.png</key>
+            <key type="filename">pics/slime1_idle_21.png</key>
+            <key type="filename">pics/slime1_idle_22.png</key>
+            <key type="filename">pics/slime1_idle_23.png</key>
+            <key type="filename">pics/slime1_idle_3.png</key>
+            <key type="filename">pics/slime1_idle_4.png</key>
+            <key type="filename">pics/slime1_idle_5.png</key>
+            <key type="filename">pics/slime1_idle_6.png</key>
+            <key type="filename">pics/slime1_idle_7.png</key>
+            <key type="filename">pics/slime1_idle_8.png</key>
+            <key type="filename">pics/slime1_idle_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,12,11</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,12,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_10.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,8,10</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,8,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_11.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,6,9,12</rect>
+                <key>scale9Paddings</key>
+                <rect>5,6,9,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_12.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,7,10,14</rect>
+                <key>scale9Paddings</key>
+                <rect>5,7,10,14</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_13.png</key>
+            <key type="filename">pics/slime1_walk_5.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,8,11,15</rect>
+                <key>scale9Paddings</key>
+                <rect>6,8,11,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_14.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>7,8,13,15</rect>
+                <key>scale9Paddings</key>
+                <rect>7,8,13,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_15.png</key>
+            <key type="filename">pics/slime1_walk_7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>7,4,13,8</rect>
+                <key>scale9Paddings</key>
+                <rect>7,4,13,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_16.png</key>
+            <key type="filename">pics/slime1_walk_23.png</key>
+            <key type="filename">pics/slime1_walk_31.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,4,11,8</rect>
+                <key>scale9Paddings</key>
+                <rect>6,4,11,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_17.png</key>
+            <key type="filename">pics/slime1_walk_8.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,4,10,8</rect>
+                <key>scale9Paddings</key>
+                <rect>5,4,10,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_18.png</key>
+            <key type="filename">pics/slime1_walk_26.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,5,10,10</rect>
+                <key>scale9Paddings</key>
+                <rect>5,5,10,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_19.png</key>
+            <key type="filename">pics/slime1_walk_27.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>7,6,14,12</rect>
+                <key>scale9Paddings</key>
+                <rect>7,6,14,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,5,9,10</rect>
+                <key>scale9Paddings</key>
+                <rect>5,5,9,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_20.png</key>
+            <key type="filename">pics/slime1_walk_28.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>7,7,14,14</rect>
+                <key>scale9Paddings</key>
+                <rect>7,7,14,14</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_21.png</key>
+            <key type="filename">pics/slime1_walk_29.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,8,17,15</rect>
+                <key>scale9Paddings</key>
+                <rect>9,8,17,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_22.png</key>
+            <key type="filename">pics/slime1_walk_30.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>7,8,14,15</rect>
+                <key>scale9Paddings</key>
+                <rect>7,8,14,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_24.png</key>
+            <key type="filename">pics/slime1_walk_32.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,4,12,8</rect>
+                <key>scale9Paddings</key>
+                <rect>6,4,12,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,6,10,12</rect>
+                <key>scale9Paddings</key>
+                <rect>5,6,10,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,7,11,14</rect>
+                <key>scale9Paddings</key>
+                <rect>6,7,11,14</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/slime1_walk_6.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,8,12,15</rect>
+                <key>scale9Paddings</key>
+                <rect>6,8,12,15</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

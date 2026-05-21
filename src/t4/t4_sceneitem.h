@@ -58,6 +58,7 @@ namespace Test4 {
 
 	// 一系列预声明就放在这以方便使用
 	struct Wall;
+	struct Player;
 	// ...
 
 }

@@ -22,13 +22,14 @@ namespace Test4 {
 	}
 
 	void Scene::FixedUpdate() {
-		//effectTexts.Update(time);
-		//UpdateItems(exploders);
-
 		// 从 UI 同步数据
 		for (auto& o : walls) {
 			o->wallsIndex = cWallTexIndex;
 		}
+
+		//effectTexts.Update(time);
+		//UpdateItems(exploders);
+		if (player) player->Update();
 
 		auto mp = cam.ToLogicPos(gg.mousePos);
 		// 确保鼠标点击的位置是地图内部, 避开 ui & 外圈墙壁
@@ -42,6 +43,9 @@ namespace Test4 {
 			}
 			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
 				DigWall(cr);
+			}
+			if (gg.mouse[GLFW_MOUSE_BUTTON_3](0.2f)) {
+				SetWallOre(cr);
 			}
 		}
 

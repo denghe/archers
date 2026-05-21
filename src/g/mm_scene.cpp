@@ -32,7 +32,7 @@ namespace MainMenu {
 			});
 		};
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"近战挥刀怪((鼠标左右键分阵营 键盘 1 2 巨量投放)")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"近战挥刀怪(鼠标左右键分阵营 键盘 1 2 巨量投放)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test2::Scene>()->Init();
 			});
@@ -44,7 +44,7 @@ namespace MainMenu {
 			});
 		};
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试来自 below the stone 游戏的地貌")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试地牢场景(鼠标左右键增删墙,中键放矿)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test4::Scene>()->Init();
 			});

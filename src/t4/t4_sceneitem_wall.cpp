@@ -10,9 +10,9 @@ namespace Test4 {
 		// pos 的坐标可以是 左上角，y 值可以是 底边, 参与显示排序
 		cr = cr_;
 		pos = cr_ * cCellPixelSize;
-		y = pos.y;
 		radius = cWallRadius;
 		scale = radius / 16.f;	// 贴图是 32*32
+		y = pos.y + (32 + 26) * scale;
 		radians = {};
 
 		indexAtContainer = scene_->walls.len - 1;
@@ -21,8 +21,6 @@ namespace Test4 {
 		scene_->gridWalls.Add(indexAtGrid, this);
 
 		wallsIndex = wallsIndex_;
-
-		oreIndex = gg.rnd.Next<int32_t>( gg.pics.ore_.size() );
 	}
 
 	void Wall::FillTilesIndex() {
@@ -63,14 +61,23 @@ namespace Test4 {
 		//// .65
 		if ((~i & 0b00101000u) == 0b00101000u && (cr.x == s.x - 1 || cr.y == s.y - 1 || d[(cr.y + 1) * s.x + cr.x + 1] == U'墙'))  i &= 0b11101111u;
 
+		// 判断如果没有显示墙壁这面，就修正一下 y 排序( 往下移一段，和有墙壁的衔接到一起, 尽量避免穿帮 )
 		tilesIndex = i;
+		auto& f = gg.wallsTiles[wallsIndex][tilesIndex];
+		if (f.uvRect.h == 32) {
+			y = pos.y + (32 + 58) * scale;
+		}
+	}
+
+	void Wall::RndOre() {
+		oreIndex = gg.rnd.Next<int32_t>(gg.pics.ore_.size());
 	}
 
 	void Wall::Draw() {
 		{
 			auto& f = gg.wallsTiles[wallsIndex][tilesIndex];
 			assert(f.tex);
-			gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale * scene->cam.scale, radians);
+			gg.Quad().DrawTinyFrame(f, scene->cam.ToGLPos(pos), { 0,1 }, scale* scene->cam.scale, radians);
 		}
 		if (oreIndex >= 0) {
 			auto& f = gg.pics.ore_[oreIndex];

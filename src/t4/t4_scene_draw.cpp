@@ -23,6 +23,7 @@ namespace Test4 {
 
 		// 准备内容贴图( 需要被 light 照亮的部分 )
 		auto tex = frameBuffer.Draw(gg.windowSize, true, xx::RGBA8{ 0,0,0,0 }, [&]() {
+			// 背景部分绘制
 			// 绘制地板纹理	// todo: 理论上讲可以合并成使用 1 个 shader + 4 个顶点画所有
 			for (int32_t i = 0; i < mapSize.y; ++i) {
 				for (int32_t j = 0; j < mapSize.x; ++j) {
@@ -31,15 +32,16 @@ namespace Test4 {
 				}
 			}
 
-			// 背景部分绘制
-			for (auto& o : walls) o->Draw();
 
 			// 地板污染痕迹绘制
 			gg.Quad().Draw(*floorMaskTex, *floorMaskTex, cam.ToGLPos(mapPixelSize * 0.5f), 0.5f, cam.scale, 0, 1.f, {222,222,222,222});
 
 			// 影子
 
-			// sort order by y
+			// 需要按 y 排序的内容
+			for (auto& o : walls) SortContainerAdd(o.pointer);
+			if (player) SortContainerAdd(player.pointer);
+			SortContainerDraw();
 		});
 
 		// 设置内容绘制时插值, 让光影过渡柔和

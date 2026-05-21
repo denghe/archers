@@ -36,6 +36,9 @@ namespace Test4 {
 		// 所有墙壁
 		xx::List<xx::Shared<Wall>> walls;
 
+		// 整个能简单移动的 player 来测试一下小人挖矿的效果
+		xx::Shared<Player> player;
+
 		// for draw floorMaskTex, light ...
 		xx::FrameBuffer frameBuffer;
 		xx::Shared<xx::GLTexture> floorMaskTex;
@@ -48,6 +51,8 @@ namespace Test4 {
 		void GenWall(XYi cr_);
 		// 挖墙
 		void DigWall(XYi cr_);
+		// 设矿
+		void SetWallOre(XYi cr_);
 
 		void MakeUI();
 		void Init() override;

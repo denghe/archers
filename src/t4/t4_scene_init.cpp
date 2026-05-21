@@ -22,7 +22,7 @@ namespace Test4 {
 		assert(gridWalls.pixelSize.x >= mapPixelSize.x);
 		assert(gridWalls.pixelSize.y >= mapPixelSize.y);
 
-		//sortContainer.Resize<true>((int32_t)physCreatures.pixelSize.y);
+		sortContainer.Resize<true>((int32_t)gridWalls.pixelSize.y + 128);
 
 		// 逐行扫内容并 各种预生成 / 填充
 		for (int32_t y = 0; y < mapSize.y; y++) {
@@ -32,6 +32,11 @@ namespace Test4 {
 				case U'墙':
 				{
 					walls.Emplace().Emplace()->Init(this, { x,y });
+					break;
+				}
+				case U'玩':
+				{
+					player.Emplace()->Init(this, { x,y });
 					break;
 				}
 				}

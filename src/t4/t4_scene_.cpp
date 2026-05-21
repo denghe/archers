@@ -27,4 +27,11 @@ namespace Test4 {
 		});
 	}
 
+	void Scene::SetWallOre(XYi cr_) {
+		assert(gridWalls.pixelSize == mapPixelSize);
+		auto idx = cr_.y * mapSize.x + cr_.x;
+		if (mapData[idx] == 0) return;
+		gridWalls.nodes[gridWalls.buckets[idx]].value->RndOre();
+	}
+
 }
