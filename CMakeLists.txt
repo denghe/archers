@@ -13,15 +13,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
-include_directories(
-	src/
-	src/g
-	src/t1
-	src/t2
-	src/t3
-	src/t4
-)
-
 file(GLOB_RECURSE sources
 	src/*.cpp
 	src/*.c
@@ -31,6 +22,15 @@ file(GLOB_RECURSE sources
 )
 
 add_executable(${name} ${sources})
+
+target_include_directories(${name} PRIVATE
+	src/
+	src/g
+	src/t1
+	src/t2
+	src/t3
+	src/t4
+)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" 
              PREFIX "Source Files" 
