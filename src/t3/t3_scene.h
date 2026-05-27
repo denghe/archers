@@ -82,7 +82,7 @@ namespace Test3 {
 		// 所有蛇
 		xx::List<xx::Shared<Snake>> snakes;
 		// 蛇的路径
-		xx::List<xx::Shared<Pathway>> pathways;
+		xx::List<xx::Shared<xx::MovePathCache>> pathways;
 
 		// 在场景下方发射子弹攻击蛇的玩家本体
 		xx::Shared<Player> player;

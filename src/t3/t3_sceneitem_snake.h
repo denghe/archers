@@ -33,7 +33,7 @@ namespace Test3 {
 		// 类型
 		SnakeElementTypes elementType{};
 		// 路径点数组下标
-		int32_t pathwayCursor{ -1 };
+		float pathwayCursor{ -1.f };
 
 		// 预初始化，填充 typeId, owner, elementType, indexAtContainer
 		void PreInit(Snake* owner_, SnakeElementTypes elementType_);
@@ -60,11 +60,11 @@ namespace Test3 {
 		// 存储所有身体节点. 第一个成员是 tail, 倒序, 方便计算身体位置
 		xx::List<xx::Shared<SnakeElement>> elements;
 		// 指向蛇当前线路
-		Pathway* pathway{};
+		xx::MovePathCache* pathway{};
 		// 1 / pathway->stepDistance
 		float pathway_1_stepDistance{};
 		// bodyLen_ 身体节数( 不算头和尾 )
-		void Init(Scene* scene_, Pathway* pathway_, int32_t bodyLen_);
+		void Init(Scene* scene_, xx::MovePathCache* pathway_, int32_t bodyLen_);
 		void Update() override;
 	};
 

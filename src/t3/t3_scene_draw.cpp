@@ -135,7 +135,7 @@ namespace Test3 {
 			// pathway
 			auto& q = gg.Quad();
 			for (auto& pathway : pathways) {
-				for (int32_t s = (int32_t)pathway->points.size(), i = 0; i < s; /*++i*/i += 200) {
+				for (int32_t s = (int32_t)pathway->points.size(), i = 0; i < s; /*++i*/i += 20) {
 					q.DrawFrame(
 						gg.pics.c64
 						, cam.ToGLPos(pathway->points[i].pos)

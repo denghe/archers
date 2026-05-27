@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "pch.h"
 #include "_pics.h"
+#include "curves.h"
 
 namespace Global {
 	struct SceneBase;
@@ -32,6 +33,9 @@ namespace Global {
 
 		_pics pics;
 		xx::Shared<xx::GLTexture> picsTex;
+		// ...
+
+		curves curves;
 		// ...
 
 		// 映射到 pics.walls_*

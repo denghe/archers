@@ -17,11 +17,11 @@ namespace Test3 {
 			auto prev = GetPrev();
 			assert(prev);
 			// 根据两节点半径和的比例，计算出自己相对于上个节点的偏移量
-			auto cursorOffset = (int32_t)((prev->radius + radius) * cNodeDistanceRatio * owner->pathway_1_stepDistance);
+			auto cursorOffset = (prev->radius + radius) * cNodeDistanceRatio * owner->pathway_1_stepDistance;
 			assert(cursorOffset > 0);
 			pathwayCursor = prev->pathwayCursor + cursorOffset;
 			// 如果越界了就绕回去
-			auto ps = (int32_t)owner->pathway->points.size();
+			auto ps = (float)owner->pathway->points.size();
 			if (pathwayCursor >= ps) {
 				pathwayCursor -= ps;
 				assert(pathwayCursor < ps);
@@ -32,7 +32,7 @@ namespace Test3 {
 			pathwayCursor = 0;
 		}
 		// 根据在 pathway 上的下标，计算出自己的位置和朝向
-		auto& p = owner->pathway->points[pathwayCursor];
+		auto& p = owner->pathway->points[(int32_t)pathwayCursor];
 		pos = p.pos;
 		y = pos.y;
 		radians = -p.radians;
@@ -77,16 +77,16 @@ namespace Test3 {
 	}
 
 	void SnakeElement::BaseUpdate() {
-		auto ps = (int32_t)owner->pathway->points.size();
+		auto ps = (float)owner->pathway->points.size();
 		auto prev = GetPrev();
 		assert(prev);
 		// 根据两节点半径和的比例，计算出自己相对于上个节点的偏移量
-		auto cursorOffset = (int32_t)((prev->radius + radius) * cNodeDistanceRatio * owner->pathway_1_stepDistance);
+		auto cursorOffset = (prev->radius + radius) * cNodeDistanceRatio * owner->pathway_1_stepDistance;
 		assert(cursorOffset > 0);
 		// 算出理论下标
 		auto cursor = prev->pathwayCursor + cursorOffset;
 		// 判断 cursor & pathwayCursor 前后关系
-		int32_t d{};
+		float d{};
 		// 当前节点已卷回最初索引?
 		if (prev->pathwayCursor > pathwayCursor) {
 			d = pathwayCursor + ps - cursor;
@@ -96,7 +96,7 @@ namespace Test3 {
 			d = cursor - pathwayCursor;
 		}
 		// 如果实际下标距离理论下标在 cFollowDistance 对应的下标距离内，直接使用理论下标( 正常模式 )
-		if (std::abs(d) < int32_t(cFollowDistance * owner->pathway_1_stepDistance)) {
+		if (std::fabsf(d) < cFollowDistance * owner->pathway_1_stepDistance) {
 			pathwayCursor = cursor;
 			// 如果越界了就绕回去
 			if (pathwayCursor >= ps) {
@@ -106,7 +106,7 @@ namespace Test3 {
 		}
 		else {
 			// 追赶模式
-			pathwayCursor -= int32_t(cLinkSpeed * owner->pathway_1_stepDistance);
+			pathwayCursor -= cLinkSpeed * owner->pathway_1_stepDistance;
 			// 如果越界了就绕回去
 			if (pathwayCursor < 0) {
 				pathwayCursor += ps;
@@ -114,7 +114,7 @@ namespace Test3 {
 			}
 		}
 		// 根据 pathway 填充坐标, 角度啥的
-		auto& p = owner->pathway->points[pathwayCursor];
+		auto& p = owner->pathway->points[(int32_t)pathwayCursor];
 		pos = p.pos;
 		y = pos.y;
 		radians = p.radians;
@@ -129,7 +129,7 @@ namespace Test3 {
 
 	/***********************************************************************************/
 
-	void Snake::Init(Scene* scene_, Pathway* pathway_, int32_t bodyLen_) {
+	void Snake::Init(Scene* scene_, xx::MovePathCache* pathway_, int32_t bodyLen_) {
 		assert(elements.Empty());
 		assert(bodyLen_ > 0);
 		scene = scene_;
@@ -273,12 +273,12 @@ namespace Test3 {
 
 	int32_t SnakeTail::ElementUpdate() {
 		// todo: pause move support
-		pathwayCursor += int32_t(cMoveSpeed * owner->pathway_1_stepDistance);
-		auto ps = (int32_t)owner->pathway->points.size();
+		pathwayCursor += cMoveSpeed * owner->pathway_1_stepDistance;
+		auto ps = (float)owner->pathway->points.size();
 		while (pathwayCursor >= ps) {
 			pathwayCursor -= ps;
 		}
-		auto& p = owner->pathway->points[pathwayCursor];
+		auto& p = owner->pathway->points[(int32_t)pathwayCursor];
 		pos = p.pos;
 		y = pos.y;
 		radians = p.radians;

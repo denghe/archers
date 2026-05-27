@@ -76,7 +76,7 @@ namespace Test3 {
 		// 生成一些蛇看看
 		// 初始化 pathways
 		auto basePos = mapPixelSize * 0.5f;
-#if 1
+#if 0
 
 		/*
  -300        0      300  360
@@ -132,35 +132,20 @@ namespace Test3 {
 		};
 		xx::MovePath mp;
 		mp.FillCurve(true, cps);
-		pathways.Emplace().Emplace()->Init(mp, 0.1f);
+		pathways.Emplace().Emplace()->Init(mp, 1.f);
 
 #else
-		/*
--300  0 300
-	*1       -200
-  /   \
-*6     *2    -100
-  \    /
-	\/
-	/\       0
-  /    \
-*3      *5   100
-  \   /
-	*4       200
-		*/
-		auto bp = basePos;
-		auto scale = 1.5f;
-		std::vector<xx::CurvePoint> cps{ xx::CurvePoint
-			{ bp + XY{ 0, -200} * scale },
-			{ bp + XY{ 300, -100} * scale },
-			{ bp + XY{ -300, 100} * scale },
-			{ bp + XY{ 0, 200} * scale },
-			{ bp + XY{ 300, 100} * scale },
-			{ bp + XY{ -300, -100} * scale },
-		};
-		xx::MovePath mp;
-		mp.FillCurve(true, cps);
-		pathways.Emplace().Emplace()->Init(mp, 0.1f);
+		auto& c = pathways.Emplace().Emplace();
+		c->totalDistance = gg.curves.c1.totalDistance;
+		c->stepDistance = gg.curves.c1.stepDistance;
+		c->loop = gg.curves.c1.loop;
+		XY scale {mapPixelSize.x / gg.curves.designWidth * 0.8f};
+		scale.y = -scale.y;
+		for (auto& cp : gg.curves.c1.points) {
+			c->points.emplace_back(basePos + cp.pos * scale, -cp.radians);
+			assert(c->points.back().pos.x >= 0 && c->points.back().pos.x < mapPixelSize.x);
+			assert(c->points.back().pos.y >= 0 && c->points.back().pos.y < mapPixelSize.y);
+		}
 #endif
 
 		GenSnake();

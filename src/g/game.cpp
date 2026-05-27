@@ -34,6 +34,9 @@ namespace Global {
 		(uiText = ui->Make<xx::Label>())->Init(2, p8, a8, 32.f);
 		(uiTips = ui->Make<xx::Label>())->Init(2, p9, a9, 32.f)(U"hotkeys: ESC, [, ]");
 
+		// init curves
+		curves.Init();
+
 		// begin load res
 		picsTex = pics.Load("res/_pics.png");
 

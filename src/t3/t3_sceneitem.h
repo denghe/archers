@@ -69,10 +69,6 @@ namespace Test3 {
 		void operator=(SnakeElement const* o);
 	};
 
-	struct Pathway : xx::MovePathCache {
-		// todo: move target funcs?
-	};
-
 	// 穿刺信息
 	struct PierceInfo {
 		// 目标
