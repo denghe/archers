@@ -30,6 +30,7 @@ target_include_directories(${name} PRIVATE
 	src/t2
 	src/t3
 	src/t4
+	src2/
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" 
@@ -38,6 +39,19 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
 
 add_subdirectory(../xx2 xx)
 target_link_libraries(${name} xx)
+
+
+file(GLOB_RECURSE sources_pics
+	src2/*.cpp
+	src2/*.c
+	src2/*.h
+	src2/*.hpp
+	src2/*.inc
+)
+add_library(${name}_pics ${sources_pics})
+target_link_libraries(${name}_pics xx)
+target_link_libraries(${name} ${name}_pics)
+
 
 if(MSVC)
 
