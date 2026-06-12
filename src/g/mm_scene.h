@@ -16,6 +16,7 @@ namespace MainMenu {
 
 		void MakeUI() override;
 		void Update() override;
+		void Draw() override;
 	};
 
 }

@@ -23,7 +23,7 @@ namespace MainMenu {
 			.LeftMargin(cMargin)
 			.DefaultLineHeight(cLineHeight);
 
-		L.Append(C->Make<xx::Label>()->Init(2, 0, 0, fontSize * 3)(U"两队小兵对冲模拟器")).SetBorder();
+		L.Append(C->Make<xx::Label>()->Init(2, 0, 0, fontSize * 3).SetFont(gg.font2)(U"两队小兵对冲模拟器")).SetBorder();
 		L.EndLine();
 
 		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"弓箭手隔岸射怪物(鼠标左右键点岩浆左边或最右边出怪区)")).SetLabelBorder().onClicked = [this] {
@@ -73,6 +73,12 @@ namespace MainMenu {
 				delayCmd();
 			}
 		}
+	}
+
+
+	void Scene::Draw() {
+		gg.clearColor = { 111, 111, 111, 255 };
+		SceneBase::Draw();
 	}
 
 }

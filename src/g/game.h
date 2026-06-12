@@ -35,6 +35,9 @@ namespace Global {
 		xx::Shared<xx::GLTexture> picsTex;
 		// ...
 
+		// 0 / 2 : thickness
+		xx::Shared<xx::BMFont> font0, font2;
+
 		curves curves;
 		// ...
 
