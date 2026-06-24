@@ -41,6 +41,8 @@ struct _pics {
 	std::array<xx::Frame, 9> firearrow_;
 	std::array<xx::Frame, 5> floor_;
 	std::array<xx::Frame, 2> frog_pot_;
+	std::array<xx::Frame, 3> frog_pot_fragment_;
+	std::array<xx::Frame, 6> frog_projectile_;
 	std::array<xx::Frame, 3> frog_sword_qi_;
 	std::array<xx::Frame, 9> ore_;
 	std::array<xx::Frame, 40> slime1_attack_;

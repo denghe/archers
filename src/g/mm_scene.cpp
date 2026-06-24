@@ -4,6 +4,7 @@
 #include "t2.h"
 #include "t3.h"
 #include "t4.h"
+#include "t5.h"
 
 namespace MainMenu {
 
@@ -47,6 +48,12 @@ namespace MainMenu {
 		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试地牢场景(鼠标左右键增删墙,中键放矿)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test4::Scene>()->Init();
+			});
+		};
+
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试青蛙砍罐子")).SetLabelBorder().onClicked = [this] {
+			SetDelayCmd([this] {
+				gg.MakeScene<Test5::Scene>()->Init();
 			});
 		};
 

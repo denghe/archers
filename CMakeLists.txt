@@ -30,6 +30,7 @@ target_include_directories(${name} PRIVATE
 	src/t2
 	src/t3
 	src/t4
+	src/t5
 	src2/
 )
 
