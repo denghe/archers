@@ -21,6 +21,12 @@ struct _pics {
 	xx::Frame c256_light;
 	xx::Frame cursor_cross;
 	xx::Frame cursor_default;
+	xx::Frame frog_arrow;
+	xx::Frame frog_char;
+	xx::Frame frog_coin;
+	xx::Frame frog_enemy;
+	xx::Frame frog_gem;
+	xx::Frame frog_sword;
 	xx::Frame light_firearrow;
 	xx::Frame light_sword1;
 	xx::Frame snake_body;
@@ -34,6 +40,8 @@ struct _pics {
 	std::array<xx::Frame, 8> explosion_1_;
 	std::array<xx::Frame, 9> firearrow_;
 	std::array<xx::Frame, 5> floor_;
+	std::array<xx::Frame, 2> frog_pot_;
+	std::array<xx::Frame, 3> frog_sword_qi_;
 	std::array<xx::Frame, 9> ore_;
 	std::array<xx::Frame, 40> slime1_attack_;
 	std::array<xx::Frame, 24> slime1_idle_;

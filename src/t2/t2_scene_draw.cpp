@@ -4,6 +4,8 @@
 namespace Test2 {
 
 	void Scene::Draw() {
+		gg.clearColor = {};
+
 		// 设置内容绘制时不插值, 让图像清晰锐利
 		gg.picsTex->SetParm(GL_NEAREST);
 

@@ -8304,14 +8304,14 @@
             </struct>
             <key type="filename">pics/c32.png</key>
             <key type="filename">pics/c32_bullet.png</key>
-            <key type="filename">pics/explosion_1_1.png</key>
-            <key type="filename">pics/explosion_1_2.png</key>
-            <key type="filename">pics/explosion_1_3.png</key>
-            <key type="filename">pics/explosion_1_4.png</key>
-            <key type="filename">pics/explosion_1_5.png</key>
-            <key type="filename">pics/explosion_1_6.png</key>
-            <key type="filename">pics/explosion_1_7.png</key>
-            <key type="filename">pics/explosion_1_8.png</key>
+            <key type="filename">pics/explosion_1/1.png</key>
+            <key type="filename">pics/explosion_1/2.png</key>
+            <key type="filename">pics/explosion_1/3.png</key>
+            <key type="filename">pics/explosion_1/4.png</key>
+            <key type="filename">pics/explosion_1/5.png</key>
+            <key type="filename">pics/explosion_1/6.png</key>
+            <key type="filename">pics/explosion_1/7.png</key>
+            <key type="filename">pics/explosion_1/8.png</key>
             <key type="filename">pics/floor_1.png</key>
             <key type="filename">pics/floor_2.png</key>
             <key type="filename">pics/floor_3.png</key>
@@ -8363,482 +8363,482 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/creature_1_1.png</key>
-            <key type="filename">pics/creature_1_10.png</key>
-            <key type="filename">pics/creature_1_100.png</key>
-            <key type="filename">pics/creature_1_101.png</key>
-            <key type="filename">pics/creature_1_102.png</key>
-            <key type="filename">pics/creature_1_103.png</key>
-            <key type="filename">pics/creature_1_104.png</key>
-            <key type="filename">pics/creature_1_105.png</key>
-            <key type="filename">pics/creature_1_106.png</key>
-            <key type="filename">pics/creature_1_107.png</key>
-            <key type="filename">pics/creature_1_108.png</key>
-            <key type="filename">pics/creature_1_109.png</key>
-            <key type="filename">pics/creature_1_11.png</key>
-            <key type="filename">pics/creature_1_110.png</key>
-            <key type="filename">pics/creature_1_111.png</key>
-            <key type="filename">pics/creature_1_112.png</key>
-            <key type="filename">pics/creature_1_113.png</key>
-            <key type="filename">pics/creature_1_114.png</key>
-            <key type="filename">pics/creature_1_115.png</key>
-            <key type="filename">pics/creature_1_116.png</key>
-            <key type="filename">pics/creature_1_117.png</key>
-            <key type="filename">pics/creature_1_118.png</key>
-            <key type="filename">pics/creature_1_119.png</key>
-            <key type="filename">pics/creature_1_12.png</key>
-            <key type="filename">pics/creature_1_120.png</key>
-            <key type="filename">pics/creature_1_121.png</key>
-            <key type="filename">pics/creature_1_122.png</key>
-            <key type="filename">pics/creature_1_123.png</key>
-            <key type="filename">pics/creature_1_124.png</key>
-            <key type="filename">pics/creature_1_125.png</key>
-            <key type="filename">pics/creature_1_126.png</key>
-            <key type="filename">pics/creature_1_127.png</key>
-            <key type="filename">pics/creature_1_128.png</key>
-            <key type="filename">pics/creature_1_129.png</key>
-            <key type="filename">pics/creature_1_13.png</key>
-            <key type="filename">pics/creature_1_130.png</key>
-            <key type="filename">pics/creature_1_131.png</key>
-            <key type="filename">pics/creature_1_132.png</key>
-            <key type="filename">pics/creature_1_133.png</key>
-            <key type="filename">pics/creature_1_134.png</key>
-            <key type="filename">pics/creature_1_135.png</key>
-            <key type="filename">pics/creature_1_136.png</key>
-            <key type="filename">pics/creature_1_137.png</key>
-            <key type="filename">pics/creature_1_138.png</key>
-            <key type="filename">pics/creature_1_139.png</key>
-            <key type="filename">pics/creature_1_14.png</key>
-            <key type="filename">pics/creature_1_140.png</key>
-            <key type="filename">pics/creature_1_141.png</key>
-            <key type="filename">pics/creature_1_142.png</key>
-            <key type="filename">pics/creature_1_143.png</key>
-            <key type="filename">pics/creature_1_144.png</key>
-            <key type="filename">pics/creature_1_145.png</key>
-            <key type="filename">pics/creature_1_146.png</key>
-            <key type="filename">pics/creature_1_147.png</key>
-            <key type="filename">pics/creature_1_148.png</key>
-            <key type="filename">pics/creature_1_149.png</key>
-            <key type="filename">pics/creature_1_15.png</key>
-            <key type="filename">pics/creature_1_150.png</key>
-            <key type="filename">pics/creature_1_151.png</key>
-            <key type="filename">pics/creature_1_152.png</key>
-            <key type="filename">pics/creature_1_153.png</key>
-            <key type="filename">pics/creature_1_154.png</key>
-            <key type="filename">pics/creature_1_155.png</key>
-            <key type="filename">pics/creature_1_156.png</key>
-            <key type="filename">pics/creature_1_157.png</key>
-            <key type="filename">pics/creature_1_158.png</key>
-            <key type="filename">pics/creature_1_159.png</key>
-            <key type="filename">pics/creature_1_16.png</key>
-            <key type="filename">pics/creature_1_160.png</key>
-            <key type="filename">pics/creature_1_161.png</key>
-            <key type="filename">pics/creature_1_162.png</key>
-            <key type="filename">pics/creature_1_163.png</key>
-            <key type="filename">pics/creature_1_164.png</key>
-            <key type="filename">pics/creature_1_165.png</key>
-            <key type="filename">pics/creature_1_166.png</key>
-            <key type="filename">pics/creature_1_167.png</key>
-            <key type="filename">pics/creature_1_168.png</key>
-            <key type="filename">pics/creature_1_169.png</key>
-            <key type="filename">pics/creature_1_17.png</key>
-            <key type="filename">pics/creature_1_170.png</key>
-            <key type="filename">pics/creature_1_171.png</key>
-            <key type="filename">pics/creature_1_172.png</key>
-            <key type="filename">pics/creature_1_173.png</key>
-            <key type="filename">pics/creature_1_174.png</key>
-            <key type="filename">pics/creature_1_175.png</key>
-            <key type="filename">pics/creature_1_176.png</key>
-            <key type="filename">pics/creature_1_177.png</key>
-            <key type="filename">pics/creature_1_178.png</key>
-            <key type="filename">pics/creature_1_179.png</key>
-            <key type="filename">pics/creature_1_18.png</key>
-            <key type="filename">pics/creature_1_180.png</key>
-            <key type="filename">pics/creature_1_181.png</key>
-            <key type="filename">pics/creature_1_182.png</key>
-            <key type="filename">pics/creature_1_183.png</key>
-            <key type="filename">pics/creature_1_184.png</key>
-            <key type="filename">pics/creature_1_185.png</key>
-            <key type="filename">pics/creature_1_186.png</key>
-            <key type="filename">pics/creature_1_187.png</key>
-            <key type="filename">pics/creature_1_188.png</key>
-            <key type="filename">pics/creature_1_189.png</key>
-            <key type="filename">pics/creature_1_19.png</key>
-            <key type="filename">pics/creature_1_190.png</key>
-            <key type="filename">pics/creature_1_191.png</key>
-            <key type="filename">pics/creature_1_192.png</key>
-            <key type="filename">pics/creature_1_193.png</key>
-            <key type="filename">pics/creature_1_194.png</key>
-            <key type="filename">pics/creature_1_195.png</key>
-            <key type="filename">pics/creature_1_196.png</key>
-            <key type="filename">pics/creature_1_197.png</key>
-            <key type="filename">pics/creature_1_198.png</key>
-            <key type="filename">pics/creature_1_199.png</key>
-            <key type="filename">pics/creature_1_2.png</key>
-            <key type="filename">pics/creature_1_20.png</key>
-            <key type="filename">pics/creature_1_200.png</key>
-            <key type="filename">pics/creature_1_201.png</key>
-            <key type="filename">pics/creature_1_202.png</key>
-            <key type="filename">pics/creature_1_203.png</key>
-            <key type="filename">pics/creature_1_204.png</key>
-            <key type="filename">pics/creature_1_205.png</key>
-            <key type="filename">pics/creature_1_206.png</key>
-            <key type="filename">pics/creature_1_207.png</key>
-            <key type="filename">pics/creature_1_208.png</key>
-            <key type="filename">pics/creature_1_209.png</key>
-            <key type="filename">pics/creature_1_21.png</key>
-            <key type="filename">pics/creature_1_210.png</key>
-            <key type="filename">pics/creature_1_211.png</key>
-            <key type="filename">pics/creature_1_212.png</key>
-            <key type="filename">pics/creature_1_213.png</key>
-            <key type="filename">pics/creature_1_214.png</key>
-            <key type="filename">pics/creature_1_215.png</key>
-            <key type="filename">pics/creature_1_216.png</key>
-            <key type="filename">pics/creature_1_217.png</key>
-            <key type="filename">pics/creature_1_218.png</key>
-            <key type="filename">pics/creature_1_219.png</key>
-            <key type="filename">pics/creature_1_22.png</key>
-            <key type="filename">pics/creature_1_220.png</key>
-            <key type="filename">pics/creature_1_221.png</key>
-            <key type="filename">pics/creature_1_222.png</key>
-            <key type="filename">pics/creature_1_223.png</key>
-            <key type="filename">pics/creature_1_224.png</key>
-            <key type="filename">pics/creature_1_225.png</key>
-            <key type="filename">pics/creature_1_226.png</key>
-            <key type="filename">pics/creature_1_227.png</key>
-            <key type="filename">pics/creature_1_228.png</key>
-            <key type="filename">pics/creature_1_229.png</key>
-            <key type="filename">pics/creature_1_23.png</key>
-            <key type="filename">pics/creature_1_230.png</key>
-            <key type="filename">pics/creature_1_231.png</key>
-            <key type="filename">pics/creature_1_232.png</key>
-            <key type="filename">pics/creature_1_237.png</key>
-            <key type="filename">pics/creature_1_238.png</key>
-            <key type="filename">pics/creature_1_239.png</key>
-            <key type="filename">pics/creature_1_24.png</key>
-            <key type="filename">pics/creature_1_240.png</key>
-            <key type="filename">pics/creature_1_241.png</key>
-            <key type="filename">pics/creature_1_242.png</key>
-            <key type="filename">pics/creature_1_243.png</key>
-            <key type="filename">pics/creature_1_244.png</key>
-            <key type="filename">pics/creature_1_245.png</key>
-            <key type="filename">pics/creature_1_246.png</key>
-            <key type="filename">pics/creature_1_247.png</key>
-            <key type="filename">pics/creature_1_248.png</key>
-            <key type="filename">pics/creature_1_249.png</key>
-            <key type="filename">pics/creature_1_25.png</key>
-            <key type="filename">pics/creature_1_250.png</key>
-            <key type="filename">pics/creature_1_251.png</key>
-            <key type="filename">pics/creature_1_252.png</key>
-            <key type="filename">pics/creature_1_253.png</key>
-            <key type="filename">pics/creature_1_254.png</key>
-            <key type="filename">pics/creature_1_255.png</key>
-            <key type="filename">pics/creature_1_256.png</key>
-            <key type="filename">pics/creature_1_257.png</key>
-            <key type="filename">pics/creature_1_258.png</key>
-            <key type="filename">pics/creature_1_259.png</key>
-            <key type="filename">pics/creature_1_26.png</key>
-            <key type="filename">pics/creature_1_260.png</key>
-            <key type="filename">pics/creature_1_261.png</key>
-            <key type="filename">pics/creature_1_262.png</key>
-            <key type="filename">pics/creature_1_263.png</key>
-            <key type="filename">pics/creature_1_264.png</key>
-            <key type="filename">pics/creature_1_265.png</key>
-            <key type="filename">pics/creature_1_266.png</key>
-            <key type="filename">pics/creature_1_267.png</key>
-            <key type="filename">pics/creature_1_268.png</key>
-            <key type="filename">pics/creature_1_269.png</key>
-            <key type="filename">pics/creature_1_27.png</key>
-            <key type="filename">pics/creature_1_270.png</key>
-            <key type="filename">pics/creature_1_271.png</key>
-            <key type="filename">pics/creature_1_272.png</key>
-            <key type="filename">pics/creature_1_273.png</key>
-            <key type="filename">pics/creature_1_274.png</key>
-            <key type="filename">pics/creature_1_275.png</key>
-            <key type="filename">pics/creature_1_276.png</key>
-            <key type="filename">pics/creature_1_277.png</key>
-            <key type="filename">pics/creature_1_278.png</key>
-            <key type="filename">pics/creature_1_279.png</key>
-            <key type="filename">pics/creature_1_28.png</key>
-            <key type="filename">pics/creature_1_280.png</key>
-            <key type="filename">pics/creature_1_281.png</key>
-            <key type="filename">pics/creature_1_282.png</key>
-            <key type="filename">pics/creature_1_283.png</key>
-            <key type="filename">pics/creature_1_284.png</key>
-            <key type="filename">pics/creature_1_285.png</key>
-            <key type="filename">pics/creature_1_286.png</key>
-            <key type="filename">pics/creature_1_287.png</key>
-            <key type="filename">pics/creature_1_288.png</key>
-            <key type="filename">pics/creature_1_289.png</key>
-            <key type="filename">pics/creature_1_29.png</key>
-            <key type="filename">pics/creature_1_290.png</key>
-            <key type="filename">pics/creature_1_291.png</key>
-            <key type="filename">pics/creature_1_292.png</key>
-            <key type="filename">pics/creature_1_293.png</key>
-            <key type="filename">pics/creature_1_294.png</key>
-            <key type="filename">pics/creature_1_295.png</key>
-            <key type="filename">pics/creature_1_296.png</key>
-            <key type="filename">pics/creature_1_297.png</key>
-            <key type="filename">pics/creature_1_298.png</key>
-            <key type="filename">pics/creature_1_299.png</key>
-            <key type="filename">pics/creature_1_3.png</key>
-            <key type="filename">pics/creature_1_30.png</key>
-            <key type="filename">pics/creature_1_300.png</key>
-            <key type="filename">pics/creature_1_301.png</key>
-            <key type="filename">pics/creature_1_302.png</key>
-            <key type="filename">pics/creature_1_303.png</key>
-            <key type="filename">pics/creature_1_304.png</key>
-            <key type="filename">pics/creature_1_305.png</key>
-            <key type="filename">pics/creature_1_306.png</key>
-            <key type="filename">pics/creature_1_307.png</key>
-            <key type="filename">pics/creature_1_308.png</key>
-            <key type="filename">pics/creature_1_309.png</key>
-            <key type="filename">pics/creature_1_31.png</key>
-            <key type="filename">pics/creature_1_310.png</key>
-            <key type="filename">pics/creature_1_311.png</key>
-            <key type="filename">pics/creature_1_312.png</key>
-            <key type="filename">pics/creature_1_313.png</key>
-            <key type="filename">pics/creature_1_314.png</key>
-            <key type="filename">pics/creature_1_315.png</key>
-            <key type="filename">pics/creature_1_316.png</key>
-            <key type="filename">pics/creature_1_317.png</key>
-            <key type="filename">pics/creature_1_318.png</key>
-            <key type="filename">pics/creature_1_319.png</key>
-            <key type="filename">pics/creature_1_32.png</key>
-            <key type="filename">pics/creature_1_320.png</key>
-            <key type="filename">pics/creature_1_321.png</key>
-            <key type="filename">pics/creature_1_322.png</key>
-            <key type="filename">pics/creature_1_323.png</key>
-            <key type="filename">pics/creature_1_324.png</key>
-            <key type="filename">pics/creature_1_325.png</key>
-            <key type="filename">pics/creature_1_326.png</key>
-            <key type="filename">pics/creature_1_327.png</key>
-            <key type="filename">pics/creature_1_328.png</key>
-            <key type="filename">pics/creature_1_329.png</key>
-            <key type="filename">pics/creature_1_33.png</key>
-            <key type="filename">pics/creature_1_330.png</key>
-            <key type="filename">pics/creature_1_331.png</key>
-            <key type="filename">pics/creature_1_332.png</key>
-            <key type="filename">pics/creature_1_333.png</key>
-            <key type="filename">pics/creature_1_334.png</key>
-            <key type="filename">pics/creature_1_335.png</key>
-            <key type="filename">pics/creature_1_336.png</key>
-            <key type="filename">pics/creature_1_337.png</key>
-            <key type="filename">pics/creature_1_338.png</key>
-            <key type="filename">pics/creature_1_339.png</key>
-            <key type="filename">pics/creature_1_34.png</key>
-            <key type="filename">pics/creature_1_340.png</key>
-            <key type="filename">pics/creature_1_341.png</key>
-            <key type="filename">pics/creature_1_342.png</key>
-            <key type="filename">pics/creature_1_343.png</key>
-            <key type="filename">pics/creature_1_344.png</key>
-            <key type="filename">pics/creature_1_345.png</key>
-            <key type="filename">pics/creature_1_346.png</key>
-            <key type="filename">pics/creature_1_347.png</key>
-            <key type="filename">pics/creature_1_348.png</key>
-            <key type="filename">pics/creature_1_349.png</key>
-            <key type="filename">pics/creature_1_35.png</key>
-            <key type="filename">pics/creature_1_350.png</key>
-            <key type="filename">pics/creature_1_351.png</key>
-            <key type="filename">pics/creature_1_352.png</key>
-            <key type="filename">pics/creature_1_357.png</key>
-            <key type="filename">pics/creature_1_358.png</key>
-            <key type="filename">pics/creature_1_359.png</key>
-            <key type="filename">pics/creature_1_36.png</key>
-            <key type="filename">pics/creature_1_360.png</key>
-            <key type="filename">pics/creature_1_361.png</key>
-            <key type="filename">pics/creature_1_362.png</key>
-            <key type="filename">pics/creature_1_363.png</key>
-            <key type="filename">pics/creature_1_364.png</key>
-            <key type="filename">pics/creature_1_365.png</key>
-            <key type="filename">pics/creature_1_366.png</key>
-            <key type="filename">pics/creature_1_367.png</key>
-            <key type="filename">pics/creature_1_368.png</key>
-            <key type="filename">pics/creature_1_369.png</key>
-            <key type="filename">pics/creature_1_37.png</key>
-            <key type="filename">pics/creature_1_370.png</key>
-            <key type="filename">pics/creature_1_371.png</key>
-            <key type="filename">pics/creature_1_372.png</key>
-            <key type="filename">pics/creature_1_373.png</key>
-            <key type="filename">pics/creature_1_374.png</key>
-            <key type="filename">pics/creature_1_375.png</key>
-            <key type="filename">pics/creature_1_376.png</key>
-            <key type="filename">pics/creature_1_377.png</key>
-            <key type="filename">pics/creature_1_378.png</key>
-            <key type="filename">pics/creature_1_379.png</key>
-            <key type="filename">pics/creature_1_38.png</key>
-            <key type="filename">pics/creature_1_380.png</key>
-            <key type="filename">pics/creature_1_381.png</key>
-            <key type="filename">pics/creature_1_382.png</key>
-            <key type="filename">pics/creature_1_383.png</key>
-            <key type="filename">pics/creature_1_384.png</key>
-            <key type="filename">pics/creature_1_385.png</key>
-            <key type="filename">pics/creature_1_386.png</key>
-            <key type="filename">pics/creature_1_387.png</key>
-            <key type="filename">pics/creature_1_388.png</key>
-            <key type="filename">pics/creature_1_389.png</key>
-            <key type="filename">pics/creature_1_39.png</key>
-            <key type="filename">pics/creature_1_390.png</key>
-            <key type="filename">pics/creature_1_391.png</key>
-            <key type="filename">pics/creature_1_392.png</key>
-            <key type="filename">pics/creature_1_393.png</key>
-            <key type="filename">pics/creature_1_394.png</key>
-            <key type="filename">pics/creature_1_395.png</key>
-            <key type="filename">pics/creature_1_396.png</key>
-            <key type="filename">pics/creature_1_397.png</key>
-            <key type="filename">pics/creature_1_398.png</key>
-            <key type="filename">pics/creature_1_399.png</key>
-            <key type="filename">pics/creature_1_4.png</key>
-            <key type="filename">pics/creature_1_40.png</key>
-            <key type="filename">pics/creature_1_400.png</key>
-            <key type="filename">pics/creature_1_401.png</key>
-            <key type="filename">pics/creature_1_402.png</key>
-            <key type="filename">pics/creature_1_403.png</key>
-            <key type="filename">pics/creature_1_404.png</key>
-            <key type="filename">pics/creature_1_405.png</key>
-            <key type="filename">pics/creature_1_406.png</key>
-            <key type="filename">pics/creature_1_407.png</key>
-            <key type="filename">pics/creature_1_408.png</key>
-            <key type="filename">pics/creature_1_409.png</key>
-            <key type="filename">pics/creature_1_41.png</key>
-            <key type="filename">pics/creature_1_410.png</key>
-            <key type="filename">pics/creature_1_411.png</key>
-            <key type="filename">pics/creature_1_412.png</key>
-            <key type="filename">pics/creature_1_413.png</key>
-            <key type="filename">pics/creature_1_414.png</key>
-            <key type="filename">pics/creature_1_415.png</key>
-            <key type="filename">pics/creature_1_416.png</key>
-            <key type="filename">pics/creature_1_417.png</key>
-            <key type="filename">pics/creature_1_418.png</key>
-            <key type="filename">pics/creature_1_419.png</key>
-            <key type="filename">pics/creature_1_42.png</key>
-            <key type="filename">pics/creature_1_420.png</key>
-            <key type="filename">pics/creature_1_421.png</key>
-            <key type="filename">pics/creature_1_422.png</key>
-            <key type="filename">pics/creature_1_423.png</key>
-            <key type="filename">pics/creature_1_424.png</key>
-            <key type="filename">pics/creature_1_425.png</key>
-            <key type="filename">pics/creature_1_426.png</key>
-            <key type="filename">pics/creature_1_427.png</key>
-            <key type="filename">pics/creature_1_428.png</key>
-            <key type="filename">pics/creature_1_429.png</key>
-            <key type="filename">pics/creature_1_43.png</key>
-            <key type="filename">pics/creature_1_430.png</key>
-            <key type="filename">pics/creature_1_431.png</key>
-            <key type="filename">pics/creature_1_432.png</key>
-            <key type="filename">pics/creature_1_433.png</key>
-            <key type="filename">pics/creature_1_434.png</key>
-            <key type="filename">pics/creature_1_435.png</key>
-            <key type="filename">pics/creature_1_436.png</key>
-            <key type="filename">pics/creature_1_437.png</key>
-            <key type="filename">pics/creature_1_438.png</key>
-            <key type="filename">pics/creature_1_439.png</key>
-            <key type="filename">pics/creature_1_44.png</key>
-            <key type="filename">pics/creature_1_440.png</key>
-            <key type="filename">pics/creature_1_441.png</key>
-            <key type="filename">pics/creature_1_442.png</key>
-            <key type="filename">pics/creature_1_443.png</key>
-            <key type="filename">pics/creature_1_444.png</key>
-            <key type="filename">pics/creature_1_445.png</key>
-            <key type="filename">pics/creature_1_446.png</key>
-            <key type="filename">pics/creature_1_447.png</key>
-            <key type="filename">pics/creature_1_448.png</key>
-            <key type="filename">pics/creature_1_449.png</key>
-            <key type="filename">pics/creature_1_45.png</key>
-            <key type="filename">pics/creature_1_450.png</key>
-            <key type="filename">pics/creature_1_451.png</key>
-            <key type="filename">pics/creature_1_452.png</key>
-            <key type="filename">pics/creature_1_453.png</key>
-            <key type="filename">pics/creature_1_454.png</key>
-            <key type="filename">pics/creature_1_455.png</key>
-            <key type="filename">pics/creature_1_456.png</key>
-            <key type="filename">pics/creature_1_457.png</key>
-            <key type="filename">pics/creature_1_458.png</key>
-            <key type="filename">pics/creature_1_459.png</key>
-            <key type="filename">pics/creature_1_46.png</key>
-            <key type="filename">pics/creature_1_460.png</key>
-            <key type="filename">pics/creature_1_461.png</key>
-            <key type="filename">pics/creature_1_462.png</key>
-            <key type="filename">pics/creature_1_463.png</key>
-            <key type="filename">pics/creature_1_464.png</key>
-            <key type="filename">pics/creature_1_465.png</key>
-            <key type="filename">pics/creature_1_466.png</key>
-            <key type="filename">pics/creature_1_467.png</key>
-            <key type="filename">pics/creature_1_468.png</key>
-            <key type="filename">pics/creature_1_469.png</key>
-            <key type="filename">pics/creature_1_47.png</key>
-            <key type="filename">pics/creature_1_470.png</key>
-            <key type="filename">pics/creature_1_471.png</key>
-            <key type="filename">pics/creature_1_472.png</key>
-            <key type="filename">pics/creature_1_473.png</key>
-            <key type="filename">pics/creature_1_474.png</key>
-            <key type="filename">pics/creature_1_475.png</key>
-            <key type="filename">pics/creature_1_476.png</key>
-            <key type="filename">pics/creature_1_477.png</key>
-            <key type="filename">pics/creature_1_478.png</key>
-            <key type="filename">pics/creature_1_479.png</key>
-            <key type="filename">pics/creature_1_48.png</key>
-            <key type="filename">pics/creature_1_480.png</key>
-            <key type="filename">pics/creature_1_481.png</key>
-            <key type="filename">pics/creature_1_482.png</key>
-            <key type="filename">pics/creature_1_483.png</key>
-            <key type="filename">pics/creature_1_484.png</key>
-            <key type="filename">pics/creature_1_49.png</key>
-            <key type="filename">pics/creature_1_5.png</key>
-            <key type="filename">pics/creature_1_50.png</key>
-            <key type="filename">pics/creature_1_51.png</key>
-            <key type="filename">pics/creature_1_52.png</key>
-            <key type="filename">pics/creature_1_53.png</key>
-            <key type="filename">pics/creature_1_54.png</key>
-            <key type="filename">pics/creature_1_55.png</key>
-            <key type="filename">pics/creature_1_56.png</key>
-            <key type="filename">pics/creature_1_57.png</key>
-            <key type="filename">pics/creature_1_58.png</key>
-            <key type="filename">pics/creature_1_59.png</key>
-            <key type="filename">pics/creature_1_6.png</key>
-            <key type="filename">pics/creature_1_60.png</key>
-            <key type="filename">pics/creature_1_61.png</key>
-            <key type="filename">pics/creature_1_62.png</key>
-            <key type="filename">pics/creature_1_63.png</key>
-            <key type="filename">pics/creature_1_64.png</key>
-            <key type="filename">pics/creature_1_65.png</key>
-            <key type="filename">pics/creature_1_66.png</key>
-            <key type="filename">pics/creature_1_67.png</key>
-            <key type="filename">pics/creature_1_68.png</key>
-            <key type="filename">pics/creature_1_69.png</key>
-            <key type="filename">pics/creature_1_7.png</key>
-            <key type="filename">pics/creature_1_70.png</key>
-            <key type="filename">pics/creature_1_71.png</key>
-            <key type="filename">pics/creature_1_72.png</key>
-            <key type="filename">pics/creature_1_73.png</key>
-            <key type="filename">pics/creature_1_74.png</key>
-            <key type="filename">pics/creature_1_75.png</key>
-            <key type="filename">pics/creature_1_76.png</key>
-            <key type="filename">pics/creature_1_77.png</key>
-            <key type="filename">pics/creature_1_78.png</key>
-            <key type="filename">pics/creature_1_79.png</key>
-            <key type="filename">pics/creature_1_8.png</key>
-            <key type="filename">pics/creature_1_80.png</key>
-            <key type="filename">pics/creature_1_81.png</key>
-            <key type="filename">pics/creature_1_82.png</key>
-            <key type="filename">pics/creature_1_83.png</key>
-            <key type="filename">pics/creature_1_84.png</key>
-            <key type="filename">pics/creature_1_85.png</key>
-            <key type="filename">pics/creature_1_86.png</key>
-            <key type="filename">pics/creature_1_87.png</key>
-            <key type="filename">pics/creature_1_88.png</key>
-            <key type="filename">pics/creature_1_89.png</key>
-            <key type="filename">pics/creature_1_9.png</key>
-            <key type="filename">pics/creature_1_90.png</key>
-            <key type="filename">pics/creature_1_91.png</key>
-            <key type="filename">pics/creature_1_92.png</key>
-            <key type="filename">pics/creature_1_93.png</key>
-            <key type="filename">pics/creature_1_94.png</key>
-            <key type="filename">pics/creature_1_95.png</key>
-            <key type="filename">pics/creature_1_96.png</key>
-            <key type="filename">pics/creature_1_97.png</key>
-            <key type="filename">pics/creature_1_98.png</key>
-            <key type="filename">pics/creature_1_99.png</key>
+            <key type="filename">pics/creature_1/1.png</key>
+            <key type="filename">pics/creature_1/10.png</key>
+            <key type="filename">pics/creature_1/100.png</key>
+            <key type="filename">pics/creature_1/101.png</key>
+            <key type="filename">pics/creature_1/102.png</key>
+            <key type="filename">pics/creature_1/103.png</key>
+            <key type="filename">pics/creature_1/104.png</key>
+            <key type="filename">pics/creature_1/105.png</key>
+            <key type="filename">pics/creature_1/106.png</key>
+            <key type="filename">pics/creature_1/107.png</key>
+            <key type="filename">pics/creature_1/108.png</key>
+            <key type="filename">pics/creature_1/109.png</key>
+            <key type="filename">pics/creature_1/11.png</key>
+            <key type="filename">pics/creature_1/110.png</key>
+            <key type="filename">pics/creature_1/111.png</key>
+            <key type="filename">pics/creature_1/112.png</key>
+            <key type="filename">pics/creature_1/113.png</key>
+            <key type="filename">pics/creature_1/114.png</key>
+            <key type="filename">pics/creature_1/115.png</key>
+            <key type="filename">pics/creature_1/116.png</key>
+            <key type="filename">pics/creature_1/117.png</key>
+            <key type="filename">pics/creature_1/118.png</key>
+            <key type="filename">pics/creature_1/119.png</key>
+            <key type="filename">pics/creature_1/12.png</key>
+            <key type="filename">pics/creature_1/120.png</key>
+            <key type="filename">pics/creature_1/121.png</key>
+            <key type="filename">pics/creature_1/122.png</key>
+            <key type="filename">pics/creature_1/123.png</key>
+            <key type="filename">pics/creature_1/124.png</key>
+            <key type="filename">pics/creature_1/125.png</key>
+            <key type="filename">pics/creature_1/126.png</key>
+            <key type="filename">pics/creature_1/127.png</key>
+            <key type="filename">pics/creature_1/128.png</key>
+            <key type="filename">pics/creature_1/129.png</key>
+            <key type="filename">pics/creature_1/13.png</key>
+            <key type="filename">pics/creature_1/130.png</key>
+            <key type="filename">pics/creature_1/131.png</key>
+            <key type="filename">pics/creature_1/132.png</key>
+            <key type="filename">pics/creature_1/133.png</key>
+            <key type="filename">pics/creature_1/134.png</key>
+            <key type="filename">pics/creature_1/135.png</key>
+            <key type="filename">pics/creature_1/136.png</key>
+            <key type="filename">pics/creature_1/137.png</key>
+            <key type="filename">pics/creature_1/138.png</key>
+            <key type="filename">pics/creature_1/139.png</key>
+            <key type="filename">pics/creature_1/14.png</key>
+            <key type="filename">pics/creature_1/140.png</key>
+            <key type="filename">pics/creature_1/141.png</key>
+            <key type="filename">pics/creature_1/142.png</key>
+            <key type="filename">pics/creature_1/143.png</key>
+            <key type="filename">pics/creature_1/144.png</key>
+            <key type="filename">pics/creature_1/145.png</key>
+            <key type="filename">pics/creature_1/146.png</key>
+            <key type="filename">pics/creature_1/147.png</key>
+            <key type="filename">pics/creature_1/148.png</key>
+            <key type="filename">pics/creature_1/149.png</key>
+            <key type="filename">pics/creature_1/15.png</key>
+            <key type="filename">pics/creature_1/150.png</key>
+            <key type="filename">pics/creature_1/151.png</key>
+            <key type="filename">pics/creature_1/152.png</key>
+            <key type="filename">pics/creature_1/153.png</key>
+            <key type="filename">pics/creature_1/154.png</key>
+            <key type="filename">pics/creature_1/155.png</key>
+            <key type="filename">pics/creature_1/156.png</key>
+            <key type="filename">pics/creature_1/157.png</key>
+            <key type="filename">pics/creature_1/158.png</key>
+            <key type="filename">pics/creature_1/159.png</key>
+            <key type="filename">pics/creature_1/16.png</key>
+            <key type="filename">pics/creature_1/160.png</key>
+            <key type="filename">pics/creature_1/161.png</key>
+            <key type="filename">pics/creature_1/162.png</key>
+            <key type="filename">pics/creature_1/163.png</key>
+            <key type="filename">pics/creature_1/164.png</key>
+            <key type="filename">pics/creature_1/165.png</key>
+            <key type="filename">pics/creature_1/166.png</key>
+            <key type="filename">pics/creature_1/167.png</key>
+            <key type="filename">pics/creature_1/168.png</key>
+            <key type="filename">pics/creature_1/169.png</key>
+            <key type="filename">pics/creature_1/17.png</key>
+            <key type="filename">pics/creature_1/170.png</key>
+            <key type="filename">pics/creature_1/171.png</key>
+            <key type="filename">pics/creature_1/172.png</key>
+            <key type="filename">pics/creature_1/173.png</key>
+            <key type="filename">pics/creature_1/174.png</key>
+            <key type="filename">pics/creature_1/175.png</key>
+            <key type="filename">pics/creature_1/176.png</key>
+            <key type="filename">pics/creature_1/177.png</key>
+            <key type="filename">pics/creature_1/178.png</key>
+            <key type="filename">pics/creature_1/179.png</key>
+            <key type="filename">pics/creature_1/18.png</key>
+            <key type="filename">pics/creature_1/180.png</key>
+            <key type="filename">pics/creature_1/181.png</key>
+            <key type="filename">pics/creature_1/182.png</key>
+            <key type="filename">pics/creature_1/183.png</key>
+            <key type="filename">pics/creature_1/184.png</key>
+            <key type="filename">pics/creature_1/185.png</key>
+            <key type="filename">pics/creature_1/186.png</key>
+            <key type="filename">pics/creature_1/187.png</key>
+            <key type="filename">pics/creature_1/188.png</key>
+            <key type="filename">pics/creature_1/189.png</key>
+            <key type="filename">pics/creature_1/19.png</key>
+            <key type="filename">pics/creature_1/190.png</key>
+            <key type="filename">pics/creature_1/191.png</key>
+            <key type="filename">pics/creature_1/192.png</key>
+            <key type="filename">pics/creature_1/193.png</key>
+            <key type="filename">pics/creature_1/194.png</key>
+            <key type="filename">pics/creature_1/195.png</key>
+            <key type="filename">pics/creature_1/196.png</key>
+            <key type="filename">pics/creature_1/197.png</key>
+            <key type="filename">pics/creature_1/198.png</key>
+            <key type="filename">pics/creature_1/199.png</key>
+            <key type="filename">pics/creature_1/2.png</key>
+            <key type="filename">pics/creature_1/20.png</key>
+            <key type="filename">pics/creature_1/200.png</key>
+            <key type="filename">pics/creature_1/201.png</key>
+            <key type="filename">pics/creature_1/202.png</key>
+            <key type="filename">pics/creature_1/203.png</key>
+            <key type="filename">pics/creature_1/204.png</key>
+            <key type="filename">pics/creature_1/205.png</key>
+            <key type="filename">pics/creature_1/206.png</key>
+            <key type="filename">pics/creature_1/207.png</key>
+            <key type="filename">pics/creature_1/208.png</key>
+            <key type="filename">pics/creature_1/209.png</key>
+            <key type="filename">pics/creature_1/21.png</key>
+            <key type="filename">pics/creature_1/210.png</key>
+            <key type="filename">pics/creature_1/211.png</key>
+            <key type="filename">pics/creature_1/212.png</key>
+            <key type="filename">pics/creature_1/213.png</key>
+            <key type="filename">pics/creature_1/214.png</key>
+            <key type="filename">pics/creature_1/215.png</key>
+            <key type="filename">pics/creature_1/216.png</key>
+            <key type="filename">pics/creature_1/217.png</key>
+            <key type="filename">pics/creature_1/218.png</key>
+            <key type="filename">pics/creature_1/219.png</key>
+            <key type="filename">pics/creature_1/22.png</key>
+            <key type="filename">pics/creature_1/220.png</key>
+            <key type="filename">pics/creature_1/221.png</key>
+            <key type="filename">pics/creature_1/222.png</key>
+            <key type="filename">pics/creature_1/223.png</key>
+            <key type="filename">pics/creature_1/224.png</key>
+            <key type="filename">pics/creature_1/225.png</key>
+            <key type="filename">pics/creature_1/226.png</key>
+            <key type="filename">pics/creature_1/227.png</key>
+            <key type="filename">pics/creature_1/228.png</key>
+            <key type="filename">pics/creature_1/229.png</key>
+            <key type="filename">pics/creature_1/23.png</key>
+            <key type="filename">pics/creature_1/230.png</key>
+            <key type="filename">pics/creature_1/231.png</key>
+            <key type="filename">pics/creature_1/232.png</key>
+            <key type="filename">pics/creature_1/237.png</key>
+            <key type="filename">pics/creature_1/238.png</key>
+            <key type="filename">pics/creature_1/239.png</key>
+            <key type="filename">pics/creature_1/24.png</key>
+            <key type="filename">pics/creature_1/240.png</key>
+            <key type="filename">pics/creature_1/241.png</key>
+            <key type="filename">pics/creature_1/242.png</key>
+            <key type="filename">pics/creature_1/243.png</key>
+            <key type="filename">pics/creature_1/244.png</key>
+            <key type="filename">pics/creature_1/245.png</key>
+            <key type="filename">pics/creature_1/246.png</key>
+            <key type="filename">pics/creature_1/247.png</key>
+            <key type="filename">pics/creature_1/248.png</key>
+            <key type="filename">pics/creature_1/249.png</key>
+            <key type="filename">pics/creature_1/25.png</key>
+            <key type="filename">pics/creature_1/250.png</key>
+            <key type="filename">pics/creature_1/251.png</key>
+            <key type="filename">pics/creature_1/252.png</key>
+            <key type="filename">pics/creature_1/253.png</key>
+            <key type="filename">pics/creature_1/254.png</key>
+            <key type="filename">pics/creature_1/255.png</key>
+            <key type="filename">pics/creature_1/256.png</key>
+            <key type="filename">pics/creature_1/257.png</key>
+            <key type="filename">pics/creature_1/258.png</key>
+            <key type="filename">pics/creature_1/259.png</key>
+            <key type="filename">pics/creature_1/26.png</key>
+            <key type="filename">pics/creature_1/260.png</key>
+            <key type="filename">pics/creature_1/261.png</key>
+            <key type="filename">pics/creature_1/262.png</key>
+            <key type="filename">pics/creature_1/263.png</key>
+            <key type="filename">pics/creature_1/264.png</key>
+            <key type="filename">pics/creature_1/265.png</key>
+            <key type="filename">pics/creature_1/266.png</key>
+            <key type="filename">pics/creature_1/267.png</key>
+            <key type="filename">pics/creature_1/268.png</key>
+            <key type="filename">pics/creature_1/269.png</key>
+            <key type="filename">pics/creature_1/27.png</key>
+            <key type="filename">pics/creature_1/270.png</key>
+            <key type="filename">pics/creature_1/271.png</key>
+            <key type="filename">pics/creature_1/272.png</key>
+            <key type="filename">pics/creature_1/273.png</key>
+            <key type="filename">pics/creature_1/274.png</key>
+            <key type="filename">pics/creature_1/275.png</key>
+            <key type="filename">pics/creature_1/276.png</key>
+            <key type="filename">pics/creature_1/277.png</key>
+            <key type="filename">pics/creature_1/278.png</key>
+            <key type="filename">pics/creature_1/279.png</key>
+            <key type="filename">pics/creature_1/28.png</key>
+            <key type="filename">pics/creature_1/280.png</key>
+            <key type="filename">pics/creature_1/281.png</key>
+            <key type="filename">pics/creature_1/282.png</key>
+            <key type="filename">pics/creature_1/283.png</key>
+            <key type="filename">pics/creature_1/284.png</key>
+            <key type="filename">pics/creature_1/285.png</key>
+            <key type="filename">pics/creature_1/286.png</key>
+            <key type="filename">pics/creature_1/287.png</key>
+            <key type="filename">pics/creature_1/288.png</key>
+            <key type="filename">pics/creature_1/289.png</key>
+            <key type="filename">pics/creature_1/29.png</key>
+            <key type="filename">pics/creature_1/290.png</key>
+            <key type="filename">pics/creature_1/291.png</key>
+            <key type="filename">pics/creature_1/292.png</key>
+            <key type="filename">pics/creature_1/293.png</key>
+            <key type="filename">pics/creature_1/294.png</key>
+            <key type="filename">pics/creature_1/295.png</key>
+            <key type="filename">pics/creature_1/296.png</key>
+            <key type="filename">pics/creature_1/297.png</key>
+            <key type="filename">pics/creature_1/298.png</key>
+            <key type="filename">pics/creature_1/299.png</key>
+            <key type="filename">pics/creature_1/3.png</key>
+            <key type="filename">pics/creature_1/30.png</key>
+            <key type="filename">pics/creature_1/300.png</key>
+            <key type="filename">pics/creature_1/301.png</key>
+            <key type="filename">pics/creature_1/302.png</key>
+            <key type="filename">pics/creature_1/303.png</key>
+            <key type="filename">pics/creature_1/304.png</key>
+            <key type="filename">pics/creature_1/305.png</key>
+            <key type="filename">pics/creature_1/306.png</key>
+            <key type="filename">pics/creature_1/307.png</key>
+            <key type="filename">pics/creature_1/308.png</key>
+            <key type="filename">pics/creature_1/309.png</key>
+            <key type="filename">pics/creature_1/31.png</key>
+            <key type="filename">pics/creature_1/310.png</key>
+            <key type="filename">pics/creature_1/311.png</key>
+            <key type="filename">pics/creature_1/312.png</key>
+            <key type="filename">pics/creature_1/313.png</key>
+            <key type="filename">pics/creature_1/314.png</key>
+            <key type="filename">pics/creature_1/315.png</key>
+            <key type="filename">pics/creature_1/316.png</key>
+            <key type="filename">pics/creature_1/317.png</key>
+            <key type="filename">pics/creature_1/318.png</key>
+            <key type="filename">pics/creature_1/319.png</key>
+            <key type="filename">pics/creature_1/32.png</key>
+            <key type="filename">pics/creature_1/320.png</key>
+            <key type="filename">pics/creature_1/321.png</key>
+            <key type="filename">pics/creature_1/322.png</key>
+            <key type="filename">pics/creature_1/323.png</key>
+            <key type="filename">pics/creature_1/324.png</key>
+            <key type="filename">pics/creature_1/325.png</key>
+            <key type="filename">pics/creature_1/326.png</key>
+            <key type="filename">pics/creature_1/327.png</key>
+            <key type="filename">pics/creature_1/328.png</key>
+            <key type="filename">pics/creature_1/329.png</key>
+            <key type="filename">pics/creature_1/33.png</key>
+            <key type="filename">pics/creature_1/330.png</key>
+            <key type="filename">pics/creature_1/331.png</key>
+            <key type="filename">pics/creature_1/332.png</key>
+            <key type="filename">pics/creature_1/333.png</key>
+            <key type="filename">pics/creature_1/334.png</key>
+            <key type="filename">pics/creature_1/335.png</key>
+            <key type="filename">pics/creature_1/336.png</key>
+            <key type="filename">pics/creature_1/337.png</key>
+            <key type="filename">pics/creature_1/338.png</key>
+            <key type="filename">pics/creature_1/339.png</key>
+            <key type="filename">pics/creature_1/34.png</key>
+            <key type="filename">pics/creature_1/340.png</key>
+            <key type="filename">pics/creature_1/341.png</key>
+            <key type="filename">pics/creature_1/342.png</key>
+            <key type="filename">pics/creature_1/343.png</key>
+            <key type="filename">pics/creature_1/344.png</key>
+            <key type="filename">pics/creature_1/345.png</key>
+            <key type="filename">pics/creature_1/346.png</key>
+            <key type="filename">pics/creature_1/347.png</key>
+            <key type="filename">pics/creature_1/348.png</key>
+            <key type="filename">pics/creature_1/349.png</key>
+            <key type="filename">pics/creature_1/35.png</key>
+            <key type="filename">pics/creature_1/350.png</key>
+            <key type="filename">pics/creature_1/351.png</key>
+            <key type="filename">pics/creature_1/352.png</key>
+            <key type="filename">pics/creature_1/357.png</key>
+            <key type="filename">pics/creature_1/358.png</key>
+            <key type="filename">pics/creature_1/359.png</key>
+            <key type="filename">pics/creature_1/36.png</key>
+            <key type="filename">pics/creature_1/360.png</key>
+            <key type="filename">pics/creature_1/361.png</key>
+            <key type="filename">pics/creature_1/362.png</key>
+            <key type="filename">pics/creature_1/363.png</key>
+            <key type="filename">pics/creature_1/364.png</key>
+            <key type="filename">pics/creature_1/365.png</key>
+            <key type="filename">pics/creature_1/366.png</key>
+            <key type="filename">pics/creature_1/367.png</key>
+            <key type="filename">pics/creature_1/368.png</key>
+            <key type="filename">pics/creature_1/369.png</key>
+            <key type="filename">pics/creature_1/37.png</key>
+            <key type="filename">pics/creature_1/370.png</key>
+            <key type="filename">pics/creature_1/371.png</key>
+            <key type="filename">pics/creature_1/372.png</key>
+            <key type="filename">pics/creature_1/373.png</key>
+            <key type="filename">pics/creature_1/374.png</key>
+            <key type="filename">pics/creature_1/375.png</key>
+            <key type="filename">pics/creature_1/376.png</key>
+            <key type="filename">pics/creature_1/377.png</key>
+            <key type="filename">pics/creature_1/378.png</key>
+            <key type="filename">pics/creature_1/379.png</key>
+            <key type="filename">pics/creature_1/38.png</key>
+            <key type="filename">pics/creature_1/380.png</key>
+            <key type="filename">pics/creature_1/381.png</key>
+            <key type="filename">pics/creature_1/382.png</key>
+            <key type="filename">pics/creature_1/383.png</key>
+            <key type="filename">pics/creature_1/384.png</key>
+            <key type="filename">pics/creature_1/385.png</key>
+            <key type="filename">pics/creature_1/386.png</key>
+            <key type="filename">pics/creature_1/387.png</key>
+            <key type="filename">pics/creature_1/388.png</key>
+            <key type="filename">pics/creature_1/389.png</key>
+            <key type="filename">pics/creature_1/39.png</key>
+            <key type="filename">pics/creature_1/390.png</key>
+            <key type="filename">pics/creature_1/391.png</key>
+            <key type="filename">pics/creature_1/392.png</key>
+            <key type="filename">pics/creature_1/393.png</key>
+            <key type="filename">pics/creature_1/394.png</key>
+            <key type="filename">pics/creature_1/395.png</key>
+            <key type="filename">pics/creature_1/396.png</key>
+            <key type="filename">pics/creature_1/397.png</key>
+            <key type="filename">pics/creature_1/398.png</key>
+            <key type="filename">pics/creature_1/399.png</key>
+            <key type="filename">pics/creature_1/4.png</key>
+            <key type="filename">pics/creature_1/40.png</key>
+            <key type="filename">pics/creature_1/400.png</key>
+            <key type="filename">pics/creature_1/401.png</key>
+            <key type="filename">pics/creature_1/402.png</key>
+            <key type="filename">pics/creature_1/403.png</key>
+            <key type="filename">pics/creature_1/404.png</key>
+            <key type="filename">pics/creature_1/405.png</key>
+            <key type="filename">pics/creature_1/406.png</key>
+            <key type="filename">pics/creature_1/407.png</key>
+            <key type="filename">pics/creature_1/408.png</key>
+            <key type="filename">pics/creature_1/409.png</key>
+            <key type="filename">pics/creature_1/41.png</key>
+            <key type="filename">pics/creature_1/410.png</key>
+            <key type="filename">pics/creature_1/411.png</key>
+            <key type="filename">pics/creature_1/412.png</key>
+            <key type="filename">pics/creature_1/413.png</key>
+            <key type="filename">pics/creature_1/414.png</key>
+            <key type="filename">pics/creature_1/415.png</key>
+            <key type="filename">pics/creature_1/416.png</key>
+            <key type="filename">pics/creature_1/417.png</key>
+            <key type="filename">pics/creature_1/418.png</key>
+            <key type="filename">pics/creature_1/419.png</key>
+            <key type="filename">pics/creature_1/42.png</key>
+            <key type="filename">pics/creature_1/420.png</key>
+            <key type="filename">pics/creature_1/421.png</key>
+            <key type="filename">pics/creature_1/422.png</key>
+            <key type="filename">pics/creature_1/423.png</key>
+            <key type="filename">pics/creature_1/424.png</key>
+            <key type="filename">pics/creature_1/425.png</key>
+            <key type="filename">pics/creature_1/426.png</key>
+            <key type="filename">pics/creature_1/427.png</key>
+            <key type="filename">pics/creature_1/428.png</key>
+            <key type="filename">pics/creature_1/429.png</key>
+            <key type="filename">pics/creature_1/43.png</key>
+            <key type="filename">pics/creature_1/430.png</key>
+            <key type="filename">pics/creature_1/431.png</key>
+            <key type="filename">pics/creature_1/432.png</key>
+            <key type="filename">pics/creature_1/433.png</key>
+            <key type="filename">pics/creature_1/434.png</key>
+            <key type="filename">pics/creature_1/435.png</key>
+            <key type="filename">pics/creature_1/436.png</key>
+            <key type="filename">pics/creature_1/437.png</key>
+            <key type="filename">pics/creature_1/438.png</key>
+            <key type="filename">pics/creature_1/439.png</key>
+            <key type="filename">pics/creature_1/44.png</key>
+            <key type="filename">pics/creature_1/440.png</key>
+            <key type="filename">pics/creature_1/441.png</key>
+            <key type="filename">pics/creature_1/442.png</key>
+            <key type="filename">pics/creature_1/443.png</key>
+            <key type="filename">pics/creature_1/444.png</key>
+            <key type="filename">pics/creature_1/445.png</key>
+            <key type="filename">pics/creature_1/446.png</key>
+            <key type="filename">pics/creature_1/447.png</key>
+            <key type="filename">pics/creature_1/448.png</key>
+            <key type="filename">pics/creature_1/449.png</key>
+            <key type="filename">pics/creature_1/45.png</key>
+            <key type="filename">pics/creature_1/450.png</key>
+            <key type="filename">pics/creature_1/451.png</key>
+            <key type="filename">pics/creature_1/452.png</key>
+            <key type="filename">pics/creature_1/453.png</key>
+            <key type="filename">pics/creature_1/454.png</key>
+            <key type="filename">pics/creature_1/455.png</key>
+            <key type="filename">pics/creature_1/456.png</key>
+            <key type="filename">pics/creature_1/457.png</key>
+            <key type="filename">pics/creature_1/458.png</key>
+            <key type="filename">pics/creature_1/459.png</key>
+            <key type="filename">pics/creature_1/46.png</key>
+            <key type="filename">pics/creature_1/460.png</key>
+            <key type="filename">pics/creature_1/461.png</key>
+            <key type="filename">pics/creature_1/462.png</key>
+            <key type="filename">pics/creature_1/463.png</key>
+            <key type="filename">pics/creature_1/464.png</key>
+            <key type="filename">pics/creature_1/465.png</key>
+            <key type="filename">pics/creature_1/466.png</key>
+            <key type="filename">pics/creature_1/467.png</key>
+            <key type="filename">pics/creature_1/468.png</key>
+            <key type="filename">pics/creature_1/469.png</key>
+            <key type="filename">pics/creature_1/47.png</key>
+            <key type="filename">pics/creature_1/470.png</key>
+            <key type="filename">pics/creature_1/471.png</key>
+            <key type="filename">pics/creature_1/472.png</key>
+            <key type="filename">pics/creature_1/473.png</key>
+            <key type="filename">pics/creature_1/474.png</key>
+            <key type="filename">pics/creature_1/475.png</key>
+            <key type="filename">pics/creature_1/476.png</key>
+            <key type="filename">pics/creature_1/477.png</key>
+            <key type="filename">pics/creature_1/478.png</key>
+            <key type="filename">pics/creature_1/479.png</key>
+            <key type="filename">pics/creature_1/48.png</key>
+            <key type="filename">pics/creature_1/480.png</key>
+            <key type="filename">pics/creature_1/481.png</key>
+            <key type="filename">pics/creature_1/482.png</key>
+            <key type="filename">pics/creature_1/483.png</key>
+            <key type="filename">pics/creature_1/484.png</key>
+            <key type="filename">pics/creature_1/49.png</key>
+            <key type="filename">pics/creature_1/5.png</key>
+            <key type="filename">pics/creature_1/50.png</key>
+            <key type="filename">pics/creature_1/51.png</key>
+            <key type="filename">pics/creature_1/52.png</key>
+            <key type="filename">pics/creature_1/53.png</key>
+            <key type="filename">pics/creature_1/54.png</key>
+            <key type="filename">pics/creature_1/55.png</key>
+            <key type="filename">pics/creature_1/56.png</key>
+            <key type="filename">pics/creature_1/57.png</key>
+            <key type="filename">pics/creature_1/58.png</key>
+            <key type="filename">pics/creature_1/59.png</key>
+            <key type="filename">pics/creature_1/6.png</key>
+            <key type="filename">pics/creature_1/60.png</key>
+            <key type="filename">pics/creature_1/61.png</key>
+            <key type="filename">pics/creature_1/62.png</key>
+            <key type="filename">pics/creature_1/63.png</key>
+            <key type="filename">pics/creature_1/64.png</key>
+            <key type="filename">pics/creature_1/65.png</key>
+            <key type="filename">pics/creature_1/66.png</key>
+            <key type="filename">pics/creature_1/67.png</key>
+            <key type="filename">pics/creature_1/68.png</key>
+            <key type="filename">pics/creature_1/69.png</key>
+            <key type="filename">pics/creature_1/7.png</key>
+            <key type="filename">pics/creature_1/70.png</key>
+            <key type="filename">pics/creature_1/71.png</key>
+            <key type="filename">pics/creature_1/72.png</key>
+            <key type="filename">pics/creature_1/73.png</key>
+            <key type="filename">pics/creature_1/74.png</key>
+            <key type="filename">pics/creature_1/75.png</key>
+            <key type="filename">pics/creature_1/76.png</key>
+            <key type="filename">pics/creature_1/77.png</key>
+            <key type="filename">pics/creature_1/78.png</key>
+            <key type="filename">pics/creature_1/79.png</key>
+            <key type="filename">pics/creature_1/8.png</key>
+            <key type="filename">pics/creature_1/80.png</key>
+            <key type="filename">pics/creature_1/81.png</key>
+            <key type="filename">pics/creature_1/82.png</key>
+            <key type="filename">pics/creature_1/83.png</key>
+            <key type="filename">pics/creature_1/84.png</key>
+            <key type="filename">pics/creature_1/85.png</key>
+            <key type="filename">pics/creature_1/86.png</key>
+            <key type="filename">pics/creature_1/87.png</key>
+            <key type="filename">pics/creature_1/88.png</key>
+            <key type="filename">pics/creature_1/89.png</key>
+            <key type="filename">pics/creature_1/9.png</key>
+            <key type="filename">pics/creature_1/90.png</key>
+            <key type="filename">pics/creature_1/91.png</key>
+            <key type="filename">pics/creature_1/92.png</key>
+            <key type="filename">pics/creature_1/93.png</key>
+            <key type="filename">pics/creature_1/94.png</key>
+            <key type="filename">pics/creature_1/95.png</key>
+            <key type="filename">pics/creature_1/96.png</key>
+            <key type="filename">pics/creature_1/97.png</key>
+            <key type="filename">pics/creature_1/98.png</key>
+            <key type="filename">pics/creature_1/99.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
@@ -8853,10 +8853,10 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/creature_1_233.png</key>
-            <key type="filename">pics/creature_1_234.png</key>
-            <key type="filename">pics/creature_1_235.png</key>
-            <key type="filename">pics/creature_1_236.png</key>
+            <key type="filename">pics/creature_1/233.png</key>
+            <key type="filename">pics/creature_1/234.png</key>
+            <key type="filename">pics/creature_1/235.png</key>
+            <key type="filename">pics/creature_1/236.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
@@ -8871,10 +8871,10 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/creature_1_353.png</key>
-            <key type="filename">pics/creature_1_354.png</key>
-            <key type="filename">pics/creature_1_355.png</key>
-            <key type="filename">pics/creature_1_356.png</key>
+            <key type="filename">pics/creature_1/353.png</key>
+            <key type="filename">pics/creature_1/354.png</key>
+            <key type="filename">pics/creature_1/355.png</key>
+            <key type="filename">pics/creature_1/356.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
@@ -8919,15 +8919,15 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/firearrow_1.png</key>
-            <key type="filename">pics/firearrow_2.png</key>
-            <key type="filename">pics/firearrow_3.png</key>
-            <key type="filename">pics/firearrow_4.png</key>
-            <key type="filename">pics/firearrow_5.png</key>
-            <key type="filename">pics/firearrow_6.png</key>
-            <key type="filename">pics/firearrow_7.png</key>
-            <key type="filename">pics/firearrow_8.png</key>
-            <key type="filename">pics/firearrow_9.png</key>
+            <key type="filename">pics/firearrow/1.png</key>
+            <key type="filename">pics/firearrow/2.png</key>
+            <key type="filename">pics/firearrow/3.png</key>
+            <key type="filename">pics/firearrow/4.png</key>
+            <key type="filename">pics/firearrow/5.png</key>
+            <key type="filename">pics/firearrow/6.png</key>
+            <key type="filename">pics/firearrow/7.png</key>
+            <key type="filename">pics/firearrow/8.png</key>
+            <key type="filename">pics/firearrow/9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.85,0.5</point_f>
@@ -8936,9 +8936,132 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>25,25,50,50</rect>
+                <rect>14,6,27,12</rect>
                 <key>scale9Paddings</key>
-                <rect>25,25,50,50</rect>
+                <rect>14,6,27,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/arrow.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.25</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,4,5,9</rect>
+                <key>scale9Paddings</key>
+                <rect>2,4,5,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/char.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,9,11</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,9,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/coin.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,3,5,6</rect>
+                <key>scale9Paddings</key>
+                <rect>3,3,5,6</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/enemy.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,13,11</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,13,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/gem.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,4,5,7</rect>
+                <key>scale9Paddings</key>
+                <rect>3,4,5,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/pot_1.png</key>
+            <key type="filename">pics/frog/pot_2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,8,9</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,8,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/sword.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.1875,0.8125</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">pics/frog/sword_qi_1.png</key>
+            <key type="filename">pics/frog/sword_qi_2.png</key>
+            <key type="filename">pics/frog/sword_qi_3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,8,15,15</rect>
+                <key>scale9Paddings</key>
+                <rect>8,8,15,15</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -8995,46 +9118,46 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/slime1_attack_0.png</key>
-            <key type="filename">pics/slime1_attack_1.png</key>
-            <key type="filename">pics/slime1_attack_10.png</key>
-            <key type="filename">pics/slime1_attack_11.png</key>
-            <key type="filename">pics/slime1_attack_12.png</key>
-            <key type="filename">pics/slime1_attack_13.png</key>
-            <key type="filename">pics/slime1_attack_14.png</key>
-            <key type="filename">pics/slime1_attack_15.png</key>
-            <key type="filename">pics/slime1_attack_16.png</key>
-            <key type="filename">pics/slime1_attack_17.png</key>
-            <key type="filename">pics/slime1_attack_18.png</key>
-            <key type="filename">pics/slime1_attack_19.png</key>
-            <key type="filename">pics/slime1_attack_2.png</key>
-            <key type="filename">pics/slime1_attack_20.png</key>
-            <key type="filename">pics/slime1_attack_21.png</key>
-            <key type="filename">pics/slime1_attack_22.png</key>
-            <key type="filename">pics/slime1_attack_23.png</key>
-            <key type="filename">pics/slime1_attack_24.png</key>
-            <key type="filename">pics/slime1_attack_25.png</key>
-            <key type="filename">pics/slime1_attack_26.png</key>
-            <key type="filename">pics/slime1_attack_27.png</key>
-            <key type="filename">pics/slime1_attack_28.png</key>
-            <key type="filename">pics/slime1_attack_29.png</key>
-            <key type="filename">pics/slime1_attack_3.png</key>
-            <key type="filename">pics/slime1_attack_30.png</key>
-            <key type="filename">pics/slime1_attack_31.png</key>
-            <key type="filename">pics/slime1_attack_32.png</key>
-            <key type="filename">pics/slime1_attack_33.png</key>
-            <key type="filename">pics/slime1_attack_34.png</key>
-            <key type="filename">pics/slime1_attack_35.png</key>
-            <key type="filename">pics/slime1_attack_36.png</key>
-            <key type="filename">pics/slime1_attack_37.png</key>
-            <key type="filename">pics/slime1_attack_38.png</key>
-            <key type="filename">pics/slime1_attack_39.png</key>
-            <key type="filename">pics/slime1_attack_4.png</key>
-            <key type="filename">pics/slime1_attack_5.png</key>
-            <key type="filename">pics/slime1_attack_6.png</key>
-            <key type="filename">pics/slime1_attack_7.png</key>
-            <key type="filename">pics/slime1_attack_8.png</key>
-            <key type="filename">pics/slime1_attack_9.png</key>
+            <key type="filename">pics/slime1/attack_0.png</key>
+            <key type="filename">pics/slime1/attack_1.png</key>
+            <key type="filename">pics/slime1/attack_10.png</key>
+            <key type="filename">pics/slime1/attack_11.png</key>
+            <key type="filename">pics/slime1/attack_12.png</key>
+            <key type="filename">pics/slime1/attack_13.png</key>
+            <key type="filename">pics/slime1/attack_14.png</key>
+            <key type="filename">pics/slime1/attack_15.png</key>
+            <key type="filename">pics/slime1/attack_16.png</key>
+            <key type="filename">pics/slime1/attack_17.png</key>
+            <key type="filename">pics/slime1/attack_18.png</key>
+            <key type="filename">pics/slime1/attack_19.png</key>
+            <key type="filename">pics/slime1/attack_2.png</key>
+            <key type="filename">pics/slime1/attack_20.png</key>
+            <key type="filename">pics/slime1/attack_21.png</key>
+            <key type="filename">pics/slime1/attack_22.png</key>
+            <key type="filename">pics/slime1/attack_23.png</key>
+            <key type="filename">pics/slime1/attack_24.png</key>
+            <key type="filename">pics/slime1/attack_25.png</key>
+            <key type="filename">pics/slime1/attack_26.png</key>
+            <key type="filename">pics/slime1/attack_27.png</key>
+            <key type="filename">pics/slime1/attack_28.png</key>
+            <key type="filename">pics/slime1/attack_29.png</key>
+            <key type="filename">pics/slime1/attack_3.png</key>
+            <key type="filename">pics/slime1/attack_30.png</key>
+            <key type="filename">pics/slime1/attack_31.png</key>
+            <key type="filename">pics/slime1/attack_32.png</key>
+            <key type="filename">pics/slime1/attack_33.png</key>
+            <key type="filename">pics/slime1/attack_34.png</key>
+            <key type="filename">pics/slime1/attack_35.png</key>
+            <key type="filename">pics/slime1/attack_36.png</key>
+            <key type="filename">pics/slime1/attack_37.png</key>
+            <key type="filename">pics/slime1/attack_38.png</key>
+            <key type="filename">pics/slime1/attack_39.png</key>
+            <key type="filename">pics/slime1/attack_4.png</key>
+            <key type="filename">pics/slime1/attack_5.png</key>
+            <key type="filename">pics/slime1/attack_6.png</key>
+            <key type="filename">pics/slime1/attack_7.png</key>
+            <key type="filename">pics/slime1/attack_8.png</key>
+            <key type="filename">pics/slime1/attack_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
@@ -9049,30 +9172,30 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/slime1_idle_0.png</key>
-            <key type="filename">pics/slime1_idle_1.png</key>
-            <key type="filename">pics/slime1_idle_10.png</key>
-            <key type="filename">pics/slime1_idle_11.png</key>
-            <key type="filename">pics/slime1_idle_12.png</key>
-            <key type="filename">pics/slime1_idle_13.png</key>
-            <key type="filename">pics/slime1_idle_14.png</key>
-            <key type="filename">pics/slime1_idle_15.png</key>
-            <key type="filename">pics/slime1_idle_16.png</key>
-            <key type="filename">pics/slime1_idle_17.png</key>
-            <key type="filename">pics/slime1_idle_18.png</key>
-            <key type="filename">pics/slime1_idle_19.png</key>
-            <key type="filename">pics/slime1_idle_2.png</key>
-            <key type="filename">pics/slime1_idle_20.png</key>
-            <key type="filename">pics/slime1_idle_21.png</key>
-            <key type="filename">pics/slime1_idle_22.png</key>
-            <key type="filename">pics/slime1_idle_23.png</key>
-            <key type="filename">pics/slime1_idle_3.png</key>
-            <key type="filename">pics/slime1_idle_4.png</key>
-            <key type="filename">pics/slime1_idle_5.png</key>
-            <key type="filename">pics/slime1_idle_6.png</key>
-            <key type="filename">pics/slime1_idle_7.png</key>
-            <key type="filename">pics/slime1_idle_8.png</key>
-            <key type="filename">pics/slime1_idle_9.png</key>
+            <key type="filename">pics/slime1/idle_0.png</key>
+            <key type="filename">pics/slime1/idle_1.png</key>
+            <key type="filename">pics/slime1/idle_10.png</key>
+            <key type="filename">pics/slime1/idle_11.png</key>
+            <key type="filename">pics/slime1/idle_12.png</key>
+            <key type="filename">pics/slime1/idle_13.png</key>
+            <key type="filename">pics/slime1/idle_14.png</key>
+            <key type="filename">pics/slime1/idle_15.png</key>
+            <key type="filename">pics/slime1/idle_16.png</key>
+            <key type="filename">pics/slime1/idle_17.png</key>
+            <key type="filename">pics/slime1/idle_18.png</key>
+            <key type="filename">pics/slime1/idle_19.png</key>
+            <key type="filename">pics/slime1/idle_2.png</key>
+            <key type="filename">pics/slime1/idle_20.png</key>
+            <key type="filename">pics/slime1/idle_21.png</key>
+            <key type="filename">pics/slime1/idle_22.png</key>
+            <key type="filename">pics/slime1/idle_23.png</key>
+            <key type="filename">pics/slime1/idle_3.png</key>
+            <key type="filename">pics/slime1/idle_4.png</key>
+            <key type="filename">pics/slime1/idle_5.png</key>
+            <key type="filename">pics/slime1/idle_6.png</key>
+            <key type="filename">pics/slime1/idle_7.png</key>
+            <key type="filename">pics/slime1/idle_8.png</key>
+            <key type="filename">pics/slime1/idle_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
@@ -9087,38 +9210,38 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">pics/slime1_move_1.png</key>
-            <key type="filename">pics/slime1_move_10.png</key>
-            <key type="filename">pics/slime1_move_11.png</key>
-            <key type="filename">pics/slime1_move_12.png</key>
-            <key type="filename">pics/slime1_move_13.png</key>
-            <key type="filename">pics/slime1_move_14.png</key>
-            <key type="filename">pics/slime1_move_15.png</key>
-            <key type="filename">pics/slime1_move_16.png</key>
-            <key type="filename">pics/slime1_move_17.png</key>
-            <key type="filename">pics/slime1_move_18.png</key>
-            <key type="filename">pics/slime1_move_19.png</key>
-            <key type="filename">pics/slime1_move_2.png</key>
-            <key type="filename">pics/slime1_move_20.png</key>
-            <key type="filename">pics/slime1_move_21.png</key>
-            <key type="filename">pics/slime1_move_22.png</key>
-            <key type="filename">pics/slime1_move_23.png</key>
-            <key type="filename">pics/slime1_move_24.png</key>
-            <key type="filename">pics/slime1_move_25.png</key>
-            <key type="filename">pics/slime1_move_26.png</key>
-            <key type="filename">pics/slime1_move_27.png</key>
-            <key type="filename">pics/slime1_move_28.png</key>
-            <key type="filename">pics/slime1_move_29.png</key>
-            <key type="filename">pics/slime1_move_3.png</key>
-            <key type="filename">pics/slime1_move_30.png</key>
-            <key type="filename">pics/slime1_move_31.png</key>
-            <key type="filename">pics/slime1_move_32.png</key>
-            <key type="filename">pics/slime1_move_4.png</key>
-            <key type="filename">pics/slime1_move_5.png</key>
-            <key type="filename">pics/slime1_move_6.png</key>
-            <key type="filename">pics/slime1_move_7.png</key>
-            <key type="filename">pics/slime1_move_8.png</key>
-            <key type="filename">pics/slime1_move_9.png</key>
+            <key type="filename">pics/slime1/move_1.png</key>
+            <key type="filename">pics/slime1/move_10.png</key>
+            <key type="filename">pics/slime1/move_11.png</key>
+            <key type="filename">pics/slime1/move_12.png</key>
+            <key type="filename">pics/slime1/move_13.png</key>
+            <key type="filename">pics/slime1/move_14.png</key>
+            <key type="filename">pics/slime1/move_15.png</key>
+            <key type="filename">pics/slime1/move_16.png</key>
+            <key type="filename">pics/slime1/move_17.png</key>
+            <key type="filename">pics/slime1/move_18.png</key>
+            <key type="filename">pics/slime1/move_19.png</key>
+            <key type="filename">pics/slime1/move_2.png</key>
+            <key type="filename">pics/slime1/move_20.png</key>
+            <key type="filename">pics/slime1/move_21.png</key>
+            <key type="filename">pics/slime1/move_22.png</key>
+            <key type="filename">pics/slime1/move_23.png</key>
+            <key type="filename">pics/slime1/move_24.png</key>
+            <key type="filename">pics/slime1/move_25.png</key>
+            <key type="filename">pics/slime1/move_26.png</key>
+            <key type="filename">pics/slime1/move_27.png</key>
+            <key type="filename">pics/slime1/move_28.png</key>
+            <key type="filename">pics/slime1/move_29.png</key>
+            <key type="filename">pics/slime1/move_3.png</key>
+            <key type="filename">pics/slime1/move_30.png</key>
+            <key type="filename">pics/slime1/move_31.png</key>
+            <key type="filename">pics/slime1/move_32.png</key>
+            <key type="filename">pics/slime1/move_4.png</key>
+            <key type="filename">pics/slime1/move_5.png</key>
+            <key type="filename">pics/slime1/move_6.png</key>
+            <key type="filename">pics/slime1/move_7.png</key>
+            <key type="filename">pics/slime1/move_8.png</key>
+            <key type="filename">pics/slime1/move_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
