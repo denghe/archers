@@ -13,18 +13,14 @@ namespace Test5 {
 		// 记录角色朝向
 		float direction{};	// todo: directionSin Cos
 
-		// for Draw: pos.y = y + yOffset
-		float yOffset{};
-
-		// 记录 pivot 和 center point 的 y 坐标差。在 InitYOffset() 中计算并填充
-		float pcDiff{};
-
+		// 跳着走相关
 		int32_t _1{}, _2{}, _i{};
-		float bounceHeight{}, bounceInc{}, radiansStep{}, radiansTarget{};
-		float bounceHeightMax{}, bounceHalfDuration{};
+		float bounceRadiansTarget{}, bounceRadiansStep{};
+		float bounceHeight{}, bounceInc{};
+
+		// 正在跳, 正在移动
 		bool bouncing{}, moving{};
 
-		void AnimInit();
 		void AnimBounceRotate();
 		void Anim();
 
