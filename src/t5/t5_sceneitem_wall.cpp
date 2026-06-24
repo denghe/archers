@@ -7,12 +7,12 @@ namespace Test5 {
 		typeId = cTypeId;
 		scene = scene_;
 
-		// pos 的坐标可以是 左上角，y 值可以是 底边, 参与显示排序
+		// pos 的坐标是 左上角，y 值是 底边, 参与显示排序
 		cr = cr_;
 		pos = cr_ * cCellPixelSize;
 		radius = cWallRadius;
 		scale = radius / 16.f;	// 贴图是 32*32
-		y = pos.y + (32 + 26) * scale;
+		y = pos.y + (32 + 26) * scale;	// 斜坡贴图高 26
 		radians = {};
 
 		indexAtContainer = scene_->walls.len - 1;

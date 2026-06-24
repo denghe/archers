@@ -37,10 +37,8 @@ namespace Test5 {
 		lastPos.y = pos.y - 1;
 		SetPos(p);
 
-		InitYOffset();
+		// 初始化跳着走相关
 		AnimInit();
-		bounceHeightMax = 20.f;
-		bounceHalfDuration = 1.f / 10.f;
 
 		// 初始化数据面板
 		healthMaxDefault = 100.f;
@@ -48,55 +46,42 @@ namespace Test5 {
 		PropsCalc();
 	}
 
-
-	void Player::InitYOffset() {
+	void Player::AnimInit() {
 		auto& frame = gg.pics.frog_char;
 		auto frameHeight = (float)frame.uvRect.h;
 		auto centerHeight = frameHeight * 0.5f;
 		auto pivotHeight = frameHeight * frame.anchor.y;
 		pcDiff = centerHeight - pivotHeight;
+		bounceHeightMax = 20.f;
+		bounceHalfDuration = 1.f / 10.f;
 	}
 
-	void Player::UpdateYOffset() {
-		yOffset = pcDiff + bounceHeight;
-	}
-
-	void Player::AnimInit() {
-		radians = 0;
-		radiansTarget = 0;
-		bounceHeight = 0;
-		bouncing = {};
-		UpdateYOffset();
-	}
-
-	// jump + rotate anim
 	void Player::AnimBounceRotate() {
 		static constexpr float bounceRadiansTarget1{ 25.f / 180.f };
 		static constexpr float bounceRadiansTarget2{ -35.f / 180.f };
 		assert(bounceHeightMax > 0);
+		assert(bounceHalfDuration > 0);
 		float bounceStepNums{ gg.cFps * bounceHalfDuration };
 		float bounceStepSpeed{ bounceHeightMax / bounceStepNums };
 		float bounceStepSpeedMax{ bounceStepSpeed * 2.f };
 		float bounceStepSpeedDecrease{ bounceStepSpeedMax / bounceStepNums };
 
 		XX_BEGIN(_2);
-		AnimInit();
 	LabLoop:
 		// jump up
 		bouncing = true;
 		bounceInc = bounceStepSpeedMax;
+		bounceHeight = 0;
 		radians = radiansTarget;
 		radiansTarget = bounceRadiansTarget1;
 		radiansStep = (radiansTarget - radians) / bounceStepNums;
 		do {
 			bounceHeight -= bounceInc;
 			bounceInc -= bounceStepSpeedDecrease;
-			UpdateYOffset();
 			radians += radiansStep;
 			XX_YIELD(_2);
 		} while (bounceInc >= 0);
 		bounceHeight = -bounceHeightMax;
-		UpdateYOffset();
 		XX_YIELD(_2);
 
 		// falling
@@ -105,7 +90,6 @@ namespace Test5 {
 		do {
 			bounceHeight += bounceInc;
 			bounceInc += bounceStepSpeedDecrease;
-			UpdateYOffset();
 			XX_YIELD(_2);
 		} while (bounceInc < bounceStepSpeedMax);
 		assert(std::fabs(bounceHeight) < bounceInc);
@@ -123,12 +107,10 @@ namespace Test5 {
 		do {
 			bounceHeight -= bounceInc;
 			bounceInc -= bounceStepSpeedDecrease;
-			UpdateYOffset();
 			radians += radiansStep;
 			XX_YIELD(_2);
 		} while (bounceInc >= 0);
 		bounceHeight = -bounceHeightMax;
-		UpdateYOffset();
 		XX_YIELD(_2);
 
 		// falling
@@ -137,12 +119,10 @@ namespace Test5 {
 		do {
 			bounceHeight += bounceInc;
 			bounceInc += bounceStepSpeedDecrease;
-			UpdateYOffset();
 			XX_YIELD(_2);
 		} while (bounceInc < bounceStepSpeedMax);
 		assert(std::fabs(bounceHeight) < bounceInc);
 		bounceHeight = 0;
-		UpdateYOffset();
 		XX_YIELD(_2);
 
 		// for anim end notice
@@ -157,34 +137,36 @@ namespace Test5 {
 	void Player::Anim() {
 		static constexpr float cRestoreRadiansDuration{ 0.05f };
 		static constexpr int32_t cRestoreRadiansDurationFrames{ int32_t(gg.cFps * cRestoreRadiansDuration) };
-#if 1
 		XX_BEGIN(_1);
-LabBegin:
+	LabBegin:
+		// 等待移动指令
 		while (!moving) {
 			XX_YIELD(_1);
 		}
+
+		// 起跳
 		AnimBounceRotate();
 
+		// 等待下落
 		while (bouncing) {
 			AnimBounceRotate();
 			XX_YIELD(_1);
 		}
 
-		// 插值让角色旋转到 0
+		// 如果还在移动中，继续下一次跳跃
+		if (moving) goto LabBegin;
+
+		// 插值让角色旋转值变到 0
 		radiansStep = radians / cRestoreRadiansDurationFrames;
 		for (_i = 0; _i < cRestoreRadiansDurationFrames; ++_i) {
 			radians -= radiansStep;
 			XX_YIELD(_1);
-			if (moving) goto LabBegin;
 		}
 		radians = 0;
 
-		XX_YIELD(_1);
+		// 回到开头
 		goto LabBegin;
 		XX_END(_1);
-#else
-		AnimBounceRotate();
-#endif
 	}
 
 	void Player::Update() {
@@ -202,12 +184,13 @@ LabBegin:
 	void Player::Draw() {
 		auto& f = gg.pics.frog_char;
 
-		XY p{ pos.x, pos.y + yOffset };
-		XY anchor{ f.anchor.x, 0.5f };
+		XY p{ pos.x, pos.y + bounceHeight };
+
 		XY s;
 		s.y = scale;
 		if (flipX) s.x = scale;
 		else s.x = -scale;
+
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(p), s * scene->cam.scale, radians);
 	}
 

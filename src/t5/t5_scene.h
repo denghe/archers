@@ -18,10 +18,13 @@ namespace Test5 {
 		xx::Grid2dCircle<Wall*> gridWalls;
 		// 所有墙壁
 		xx::List<xx::Shared<Wall>> walls;
+
+		// 罐子空间索引
+		xx::Grid2dCircle<Pot*> gridPots;
 		// 所有罐子
 		xx::List<xx::Shared<Pot>> pots;
 
-		// 整个能简单移动的 player 来测试一下小人挖矿的效果
+		// 追逐鼠标的玩家小人
 		xx::Shared<Player> player;
 
 		// for draw floorMaskTex, light ...
@@ -32,12 +35,6 @@ namespace Test5 {
 		// 地图生成
 		void GenWorld();
 
-		// 建墙
-		void GenWall(XYi cr_);
-		// 挖墙
-		void DigWall(XYi cr_);
-		// 设矿
-		void SetWallOre(XYi cr_);
 
 		void MakeUI();
 		void Init() override;

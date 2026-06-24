@@ -6,6 +6,7 @@ namespace Test5 {
 	void Pot::Init(Scene* scene_, XYi cr_) {
 		typeId = cTypeId;
 		scene = scene_;
+
 		radius = cCellPixelSize * 0.5f;
 		scale = radius * 2.f / gg.pics.frog_pot_[0].uvRect.w;
 		radians = {};
@@ -14,7 +15,10 @@ namespace Test5 {
 		pos = p;
 		y = p.y;
 
-		// todo: 注册到空间索引
+		indexAtContainer = scene_->pots.len - 1;
+		assert(scene_->pots[indexAtContainer].pointer == this);
+
+		scene_->gridPots.Add(indexAtGrid, this);
 	}
 
 	void Pot::Update() {
@@ -40,14 +44,22 @@ namespace Test5 {
 		assert(scene);
 		assert(!disposing);
 		assert(indexAtContainer != -1);
+		auto& container = scene->pots;
+		assert(container[indexAtContainer].pointer == this);
 
 		// 设置标记
 		disposing = true;
 
-		// 析构
-		scene->pots.Remove(this);
+		// 进一步释放资源
+		if (indexAtGrid > -1) {
+			scene->gridPots.Remove(indexAtGrid, this);
+		}
 
-		// todo: 从空间索引中移除
+		// 从容器中移除对象( 释放内存 )
+		auto i = indexAtContainer;
+		container.Back()->indexAtContainer = i;
+		indexAtContainer = -1;
+		container.SwapRemoveAt(i);
 	}
 
 }

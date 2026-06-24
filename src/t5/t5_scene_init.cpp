@@ -15,12 +15,15 @@ namespace Test5 {
 		mapPixelSize = mapSize * cCellPixelSize;
 		cam.Init(gg.scale, gg.designSize.y / mapPixelSize.y, mapPixelSize / 2);
 		gridWalls.Init(cCellPixelSize, mapSize.y, mapSize.x);
+		gridPots.Init(cCellPixelSize, mapSize.y, mapSize.x);
 
 		static constexpr auto cellSize = cCreatureRadius * 2;
 		floorMaskTex.Emplace()->Make(mapPixelSize);
 
 		assert(gridWalls.pixelSize.x >= mapPixelSize.x);
 		assert(gridWalls.pixelSize.y >= mapPixelSize.y);
+		assert(gridPots.pixelSize.x >= mapPixelSize.x);
+		assert(gridPots.pixelSize.y >= mapPixelSize.y);
 
 		sortContainer.Resize<true>((int32_t)gridWalls.pixelSize.y + 128);
 

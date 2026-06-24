@@ -9,17 +9,23 @@ namespace Test5 {
 
 		// 记录上一个坐标，用来推算角色朝向
 		XY lastPos{};
-		float direction{};
-		float yOffset{};		// for Draw: pos.y = y + yOffset
-		float pcDiff{};			// fill by InitYOffset()
-		void InitYOffset();
-		void UpdateYOffset();
+
+		// 记录角色朝向
+		float direction{};	// todo: directionSin Cos
+
+		// for Draw: pos.y = y + yOffset
+		float yOffset{};
+
+		// 记录 pivot 和 center point 的 y 坐标差。在 InitYOffset() 中计算并填充
+		float pcDiff{};
+
 		int32_t _1{}, _2{}, _i{};
 		float bounceHeight{}, bounceInc{}, radiansStep{}, radiansTarget{};
-		float bounceHeightMax{}, bounceHalfDuration{};	// call AnimBounceRotate() before: need fill
+		float bounceHeightMax{}, bounceHalfDuration{};
 		bool bouncing{}, moving{};
+
+		void AnimInit();
 		void AnimBounceRotate();
-		void AnimInit();		// init args
 		void Anim();
 
 		// 设置坐标, 同步 y
