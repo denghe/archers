@@ -155,18 +155,32 @@ namespace Test5 {
 	}
 
 	void Player::Anim() {
-#if 0
+		static constexpr float cRestoreRadiansDuration{ 0.05f };
+		static constexpr int32_t cRestoreRadiansDurationFrames{ int32_t(gg.cFps * cRestoreRadiansDuration) };
+#if 1
 		XX_BEGIN(_1);
-		while (true) {
-			// bounce + rotate
-			if (moving || bouncing) {
-				AnimBounceRotate();
-				XX_YIELD(_1);
-			}
-
-			AnimInit();	// reset anim
+LabBegin:
+		while (!moving) {
 			XX_YIELD(_1);
 		}
+		AnimBounceRotate();
+
+		while (bouncing) {
+			AnimBounceRotate();
+			XX_YIELD(_1);
+		}
+
+		// 插值让角色旋转到 0
+		radiansStep = radians / cRestoreRadiansDurationFrames;
+		for (_i = 0; _i < cRestoreRadiansDurationFrames; ++_i) {
+			radians -= radiansStep;
+			XX_YIELD(_1);
+			if (moving) goto LabBegin;
+		}
+		radians = 0;
+
+		XX_YIELD(_1);
+		goto LabBegin;
 		XX_END(_1);
 #else
 		AnimBounceRotate();

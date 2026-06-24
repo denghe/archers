@@ -14,7 +14,7 @@ namespace Test5 {
 		float pcDiff{};			// fill by InitYOffset()
 		void InitYOffset();
 		void UpdateYOffset();
-		int32_t _1{}, _2{};
+		int32_t _1{}, _2{}, _i{};
 		float bounceHeight{}, bounceInc{}, radiansStep{}, radiansTarget{};
 		float bounceHeightMax{}, bounceHalfDuration{};	// call AnimBounceRotate() before: need fill
 		bool bouncing{}, moving{};
