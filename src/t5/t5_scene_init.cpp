@@ -17,7 +17,6 @@ namespace Test5 {
 		gridWalls.Init(cCellPixelSize, mapSize.y, mapSize.x);
 		gridPots.Init(cCellPixelSize, mapSize.y, mapSize.x);
 
-		static constexpr auto cellSize = cCreatureRadius * 2;
 		floorMaskTex.Emplace()->Make(mapPixelSize);
 
 		assert(gridWalls.pixelSize.x >= mapPixelSize.x);

@@ -7,3 +7,4 @@ using XYi = xx::XYi;
 static constexpr float gPI{ M_PI };
 static constexpr float g2PI{ gPI * 2.f };
 static constexpr float gPI_2{ gPI / 2.f };
+static constexpr float gPI_4{ gPI / 4.f };

@@ -6,10 +6,6 @@
 
 namespace Test5 {
 
-	struct Properties {
-		int32_t hp{}, hpMax{};
-	};
-
 	struct Scene;
 
 	// 场景对象之 基础版
@@ -25,6 +21,7 @@ namespace Test5 {
 		void CallDisposeCallbacks();
 	};
 
+
 	// 场景对象之 带完整数值 能上DOT 版( 大多数怪继承它 )
 	struct SceneProps12DotItem : SceneItem, Global::Props12, Global::DotContainer {
 		// 令目标受伤
@@ -37,9 +34,12 @@ namespace Test5 {
 		virtual void DrawHPBar() {};
 	};
 
+
 	// 场景对象之 带结果数值版( 常见于子弹啥的. 创建时需复制创建者数据 )
 	struct SceneProps2Item : SceneItem, Global::Props2 {};
 
+
+	// 网格缓存
 	struct GridCache {
 		XY pos{};
 		float radius{};
@@ -49,12 +49,30 @@ namespace Test5 {
 		}
 	};
 
+
+	// 场景对象之 地板遮罩版( 用于绘制地板遮罩 )
 	struct FloorMask {
 		xx::Frame frame;
 		XY pos{}, scale{ 1.f };
 		float radians{}, colorplus{ 1.f };
 		xx::RGBA8 color{ 0,0,0,127 };
 	};
+
+
+	// 简单模拟一下属性面板
+	struct Properties {
+		int32_t hp{}, hpMax{};
+	};
+
+
+	// 穿刺信息
+	struct PierceInfo {
+		// 目标
+		xx::Weak<SceneItem> target;
+		// 过期时间点
+		float elapsedTime;
+	};
+
 
 	// 一系列预声明就放在这以方便使用
 	struct Wall;
