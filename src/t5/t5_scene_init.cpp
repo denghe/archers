@@ -39,6 +39,11 @@ namespace Test5 {
 					player.Emplace()->Init(this, { x,y });
 					break;
 				}
+				case U'罐':
+				{
+					pots.Emplace().Emplace()->Init(this, { x,y });
+					break;
+				}
 				}
 			}
 		}

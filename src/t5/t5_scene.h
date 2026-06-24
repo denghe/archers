@@ -7,23 +7,6 @@ namespace Test5 {
 	using SceneBase = Global::SceneBase;
 	struct Scene : SceneBase {
 
-		/********************************/
-		// UI area
-
-		// 墙壁图切换
-		static constexpr xx::FromTo<int32_t> cWallTexIndexRange{ 0, 2 };
-		int32_t cWallTexIndex{ cWallTexIndexRange.from };
-		xx::Shared<xx::Slider> uiWallTexIndex;
-
-		// 地板图切换
-		static constexpr xx::FromTo<int32_t> cFloorTexIndexRange{ 0, 4 };
-		int32_t cFloorTexIndex{ cFloorTexIndexRange.from };
-		xx::Shared<xx::Slider> uiFloorTexIndex;
-
-		// UI area
-		/********************************/
-
-
 		// 地图逻辑格子尺寸
 		XYi mapSize{};
 		// 地图总像素尺寸
@@ -35,6 +18,8 @@ namespace Test5 {
 		xx::Grid2dCircle<Wall*> gridWalls;
 		// 所有墙壁
 		xx::List<xx::Shared<Wall>> walls;
+		// 所有罐子
+		xx::List<xx::Shared<Pot>> pots;
 
 		// 整个能简单移动的 player 来测试一下小人挖矿的效果
 		xx::Shared<Player> player;

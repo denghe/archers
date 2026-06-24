@@ -3,95 +3,44 @@
 
 namespace Test5 {
 
-	void Player::StepAnim() {
-		// 步进动画
-		frameIndex += frameIndexStep;
-		if (frameIndex >= numFrames) {
-			frameIndex -= numFrames;
-		}
-	}
-
-	void Player::FillFrames() {
-		static constexpr int32_t cNumIdleFrames{ gg.pics.slime1_idle_.size() / 4 };
-		static constexpr int32_t cNumMoveFrames{ gg.pics.slime1_move_.size() / 4 };
-		static constexpr int32_t cNumAttackFrames{ gg.pics.slime1_attack_.size() / 4 };
-
-		static constexpr float cIdleFrameStep{ cNumIdleFrames / (gg.cFps * 0.5f) };
-		static constexpr float cMoveFrameStep{ cNumMoveFrames / (gg.cFps * 0.5f) };
-		static constexpr float cAttackFrameStep{ cNumAttackFrames / (gg.cFps * 0.5f) };
-
-		// 重置动画播放进度
-		frameIndex = 0;
-
-		// 根据 md 填充 frames, numFrames
-		switch (actionMode) {
-		case ActionModes::Idle:
-			frames = &gg.pics.slime1_idle_[cNumIdleFrames * frameDirection];
-			numFrames = cNumIdleFrames;
-			frameIndexStep = cIdleFrameStep;
-			break;
-		case ActionModes::Move:
-			frames = &gg.pics.slime1_move_[cNumMoveFrames * frameDirection];
-			numFrames = cNumMoveFrames;
-			frameIndexStep = cMoveFrameStep;
-			break;
-		case ActionModes::Attack:
-			frames = &gg.pics.slime1_attack_[cNumAttackFrames * frameDirection];
-			numFrames = cNumAttackFrames;
-			frameIndexStep = cAttackFrameStep;
-			break;
-		default:
-			assert(false);
-		}
-	}
-
 	void Player::SetPos(XY pos_) {
-		if (pos == pos_) return;
+		// 没有移动? 直接返回
+		if (pos == pos_) {
+			moving = false;
+			return;
+		}
 		pos = pos_;
 		y = pos.y;
-		// 没有移动? 直接返回
+		moving = true;
+
+		// 和上一帧坐标一样? 就不用算角度了
 		if (pos == lastPos) return;
 
 		// 通过上一帧坐标当前坐标差值矢量得到角度，进而判断角度区间推算方向:
 		auto d = lastPos - pos;
+		if (d.x > 0) flipX = false;
+		else if (d.x < 0) flipX = true;
 		lastPos = pos;
-		auto r = std::atan2(d.y, d.x);	// PI ~ -PI
-		static constexpr float pi14{ gPI / 4 };
-		static constexpr float pi34{ gPI / 4 * 3 };
-
-		// 当前史莱姆资源 4向顺序为 下:0  上:1  右:2  左:3
-		int32_t md{ -1 };
-		if (r >= 0) {
-			if (r < pi14) md = 2;	// 右
-			else if (r < pi34) md = 1;	// 上
-			else md = 3;	// 左
-		}
-		else {
-			if (r > -pi14) md = 2;	// 右
-			else if (r > -pi34) md = 0;	// 下
-			else md = 3;	// 左
-		}
-
-		// 朝向没变? 直接返回
-		if (frameDirection == md) return;
-
-		frameDirection = md;
-		FillFrames();
+		direction = std::atan2(d.y, d.x);	// PI ~ -PI
 	}
 
 	void Player::Init(Scene* scene_, XYi cr_) {
 		typeId = cTypeId;
 		scene = scene_;
-		radius = cCellPixelSize;// cCreatureRadius;
-		scale = radius * 2.f / gg.pics.slime1_idle_[0].uvRect.w;
+		radius = cCellPixelSize * 0.5f;
+		scale = radius * 2.f / gg.pics.frog_char.uvRect.w;
 		radians = {};
 		// 坐标位于格子 下面中间 ( 怪的 pivot 为下中 )
 		auto p = cr_ * cCellPixelSize + XY{ cCellPixelSize * 0.5f, cCellPixelSize - 1 };
 		// 模拟一下从上走下来，正面朝下
 		lastPos.x = pos.x;
 		lastPos.y = pos.y - 1;
-		actionMode = ActionModes::Move;
 		SetPos(p);
+
+		InitYOffset();
+		AnimInit();
+		bounceHeightMax = 20.f;
+		bounceHalfDuration = 1.f / 10.f;
 
 		// 初始化数据面板
 		healthMaxDefault = 100.f;
@@ -99,37 +48,158 @@ namespace Test5 {
 		PropsCalc();
 	}
 
-	void Player::Update() {
-		// 步进动画
-		StepAnim();
 
+	void Player::InitYOffset() {
+		auto& frame = gg.pics.frog_char;
+		auto frameHeight = (float)frame.uvRect.h;
+		auto centerHeight = frameHeight * 0.5f;
+		auto pivotHeight = frameHeight * frame.anchor.y;
+		pcDiff = centerHeight - pivotHeight;
+	}
+
+	void Player::UpdateYOffset() {
+		yOffset = pcDiff + bounceHeight;
+	}
+
+	void Player::AnimInit() {
+		radians = 0;
+		radiansTarget = 0;
+		bounceHeight = 0;
+		bouncing = {};
+		UpdateYOffset();
+	}
+
+	// jump + rotate anim
+	void Player::AnimBounceRotate() {
+		static constexpr float bounceRadiansTarget1{ 25.f / 180.f };
+		static constexpr float bounceRadiansTarget2{ -35.f / 180.f };
+		assert(bounceHeightMax > 0);
+		float bounceStepNums{ gg.cFps * bounceHalfDuration };
+		float bounceStepSpeed{ bounceHeightMax / bounceStepNums };
+		float bounceStepSpeedMax{ bounceStepSpeed * 2.f };
+		float bounceStepSpeedDecrease{ bounceStepSpeedMax / bounceStepNums };
+
+		XX_BEGIN(_2);
+		AnimInit();
+	LabLoop:
+		// jump up
+		bouncing = true;
+		bounceInc = bounceStepSpeedMax;
+		radians = radiansTarget;
+		radiansTarget = bounceRadiansTarget1;
+		radiansStep = (radiansTarget - radians) / bounceStepNums;
+		do {
+			bounceHeight -= bounceInc;
+			bounceInc -= bounceStepSpeedDecrease;
+			UpdateYOffset();
+			radians += radiansStep;
+			XX_YIELD(_2);
+		} while (bounceInc >= 0);
+		bounceHeight = -bounceHeightMax;
+		UpdateYOffset();
+		XX_YIELD(_2);
+
+		// falling
+		bounceInc = 0;
+		radians = radiansTarget;
+		do {
+			bounceHeight += bounceInc;
+			bounceInc += bounceStepSpeedDecrease;
+			UpdateYOffset();
+			XX_YIELD(_2);
+		} while (bounceInc < bounceStepSpeedMax);
+		assert(std::fabs(bounceHeight) < bounceInc);
+
+		// for anim end notice
+		bouncing = false;
+		XX_YIELD(_2);
+
+		// jump up
+		bouncing = true;
+		bounceInc = bounceStepSpeedMax;
+		radians = radiansTarget;
+		radiansTarget = bounceRadiansTarget2;
+		radiansStep = (radiansTarget - radians) / bounceStepNums;
+		do {
+			bounceHeight -= bounceInc;
+			bounceInc -= bounceStepSpeedDecrease;
+			UpdateYOffset();
+			radians += radiansStep;
+			XX_YIELD(_2);
+		} while (bounceInc >= 0);
+		bounceHeight = -bounceHeightMax;
+		UpdateYOffset();
+		XX_YIELD(_2);
+
+		// falling
+		bounceInc = 0;
+		radians = radiansTarget;
+		do {
+			bounceHeight += bounceInc;
+			bounceInc += bounceStepSpeedDecrease;
+			UpdateYOffset();
+			XX_YIELD(_2);
+		} while (bounceInc < bounceStepSpeedMax);
+		assert(std::fabs(bounceHeight) < bounceInc);
+		bounceHeight = 0;
+		UpdateYOffset();
+		XX_YIELD(_2);
+
+		// for anim end notice
+		bouncing = false;
+		XX_YIELD(_2);
+
+		// loop
+		goto LabLoop;
+		XX_END(_2);
+	}
+
+	void Player::Anim() {
+#if 0
+		XX_BEGIN(_1);
+		while (true) {
+			// bounce + rotate
+			if (moving || bouncing) {
+				AnimBounceRotate();
+				XX_YIELD(_1);
+			}
+
+			AnimInit();	// reset anim
+			XX_YIELD(_1);
+		}
+		XX_END(_1);
+#else
+		AnimBounceRotate();
+#endif
+	}
+
+	void Player::Update() {
 		// 简单的让坐标等同于鼠标位置，方便看效果
 		auto mp = scene->cam.ToLogicPos(gg.mousePos);
 		if (mp.x < cCellPixelSize) mp.x = cCellPixelSize;
 		else if (mp.x >= scene->mapPixelSize.x - cCellPixelSize) mp.x = scene->mapPixelSize.x - cCellPixelSize - 0.001f;
 		if (mp.y < cCellPixelSize) mp.y = cCellPixelSize;
 		else if (mp.y >= scene->mapPixelSize.y - cCellPixelSize) mp.y = scene->mapPixelSize.y - cCellPixelSize - 0.001f;
-		SetPos(mp);
 
-		// 鼠标滚轮缩放
-		// 怪的身高不可以高过 墙正面根 到 shadow mask 边缘的距离, 否则会导致 mask 覆盖到怪身上
-		if (gg.mouse[GLFW_MOUSE_BUTTON_LAST + 1](0.2f)) {
-			scale *= 1.02f;
-		}
-		if (gg.mouse[GLFW_MOUSE_BUTTON_LAST + 2](0.2f)) {
-			scale *= 0.98f;
-		}
+		SetPos(mp);
+		Anim();
 	}
 
 	void Player::Draw() {
-		auto& f = frames[(int32_t)frameIndex];
-		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+		auto& f = gg.pics.frog_char;
+
+		XY p{ pos.x, pos.y + yOffset };
+		XY anchor{ f.anchor.x, 0.5f };
+		XY s;
+		s.y = scale;
+		if (flipX) s.x = scale;
+		else s.x = -scale;
+		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(p), s * scene->cam.scale, radians);
 	}
 
 	void Player::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (256.f / 64.f) * scene->cam.scale, 0, 0.5f);
+			, (1024.f / cCellPixelSize) * scene->cam.scale, 0, 1.f);
 	}
 
 	void Player::DrawShadow() {

@@ -30,7 +30,7 @@ namespace Test5 {
 			for (int32_t i = 0; i < mapSize.y; ++i) {
 				for (int32_t j = 0; j < mapSize.x; ++j) {
 					XY p{ j * cCellPixelSize, i * cCellPixelSize };
-					gg.Quad().DrawTinyFrame(gg.pics.floor_[cFloorTexIndex], cam.ToGLPos(p), { 0,1 }, cCellPixelSize / 32.f * cam.scale, 0);
+					gg.Quad().DrawTinyFrame(gg.pics.floor_[0], cam.ToGLPos(p), { 0,1 }, cCellPixelSize / 32.f * cam.scale, 0);
 				}
 			}
 
@@ -40,9 +40,11 @@ namespace Test5 {
 
 			// 影子
 			if (player) player->DrawShadow();
+			for (auto& o : pots) o->DrawShadow();
 
 			// 需要按 y 排序的内容
 			for (auto& o : walls) SortContainerAdd(o.pointer);
+			for (auto& o : pots) SortContainerAdd(o.pointer);
 			if (player) SortContainerAdd(player.pointer);
 			SortContainerDraw();
 		});
@@ -61,13 +63,10 @@ namespace Test5 {
 		auto lightTex = frameBuffer.Draw(gg.windowSize * lightTexScale, true, bgColor, [&] {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
 
-			// 在鼠标处打个光看效果
-#if 0
-			gg.Quad().DrawFrame(gg.pics.c512_light, gg.mousePos * lightTexScale, 1.f);
-#else
-			gg.Quad().DrawFrame(gg.pics.c256_light, gg.mousePos * lightTexScale, 2.f);
-#endif
+			for (auto& o : pots) o->DrawLight();
+			if (player) player->DrawLight();
 
+			// todo: walls 或许也会发光 比如火把
 			// ...
 		});
 		lightTex->SetParm(GL_LINEAR);

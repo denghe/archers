@@ -22,33 +22,9 @@ namespace Test5 {
 	}
 
 	void Scene::FixedUpdate() {
-		// 从 UI 同步数据
-		for (auto& o : walls) {
-			o->wallsIndex = cWallTexIndex;
-		}
-
 		//effectTexts.Update(time);
 		//UpdateItems(exploders);
 		if (player) player->Update();
-
-		auto mp = cam.ToLogicPos(gg.mousePos);
-		// 确保鼠标点击的位置是地图内部, 避开 ui & 外圈墙壁
-		if (!gg.uiHandler
-			&& mp.x > cCellPixelSize && mp.x < mapPixelSize.x - cCellPixelSize
-			&& mp.y > cCellPixelSize && mp.y < mapPixelSize.y - cCellPixelSize) {
-			// 鼠标左键 画 wall，右键 挖 wall
-			XYi cr = mp * c1_CellPixelSize;
-			if (gg.mouse[GLFW_MOUSE_BUTTON_1]) {
-				GenWall(cr);
-			}
-			if (gg.mouse[GLFW_MOUSE_BUTTON_2]) {
-				DigWall(cr);
-			}
-			if (gg.mouse[GLFW_MOUSE_BUTTON_3](0.2f)) {
-				SetWallOre(cr);
-			}
-		}
-
 	}
 
 }
