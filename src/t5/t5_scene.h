@@ -15,17 +15,19 @@ namespace Test5 {
 		xx::List<int32_t> mapData;
 
 		// 墙壁空间索引
-		xx::Grid2dCircle<Wall*> gridWalls;
+		xx::Grid2dCircle<Wall*, GridCache> gridWalls;
 		// 所有墙壁
 		xx::List<xx::Shared<Wall>> walls;
 
 		// 罐子空间索引
-		xx::Grid2dCircle<Pot*> gridPots;
+		xx::Grid2dCircle<Pot*, GridCache> gridPots;
 		// 所有罐子
 		xx::List<xx::Shared<Pot>> pots;
 
 		// 追逐鼠标的玩家小人
 		xx::Shared<Player> player;
+		// 所有玩家子弹
+		xx::List<xx::Shared<PlayerBullet>> playerBullets;
 
 		// for draw floorMaskTex, light ...
 		xx::FrameBuffer frameBuffer;

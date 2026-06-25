@@ -24,6 +24,7 @@ namespace Test5 {
 	void Scene::FixedUpdate() {
 		//effectTexts.Update(time);
 		//UpdateItems(exploders);
+		UpdateItems(playerBullets);
 		if (player) player->Update();
 	}
 

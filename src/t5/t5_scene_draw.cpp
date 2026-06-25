@@ -39,12 +39,14 @@ namespace Test5 {
 			gg.Quad().Draw(*floorMaskTex, *floorMaskTex, cam.ToGLPos(mapPixelSize * 0.5f), 0.5f, cam.scale, 0, 1.f, {222,222,222,222});
 
 			// 影子
-			if (player) player->DrawShadow();
+			for (auto& o : playerBullets) o->DrawShadow();
 			for (auto& o : pots) o->DrawShadow();
+			if (player) player->DrawShadow();
 
 			// 需要按 y 排序的内容
 			for (auto& o : walls) SortContainerAdd(o.pointer);
 			for (auto& o : pots) SortContainerAdd(o.pointer);
+			for (auto& o : playerBullets) SortContainerAdd(o.pointer);
 			if (player) SortContainerAdd(player.pointer);
 			SortContainerDraw();
 		});
@@ -64,6 +66,7 @@ namespace Test5 {
 			gg.GLBlendFunc({ GL_SRC_COLOR, GL_ONE, GL_FUNC_ADD });
 
 			for (auto& o : pots) o->DrawLight();
+			for (auto& o : playerBullets) o->DrawLight();
 			if (player) player->DrawLight();
 
 			// todo: walls 或许也会发光 比如火把

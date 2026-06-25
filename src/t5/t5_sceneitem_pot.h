@@ -13,6 +13,11 @@ namespace Test5 {
 		void DrawLight() override;
 		void DrawShadow() override;
 		void Dispose() override;
+
+		// todo: 血条绘制
+
+		// 受伤( attackValue_ 来自攻击方的 PropsCalcAttackValue 计算结果 )
+		std::pair<float, int> Hurt(float attackValue_) { return {}; }
 	};
 
 }

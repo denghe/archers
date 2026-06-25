@@ -77,6 +77,8 @@ namespace Test5 {
 	// 一系列预声明就放在这以方便使用
 	struct Wall;
 	struct Player;
+	struct PlayerWeapon;
+	struct PlayerBullet;
 	struct Pot;
 	// ...
 

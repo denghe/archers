@@ -3,8 +3,6 @@
 
 namespace Test5 {
 
-	struct Player;
-
 	// 悬浮在玩家身上的近战武器：刀
 	// 1. 由玩家持有，跟随玩家移动
 	// 2. 挥刀时，刀会旋转一定角度，形成一个扇形的刀气( 大概由 3 张动画组成，不一定移动, 每张持续 5 帧 )
@@ -21,6 +19,21 @@ namespace Test5 {
 
 		// 基础攻击力
 		float baseDamage{ 1.f };
+
+		// 子弹飞行速度
+		float bulletFlySpeed{ 100.f };
+
+		// 每轮射击延迟
+		float shootDelay{ 1.f };
+
+		// 下一轮射击时间点
+		float nextShootTime{};
+
+		// 每轮射击的子弹颗数
+		int32_t shootCountPerRound{ 1 };
+
+		// 当前发射子弹的穿刺总次数
+		int32_t pierceCount{ 1 };
 
 		// 挥刀相关
 		int32_t _1{}, _i{};
