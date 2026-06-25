@@ -3,9 +3,14 @@
 
 namespace Test5 {
 
+	struct PlayerWeapon;
+
 	// ASDW 控制移动的玩家
 	struct Player : SceneProps12DotItem {
 		static constexpr int32_t cTypeId{ 2 };
+
+		// 玩家身上挂接的武器数组
+		xx::List<xx::Shared<PlayerWeapon>> weapons;
 
 		// 记录上一个坐标，用来推算角色朝向
 		XY lastPos{};

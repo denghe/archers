@@ -16,14 +16,19 @@ namespace Test5 {
 		// 指向拥有者
 		xx::Weak<Player> owner;
 
+		// 目标朝向
+		float targetRadians{}, radiansStep{};
+
 		// 基础攻击力
 		float baseDamage{ 1.f };
 
 		// 挥刀相关
-		int32_t _1{};
+		int32_t _1{}, _i{};
 		// ...
-		void AnimSwing();
+		void Swing();
+		bool IsSwinging() const;
 		float CalcRadians();
+		XY CalcPos();
 
 		void Init(Player* owner_);
 		void Update() override;

@@ -9176,7 +9176,7 @@
             <key type="filename">pics/light_sword1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.288889,0.5</point_f>
+                <point_f>0.322222,0.5</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -9369,7 +9369,7 @@
             <key type="filename">pics/sword1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.117647,0.533333</point_f>
+                <point_f>0.176471,0.5</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>

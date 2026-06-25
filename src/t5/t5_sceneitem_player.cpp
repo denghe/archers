@@ -41,6 +41,9 @@ namespace Test5 {
 		healthMaxDefault = 100.f;
 		PropsInit();
 		PropsCalc();
+
+		// 创建挂接的武器
+		weapons.Emplace().Emplace<PlayerWeapon>()->Init(this);
 	}
 
 	void Player::AnimBounceRotate() {
@@ -139,6 +142,9 @@ namespace Test5 {
 
 		SetPos(mp);
 		Anim();
+
+		// 更新挂接的武器
+		SceneBase::UpdateItems(weapons);
 	}
 
 	void Player::Draw() {
@@ -152,16 +158,33 @@ namespace Test5 {
 		else s.x = -scale;
 
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(p), s * scene->cam.scale, radians);
+
+		// 绘制挂接的武器
+		for (auto& o : weapons) {
+			o->Draw();
+		}
 	}
 
 	void Player::DrawLight() {
+#if 1
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (1024.f / cCellPixelSize) * scene->cam.scale, 0, 1.f);
+			, (1024.f / cCellPixelSize) * scene->cam.scale, 0, 0.7f);
+#endif
+
+		// 绘制挂接的武器
+		for (auto& o : weapons) {
+			o->DrawLight();
+		}
 	}
 
 	void Player::DrawShadow() {
 		gg.Quad().DrawFrame(gg.pics.c64_shadow, scene->cam.ToGLPos(pos)
 			, (radius * (1.f / 40.f)) * scene->cam.scale, 0, 1.f, { 180,180,180,180 });
+
+		// 绘制挂接的武器
+		for (auto& o : weapons) {
+			o->DrawShadow();
+		}
 	}
 
 	void Player::Dispose() {
