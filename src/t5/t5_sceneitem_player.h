@@ -30,6 +30,13 @@ namespace Test5 {
 		void AnimBounceRotate();
 		void Anim();
 
+		// 配合挥刀的下蹲动作相关
+		int32_t _3{}, _j{};
+		XY scale2{ 1 };
+		void SquatBegin();
+		void Squat();
+		bool IsSquating() const;
+
 		// 设置坐标, 同步 y
 		void SetPos(XY pos_);
 
@@ -38,6 +45,7 @@ namespace Test5 {
 		void Draw() override;
 		void DrawLight() override;
 		void DrawShadow() override;
+		void DrawGizmos() override;
 		void Dispose() override;
 	};
 

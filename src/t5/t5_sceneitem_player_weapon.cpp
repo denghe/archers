@@ -48,6 +48,9 @@ namespace Test5 {
 		// 创建刀气
 		scene->playerBullets.Emplace().Emplace<PlayerBullet>()->Init(this);
 
+		// 角色下蹲
+		owner->SquatBegin();
+
 		for (_i = 0; _i < cSwingSteps; ++_i) {
 			radians += cSwingAngleSteps;
 			XX_YIELD(_1);

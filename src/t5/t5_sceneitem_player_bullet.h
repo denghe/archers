@@ -10,7 +10,7 @@ namespace Test5 {
 		// 最大存活时长( 保底 )
 		static constexpr float cMaxLifetime{ 50.f };
 		// 帧动画步进值
-		static constexpr float cFrameNumberInc{ 5.f / gg.cFps };
+		static constexpr float cFrameNumberInc{ 1.f / 10.f };
 		// 穿刺间隔时长( 针对相同对象 )
 		static constexpr float cPierceInterval{ 0.1f };
 
@@ -39,6 +39,7 @@ namespace Test5 {
 		void Update() override;
 		void Draw() override;
 		void DrawLight() override;
+		void DrawGizmos() override;
 		void Dispose() override;
 	};
 

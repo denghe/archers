@@ -159,6 +159,11 @@ namespace Test5 {
 			, 2 * scale * scene->cam.scale, radians, 0.5f);
 	}
 
+	void PlayerBullet::DrawGizmos() {
+		// 绘制子弹的碰撞圆
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), scene->cam.scale, radians, 8);
+	}
+
 	void PlayerBullet::Dispose() {
 		assert(scene);
 		assert(!disposing);

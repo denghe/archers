@@ -3,6 +3,37 @@
 
 namespace Test5 {
 
+	void Player::SquatBegin() {
+		_3 = 0;
+		scale2 = 1.f;
+		Squat();
+	}
+
+	void Player::Squat() {
+		static constexpr float cSquatDuration{ 20.f / 120.f };
+		static constexpr int32_t cSquatScaleYNumSteps{ int32_t(cSquatDuration * gg.cFps) };
+		static constexpr float cSquatScaleYOffset{ 0.25f };
+		static constexpr float cSquatScaleYStep{ cSquatScaleYOffset / cSquatScaleYNumSteps };
+
+		XX_BEGIN(_3);
+		_j = cSquatScaleYNumSteps;
+		scale2.y = 1.f - cSquatScaleYOffset;
+		scale2.x = 2.f - scale2.y;
+		XX_YIELD(_3);
+		do {
+			scale2.y += cSquatScaleYStep;
+			scale2.x = 2.f - scale2.y;
+			XX_YIELD(_3);
+			_j--;
+		} while (_j > 0);
+		scale2 = 1.f;
+		XX_END(_3);
+	}
+
+	bool Player::IsSquating() const {
+		return _3 != 0;
+	}
+
 	void Player::SetPos(XY pos_) {
 		// 没有移动? 直接返回
 		if (pos == pos_) {
@@ -143,6 +174,7 @@ namespace Test5 {
 
 		SetPos(mp);
 		Anim();
+		if (IsSquating()) Squat();
 
 		// 更新挂接的武器
 		SceneBase::UpdateItems(weapons);
@@ -157,6 +189,7 @@ namespace Test5 {
 		s.y = scale;
 		if (flipX) s.x = scale;
 		else s.x = -scale;
+		s *= scale2;
 
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(p), s * scene->cam.scale, radians);
 
@@ -186,6 +219,11 @@ namespace Test5 {
 		for (auto& o : weapons) {
 			o->DrawShadow();
 		}
+	}
+
+	void Player::DrawGizmos() {
+		// 绘制玩家的碰撞圆
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), scene->cam.scale, radians, 8);
 	}
 
 	void Player::Dispose() {

@@ -95,6 +95,9 @@ namespace Test5 {
 
 		// gizmos
 		if (gg.isShowDebugPanel) {
+			for (auto& o : pots) o->DrawGizmos();
+			for (auto& o : playerBullets) o->DrawGizmos();
+			if (player) player->DrawGizmos();
 			// ...
 		}
 	}
