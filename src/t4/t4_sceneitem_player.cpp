@@ -55,7 +55,7 @@ namespace Test4 {
 		// 通过上一帧坐标当前坐标差值矢量得到角度，进而判断角度区间推算方向:
 		auto d = lastPos - pos;
 		lastPos = pos;
-		auto r = std::atan2(d.y, d.x);	// PI ~ -PI
+		auto r = std::atan2f(d.y, d.x);	// PI ~ -PI
 		static constexpr float pi14{ gPI / 4 };
 		static constexpr float pi34{ gPI / 4 * 3 };
 

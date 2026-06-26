@@ -3,31 +3,33 @@
 
 namespace Test5 {
 
-	void PlayerBullet::Init(Player* owner_, PlayerWeapon* weapon_, XY pos_, float radius_) {
+	void PlayerBullet::Init(PlayerWeapon* shooter_) {
 		typeId = cTypeId;
-		scene = owner_->scene;
-		owner = xx::WeakFromThis(owner_);
+		owner = shooter_->owner;
+		scene = owner->scene;
 
 		indexAtContainer = scene->playerBullets.len - 1;
 		assert(scene->playerBullets[indexAtContainer].pointer == this);
 
 		// 算出每帧的步进
-		flySpeed = weapon_->bulletFlySpeed;
-		inc = { 0.f, -flySpeed * gg.cDelta };
+		flySpeed = shooter_->bulletFlySpeed;
 		deathTime = scene->time + cMaxLifetime;
+		inc = owner->directionCosSin * (flySpeed * gg.cDelta);
+		radians = owner->direction + gPI_4;	// 让子弹的图片旋转 45 度，贴合方向
 
-		pos = pos_;
-		y = pos.y;
-		radius = radius_;
-		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h;
-		radians = -gPI_2;
+		yOffset = owner->pos.y - shooter_->pos.y;
+
+		pos = shooter_->pos + owner->directionCosSin * shooter_->shootDistance;
+		y = pos.y + yOffset;
+		radius = 64;
+		scale = radius * 2 / gg.pics.frog_sword_qi_[0].uvRect.h;
 
 		// 复制玩家当前数值面板值以便于算伤害
 		*(Props2*)this = *(Props2*)owner;
-		baseDamage = weapon_->baseDamage;
+		baseDamage = shooter_->baseDamage;
 
 		// 初始化穿刺数
-		leftPierceCount = weapon_->pierceCount;
+		leftPierceCount = shooter_->pierceCount;
 	}
 
 	void PlayerBullet::Update() {
@@ -39,19 +41,20 @@ namespace Test5 {
 
 		// 移动
 		pos += inc;
-		y = pos.y;
+		y = pos.y + yOffset;
 
 		// 越界自杀
 		if (pos.x < 0 || pos.x >= scene->mapPixelSize.x
-			|| pos.y < 0 || pos.y >= scene->mapPixelSize.y) {
+			|| pos.y < 0 || /*pos.*/y >= scene->mapPixelSize.y) {
 			Dispose();
 			return;
 		}
 
-		// 步进帧动画
+		// 步进帧动画. 动画播完后自杀
 		frameNumber += cFrameNumberInc;
-		if (frameNumber >= gg.pics.firearrow_.size()) {
-			frameNumber = 0.f;
+		if (frameNumber >= gg.pics.frog_sword_qi_.size()) {
+			Dispose();
+			return;
 		}
 
 		assert(leftPierceCount > 0);
@@ -147,13 +150,13 @@ namespace Test5 {
 	}
 
 	void PlayerBullet::Draw() {
-		gg.Quad().DrawFrame(gg.pics.firearrow_[frameNumber], scene->cam.ToGLPos(pos)
+		gg.Quad().DrawFrame(gg.pics.frog_sword_qi_[frameNumber], scene->cam.ToGLPos(pos)
 			, scale * scene->cam.scale, radians);
 	}
 
 	void PlayerBullet::DrawLight() {
-		gg.Quad().DrawFrame(gg.pics.light_firearrow, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians, 0.8f);
+		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
+			, 2 * scale * scene->cam.scale, radians, 0.5f);
 	}
 
 	void PlayerBullet::Dispose() {

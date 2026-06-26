@@ -26,6 +26,9 @@ namespace Test5 {
 		// 每轮射击延迟
 		float shootDelay{ 1.f };
 
+		// 子弹创建时的发射距离( 以武器 pos 算起 )
+		float shootDistance{ 32.f };
+
 		// 下一轮射击时间点
 		float nextShootTime{};
 

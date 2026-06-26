@@ -7,10 +7,10 @@ namespace Test5 {
 	struct PlayerBullet : SceneProps2Item {
 		static constexpr int32_t cTypeId{ 6 };
 
-		// 最大存活时长
+		// 最大存活时长( 保底 )
 		static constexpr float cMaxLifetime{ 50.f };
 		// 帧动画步进值
-		static constexpr float cFrameNumberInc{ 15.f / gg.cFps };
+		static constexpr float cFrameNumberInc{ 5.f / gg.cFps };
 		// 穿刺间隔时长( 针对相同对象 )
 		static constexpr float cPierceInterval{ 0.1f };
 
@@ -23,6 +23,8 @@ namespace Test5 {
 		// 当前帧下标
 		float frameNumber{};
 
+		// 中心点距离地面的高度值( Init 时填充 )
+		float yOffset{};
 		// 飞行速度( Init 时从 weapon 复制 )
 		float flySpeed{};
 		// 箭矢的基础攻击力( Init 时从 weapon 复制 )
@@ -33,7 +35,7 @@ namespace Test5 {
 		xx::List<PierceInfo> pierceInfos;
 
 
-		void Init(Player* owner_, PlayerWeapon* weapon_, XY pos_, float radius_);
+		void Init(PlayerWeapon* shooter_);
 		void Update() override;
 		void Draw() override;
 		void DrawLight() override;

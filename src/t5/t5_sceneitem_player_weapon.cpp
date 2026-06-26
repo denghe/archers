@@ -19,7 +19,7 @@ namespace Test5 {
 	}
 
 	float PlayerWeapon::CalcRadians() {
-		return gPI + owner->direction - gPI * 0.35f;
+		return owner->direction - gPI * 0.35f;
 	}
 
 	XY PlayerWeapon::CalcPos() {
@@ -44,7 +44,10 @@ namespace Test5 {
 		for (_i = 0; _i < cSwingBeginSteps; ++_i) {
 			XX_YIELD(_1);
 		}
-		// todo: 创建刀气 by owner->direction
+
+		// 创建刀气
+		scene->playerBullets.Emplace().Emplace<PlayerBullet>()->Init(this);
+
 		for (_i = 0; _i < cSwingSteps; ++_i) {
 			radians += cSwingAngleSteps;
 			XX_YIELD(_1);

@@ -17,11 +17,12 @@ namespace Test5 {
 		if (pos == lastPos) return;
 
 		// 通过上一帧坐标当前坐标差值矢量得到角度，进而判断角度区间推算方向:
-		auto d = lastPos - pos;
-		if (d.x > 0) flipX = false;
-		else if (d.x < 0) flipX = true;
+		auto d = pos - lastPos;
+		if (d.x > 0) flipX = true;
+		else if (d.x < 0) flipX = false;
 		lastPos = pos;
-		direction = std::atan2(d.y, d.x);	// PI ~ -PI
+		direction = std::atan2f(d.y, d.x);
+		directionCosSin = { std::cosf(direction),std::sinf(direction) };
 	}
 
 	void Player::Init(Scene* scene_, XYi cr_) {

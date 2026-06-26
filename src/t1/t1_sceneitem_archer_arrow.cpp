@@ -22,7 +22,7 @@ namespace Test1 {
 		y = pos.y;
 		radius = cPlayerRadius * 0.5f;
 		scale = radius * 2.f / gg.pics.firearrow_[0].uvRect.h;
-		radians = std::atan2(d.y, d.x);
+		radians = std::atan2f(d.y, d.x);
 
 		// 复制玩家当前数值面板值以便于算伤害
 		*(Props2*)this = *(Props2*)owner;

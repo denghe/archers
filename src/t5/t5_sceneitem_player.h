@@ -16,7 +16,8 @@ namespace Test5 {
 		XY lastPos{};
 
 		// 记录角色朝向
-		float direction{};	// todo: directionSin Cos
+		float direction{};
+		XY directionCosSin{};
 
 		// 跳着走相关
 		int32_t _1{}, _2{}, _i{};
