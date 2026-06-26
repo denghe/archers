@@ -51,7 +51,7 @@ namespace MainMenu {
 			});
 		};
 
-		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试青蛙砍罐子")).SetLabelBorder().onClicked = [this] {
+		L.Append(C->Make<xx::LabelButton>()->Init(2, 0, 0, fontSize)(U"测试青蛙砍罐子(鼠标左右键攻击)")).SetLabelBorder().onClicked = [this] {
 			SetDelayCmd([this] {
 				gg.MakeScene<Test5::Scene>()->Init();
 			});

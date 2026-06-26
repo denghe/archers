@@ -23,14 +23,14 @@ namespace Test5 {
 		// 子弹飞行速度
 		float bulletFlySpeed{ 100.f };
 
-		// 每轮射击延迟
-		float shootDelay{ 1.f };
-
-		// 子弹创建时的发射距离( 以武器 pos 算起 )
-		float shootDistance{ 32.f };
+		// 每轮攻击延迟
+		float shootDelay{ 0.2f };
 
 		// 下一轮射击时间点
 		float nextShootTime{};
+
+		// 子弹创建时的发射距离( 以武器 pos 算起 )
+		float shootDistance{ 32.f };
 
 		// 每轮射击的子弹颗数
 		int32_t shootCountPerRound{ 1 };
@@ -40,9 +40,14 @@ namespace Test5 {
 
 		// 挥刀相关
 		int32_t _1{}, _i{};
-		// ...
+		bool canBreakSwing{ true };
+		// 开始挥刀( 可打断 挥刀协程 后半段的收刀部分 )
+		void SwingBegin();
+		// 挥刀协程
 		void Swing();
-		bool IsSwinging() const;
+		// 返回 0: 没在挥刀   1: 正在    -1: 正在收刀，可被打断
+		int32_t IsSwinging() const;
+
 		float CalcRadians();
 		XY CalcPos();
 

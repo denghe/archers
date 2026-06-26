@@ -26,20 +26,24 @@ namespace Test5 {
 		return owner->pos + XY{ 0, -30 };
 	}
 
-	void PlayerWeapon::Swing() {
-		static constexpr float cSwingBeginDuration{ 0.1f };
-		static constexpr float cSwingDuration{ 0.05f };
-		static constexpr float cSwingEndDuration{ 0.2f };
-		static constexpr float cSwingBeginSteps{ int32_t(cSwingBeginDuration * gg.cFps) };
-		static constexpr float cSwingEndSteps{ int32_t(cSwingEndDuration * gg.cFps) };
+	void PlayerWeapon::SwingBegin() {
+		assert(canBreakSwing);
+		_1 = 0;
+		Swing();
+	}
 
-		static constexpr float cSwingSteps{ int32_t(cSwingDuration * gg.cFps) };
+	void PlayerWeapon::Swing() {
+		static constexpr float cSwingBeginDuration{ 0.02f };
+		static constexpr float cSwingDuration{ 0.03f };
+		static constexpr float cSwingEndDuration{ 0.05f };
+		static constexpr int32_t cSwingBeginSteps{ int32_t(cSwingBeginDuration * gg.cFps) };
+		static constexpr int32_t cSwingSteps{ int32_t(cSwingDuration * gg.cFps) };
+		static constexpr int32_t cSwingEndSteps{ int32_t(cSwingEndDuration * gg.cFps) };
 		static constexpr float cSwingAngleSteps{ gPI * 0.7f / int32_t(cSwingDuration * gg.cFps) };
 
-		// 挥刀
-		// 1，先把刀角度旋转到出刀前角度
-		// 2，把刀改成挥到位后的角度，并创建一个扇形的刀气( 独立的子弹 )
 		XX_BEGIN(_1);
+		// 保持挥刀前的角度一小段时间
+		canBreakSwing = false;
 		radians = CalcRadians();
 		for (_i = 0; _i < cSwingBeginSteps; ++_i) {
 			XX_YIELD(_1);
@@ -48,21 +52,27 @@ namespace Test5 {
 		// 创建刀气
 		scene->playerBullets.Emplace().Emplace<PlayerBullet>()->Init(this);
 
-		// 角色下蹲
+		// 角色开始下蹲
 		owner->SquatBegin();
 
+		// 顺时针挥刀
 		for (_i = 0; _i < cSwingSteps; ++_i) {
 			radians += cSwingAngleSteps;
 			XX_YIELD(_1);
 		}
+
+		// 刀停在挥完的角度一阵子( 可被打断 )
+		canBreakSwing = true;
 		for (_i = 0; _i < cSwingEndSteps; ++_i) {
 			XX_YIELD(_1);
 		}
-		_1 = 0;	// reset coroutine
+
+		// 重置协程行号
+		_1 = 0;
 		XX_END(_1);
 	}
 
-	bool PlayerWeapon::IsSwinging() const {
+	int32_t PlayerWeapon::IsSwinging() const {
 		return _1 > 0;
 	}
 
@@ -73,7 +83,6 @@ namespace Test5 {
 
 		targetRadians = CalcRadians();
 		// todo
-		// 攻击 cd 计算
 		// 攻击目标查找
 		// 如果当前没有攻击目标，且 cd 已到，则面朝鼠标挥刀
 
@@ -87,10 +96,16 @@ namespace Test5 {
 			xx::AngleStep(radians, targetRadians, gPI * 0.02f);
 		}
 
-		if (gg.mouse[GLFW_MOUSE_BUTTON_1](0.2f)) {
-			if (!IsSwinging()) {
-				Swing();
+		// 攻击 cd 计算
+		if (gg.mouse[GLFW_MOUSE_BUTTON_1] && canBreakSwing) {
+			if (nextShootTime <= gg.time) {
+				nextShootTime = gg.time + shootDelay;
+				SwingBegin();
 			}
+		}
+		// 攻击不计算 cd ( 挥刀有无法打断的部分时长 )
+		if (gg.mouse[GLFW_MOUSE_BUTTON_2] && canBreakSwing) {
+			SwingBegin();
 		}
 	}
 
