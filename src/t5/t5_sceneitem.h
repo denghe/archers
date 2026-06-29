@@ -75,8 +75,9 @@ namespace Test5 {
 	struct GridCache {
 		XY pos{};
 		float radius{};
-		void operator=(SceneItem* p);
-		void operator=(Pot* p);
+		void operator=(SceneItem* o);
+		//void operator=(Player* o);
+		void operator=(Pot* o);
 		// ...
 	};
 
