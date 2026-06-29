@@ -24,10 +24,28 @@ namespace Test5 {
 	void Pot::Update() {
 	}
 
+	std::pair<float, int> Pot::Hurt(float attackValue_) {
+		//auto r = PropsDoHurt(gg.rnd, attackValue_);
+		//if (r.second == 0) {
+		//	// 变白
+			whiteColorEndTime = scene->time + cWhiteColorDuration;
+		//}
+		//else if (r.second == 2) {
+		//	// 爆炸特效
+		//	scene->exploders.Emplace().Emplace()->Init(this);
+		//	// 自杀
+		//	Dispose();
+		//}
+		//return r;
+			return {};
+	}
+
 	void Pot::Draw() {
 		auto& f = gg.pics.frog_pot_[0];
+		float cp{ 1 };
+		if (scene->time < whiteColorEndTime) cp = 10000.f;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale);// , radians - gPI_2);
+			, scale * scene->cam.scale, radians, cp);
 	}
 
 	void Pot::DrawLight() {
@@ -38,6 +56,10 @@ namespace Test5 {
 	void Pot::DrawShadow() {
 		gg.Quad().DrawFrame(gg.pics.c64_shadow, scene->cam.ToGLPos(pos)
 			, (radius * (1.f / 40.f)) * scene->cam.scale, 0, 1.f, { 180,180,180,180 });
+	}
+
+	void Pot::DrawGizmos() {
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
 	}
 
 	void Pot::Dispose() {

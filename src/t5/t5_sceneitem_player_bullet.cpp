@@ -68,10 +68,9 @@ namespace Test5 {
 
 		// 查找子弹位置的罐子
 		auto cri = scene->gridPots.PosToCRIndex(pos);
-		scene->gridPots.ForeachBy9Break(cri.y, cri.x, [&](decltype(scene->gridPots)::Node& o, float range)->bool {
+		scene->gridPots.ForeachByRange(cri.y, cri.x, 128, gg.sgrdd, [&](decltype(scene->gridPots)::Node& o, float range)->void {
 			// 开始碰撞判定
 			auto d = o.cache.pos - pos;
-			d.y *= 2.0f;	// 椭圆效果
 			auto mag2 = d.x * d.x + d.y * d.y;
 			auto r = o.cache.radius + radius;
 			auto rr = r * r;
@@ -84,7 +83,7 @@ namespace Test5 {
 					return pi.target.GetPointer() == o.value;
 					})) {
 					// 忽略碰撞 继续下次查询
-					return false;
+					return;
 				}
 				// 防止目标释放内存导致指针失效，先拿 weak ptr
 				auto w = xx::WeakFromThis(o.value);
@@ -119,10 +118,10 @@ namespace Test5 {
 					// 穿刺次数 -1
 					--leftPierceCount;
 					// 没有次数就终止整个查询
-					if (leftPierceCount <= 0) return true;
+					if (leftPierceCount <= 0) return;
 				}
 			}
-			return false;
+			return;
 		});
 
 		bool needDispose{};
@@ -160,8 +159,7 @@ namespace Test5 {
 	}
 
 	void PlayerBullet::DrawGizmos() {
-		// 绘制子弹的碰撞圆
-		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), scene->cam.scale, radians, 8);
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
 	}
 
 	void PlayerBullet::Dispose() {

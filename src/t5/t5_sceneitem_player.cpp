@@ -222,8 +222,10 @@ namespace Test5 {
 	}
 
 	void Player::DrawGizmos() {
-		// 绘制玩家的碰撞圆
-		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), scene->cam.scale, radians, 8);
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
+		for (auto& o : weapons) {
+			o->DrawGizmos();
+		}
 	}
 
 	void Player::Dispose() {

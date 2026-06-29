@@ -11,7 +11,7 @@ namespace Test5 {
 		pos = CalcPos();
 		y = pos.y;
 
-		radius = 16.f;	// unused
+		radius = 32.f;	// for draw gizmos only
 		scale = 2.f;
 		radians = CalcRadians();
 
@@ -119,6 +119,10 @@ namespace Test5 {
 		auto& f = gg.pics.light_sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
 			, scale * scene->cam.scale, radians);
+	}
+
+	void PlayerWeapon::DrawGizmos() {
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
 	}
 
 	void PlayerWeapon::Dispose() {

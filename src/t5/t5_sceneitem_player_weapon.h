@@ -36,7 +36,7 @@ namespace Test5 {
 		int32_t shootCountPerRound{ 1 };
 
 		// 当前发射子弹的穿刺总次数
-		int32_t pierceCount{ 1 };
+		int32_t pierceCount{ 9999999 };
 
 		// 挥刀相关
 		int32_t _1{}, _i{};
@@ -55,6 +55,7 @@ namespace Test5 {
 		void Update() override;
 		void Draw() override;
 		void DrawLight() override;
+		void DrawGizmos() override;
 		void Dispose() override;
 	};
 
