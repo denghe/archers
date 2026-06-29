@@ -38,24 +38,6 @@ namespace Test5 {
 	// 场景对象之 带结果数值版( 常见于子弹啥的. 创建时需复制创建者数据 )
 	struct SceneProps2Item : SceneItem, Global::Props2 {};
 
-
-	// 网格缓存
-	struct GridCache {
-		XY pos{};
-		float radius{};
-		void operator=(SceneItem* p) {
-#if 0
-			pos = p->pos;
-#else
-			pos.x = p->pos.x;
-			pos.y = p->pos.y - p->radius * 0.5f;
-#endif
-			pos.x = p->pos.x;
-			radius = p->radius;
-		}
-	};
-
-
 	// 场景对象之 地板遮罩版( 用于绘制地板遮罩 )
 	struct FloorMask {
 		xx::Frame frame;
@@ -87,5 +69,15 @@ namespace Test5 {
 	struct PlayerBullet;
 	struct Pot;
 	// ...
+
+
+	// 网格缓存
+	struct GridCache {
+		XY pos{};
+		float radius{};
+		void operator=(SceneItem* p);
+		void operator=(Pot* p);
+		// ...
+	};
 
 }
