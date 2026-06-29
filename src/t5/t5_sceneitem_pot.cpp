@@ -59,7 +59,8 @@ namespace Test5 {
 	}
 
 	void Pot::DrawGizmos() {
-		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
+		auto p = scene->gridPots.NodeAt(indexAtGrid).cache.pos;
+		gg.Line().DrawCircle(scene->cam.ToGLPos(p), radius * scene->cam.scale, radians, 16);
 	}
 
 	void Pot::Dispose() {

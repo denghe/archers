@@ -44,7 +44,13 @@ namespace Test5 {
 		XY pos{};
 		float radius{};
 		void operator=(SceneItem* p) {
+#if 0
 			pos = p->pos;
+#else
+			pos.x = p->pos.x;
+			pos.y = p->pos.y - p->radius * 0.5f;
+#endif
+			pos.x = p->pos.x;
 			radius = p->radius;
 		}
 	};
