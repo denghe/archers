@@ -165,12 +165,12 @@ namespace Test1 {
 
 	void ArcherArrow2::Draw() {
 		gg.Quad().DrawFrame(gg.pics.firearrow_[frameNumber], scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, -radians);
 	}
 
 	void ArcherArrow2::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.light_firearrow, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians, 0.8f);
+			, scale * scene->cam.scale, -radians, 0.8f);
 	}
 
 	void ArcherArrow2::Dispose() {

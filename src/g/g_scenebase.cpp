@@ -64,10 +64,10 @@ namespace Global {
 	// 处理窗口焦点变化，默认调整全局音量
 	void SceneBase::OnFocus(bool focused_) {
 		if (focused_) {
-			gg.sound.SetGlobalVolume(1);
+			gg.sound.SetMasterVolume(1);
 		}
 		else {
-			gg.sound.SetGlobalVolume(0);
+			gg.sound.SetMasterVolume(0);
 		}
 	}
 
