@@ -124,7 +124,7 @@ namespace Test4 {
 	void Player::Draw() {
 		auto& f = frames[(int32_t)frameIndex];
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, -radians);
 	}
 
 	void Player::DrawLight() {

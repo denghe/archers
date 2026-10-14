@@ -199,7 +199,7 @@ namespace Test3 {
 			c = xx::RGBA8_White;
 		}
 		gg.Quad().DrawFrame(gg.pics.c128_monster, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians, cp, c);
+			, scale * scene->cam.scale, -radians, cp, c);
 		weapon->Draw();
 	}
 

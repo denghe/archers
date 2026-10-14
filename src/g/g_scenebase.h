@@ -72,7 +72,7 @@ namespace Global {
 		xx::Shared<CursorBase> cursor;
 
 		// fixed update 相关
-		float time{}, timePool{}, timeScale{ 1 }, timer{};
+		float time{}, timePool{}, timeScale{ 1 }, masterVolumeBackup{};
 
 		// 默认初始化
 		virtual void Init();

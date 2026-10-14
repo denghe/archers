@@ -191,7 +191,7 @@ namespace Test5 {
 		else s.x = -scale;
 		s *= scale2;
 
-		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(p), s * scene->cam.scale, radians);
+		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(p), s * scene->cam.scale, -radians);
 
 		// 绘制挂接的武器
 		for (auto& o : weapons) {
@@ -202,7 +202,7 @@ namespace Test5 {
 	void Player::DrawLight() {
 #if 1
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, (1024.f / cCellPixelSize) * scene->cam.scale, 0, 0.7f);
+			, (1024.f / cCellPixelSize) * scene->cam.scale, -radians, 0.7f);
 #endif
 
 		// 绘制挂接的武器
@@ -213,7 +213,7 @@ namespace Test5 {
 
 	void Player::DrawShadow() {
 		gg.Quad().DrawFrame(gg.pics.c64_shadow, scene->cam.ToGLPos(pos)
-			, (radius * (1.f / 40.f)) * scene->cam.scale, 0, 1.f, { 180,180,180,180 });
+			, (radius * (1.f / 40.f)) * scene->cam.scale, -radians, 1.f, { 180,180,180,180 });
 
 		// 绘制挂接的武器
 		for (auto& o : weapons) {
@@ -222,7 +222,7 @@ namespace Test5 {
 	}
 
 	void Player::DrawGizmos() {
-		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, -radians, 16);
 		for (auto& o : weapons) {
 			o->DrawGizmos();
 		}

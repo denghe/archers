@@ -152,7 +152,7 @@ namespace Test2 {
 	void CreatureWeapon::Draw() {
 		auto& f = gg.pics.sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, cWidth / 7.f * scene->cam.scale, radians);
+			, cWidth / 7.f * scene->cam.scale, -radians);
 	}
 
 	void CreatureWeapon::DrawGizmos() {
@@ -161,14 +161,14 @@ namespace Test2 {
 		// 使用旋转矩阵算出每个圆形的位置，旋转矩阵由 radians 计算得到
 		for (int32_t i = 0; i < cDensity; ++i) {
 			gg.Line().DrawCircle(scene->cam.ToGLPos(pos + circlePositions[i])
-				, cWidth * 0.5f * scene->cam.scale, radians, 8);
+				, cWidth * 0.5f * scene->cam.scale, -radians, 8);
 		}
 	}
 
 	void CreatureWeapon::DrawLight() {
 		auto& f = gg.pics.light_sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, cWidth / 7.f * scene->cam.scale, radians);
+			, cWidth / 7.f * scene->cam.scale, -radians);
 	}
 
 	void CreatureWeapon::Dispose() {

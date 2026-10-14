@@ -151,12 +151,12 @@ namespace Test3 {
 
 	void PlayerBullet::Draw() {
 		gg.Quad().DrawFrame(gg.pics.firearrow_[frameNumber], scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, -radians);
 	}
 
 	void PlayerBullet::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.light_firearrow, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians, 0.8f);
+			, scale * scene->cam.scale, -radians, 0.8f);
 	}
 
 	void PlayerBullet::Dispose() {

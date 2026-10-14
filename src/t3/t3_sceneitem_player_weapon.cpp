@@ -50,13 +50,13 @@ namespace Test3 {
 	void PlayerWeapon::Draw() {
 		auto& f = gg.pics.sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, cWidth / 7.f * scene->cam.scale, radians);
+			, cWidth / 7.f * scene->cam.scale, -radians);
 	}
 
 	void PlayerWeapon::DrawLight() {
 		auto& f = gg.pics.light_sword1;
 		gg.Quad().DrawFrame(f, scene->cam.ToGLPos(pos)
-			, cWidth / 7.f * scene->cam.scale, radians);
+			, cWidth / 7.f * scene->cam.scale, -radians);
 	}
 
 	void PlayerWeapon::Dispose() {

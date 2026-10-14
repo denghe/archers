@@ -35,7 +35,7 @@ namespace Test3 {
 		auto& p = owner->pathway->points[(int32_t)pathwayCursor];
 		pos = p.pos;
 		y = pos.y;
-		radians = -p.radians;
+		radians = p.radians;
 		// 添加到蛇的 grid 索引中
 		owner->scene->gridSnakes.Add(indexAtGrid, this);
 	}
@@ -185,8 +185,8 @@ namespace Test3 {
 		auto p = c.ToGLPos(pos);
 		auto s = radius * (2.f * cDrawScale) / f1.uvRect.w * c.scale;
 		auto& q = gg.Quad();
-		q.DrawFrame(f1, p, s, radians);
-		q.DrawFrame(f2, p + faceShaker.offset, s, radians);
+		q.DrawFrame(f1, p, s, -radians);
+		q.DrawFrame(f2, p + faceShaker.offset, s, -radians);
 	}
 
 	/***********************************************************************************/
@@ -248,7 +248,7 @@ namespace Test3 {
 		}
 		gg.Quad().DrawFrame(f, cam.ToGLPos(pos)
 			, radius * (2.f * cDrawScale) / f.uvRect.w * cam.scale
-			, radians, cp);
+			, -radians, cp);
 	}
 
 	void SnakeBody::DrawHPBar() {
@@ -291,7 +291,7 @@ namespace Test3 {
 		auto& c = owner->scene->cam;
 		gg.Quad().DrawFrame(f, c.ToGLPos(pos)
 			, radius * (2.f * cDrawScale) / f.uvRect.w * c.scale
-			, radians);
+			, -radians);
 	}
 
 }

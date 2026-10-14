@@ -150,16 +150,16 @@ namespace Test5 {
 
 	void PlayerBullet::Draw() {
 		gg.Quad().DrawFrame(gg.pics.frog_sword_qi_[frameNumber], scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, -radians);
 	}
 
 	void PlayerBullet::DrawLight() {
 		gg.Quad().DrawFrame(gg.pics.c64_light, scene->cam.ToGLPos(pos)
-			, 2 * scale * scene->cam.scale, radians, 0.5f);
+			, 2 * scale * scene->cam.scale, -radians, 0.5f);
 	}
 
 	void PlayerBullet::DrawGizmos() {
-		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, radians, 16);
+		gg.Line().DrawCircle(scene->cam.ToGLPos(pos), radius * scene->cam.scale, -radians, 16);
 	}
 
 	void PlayerBullet::Dispose() {

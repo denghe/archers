@@ -14,6 +14,7 @@ namespace Global {
 		sortContainer.Resize<true>((int32_t)gg.designSize.y);
 		cursor.Emplace()->Init();
 		MakeUI();
+		masterVolumeBackup = gg.masterVolume;
 	}
 
 	// UI 初始化，默认创建一个根节点
@@ -64,10 +65,11 @@ namespace Global {
 	// 处理窗口焦点变化，默认调整全局音量
 	void SceneBase::OnFocus(bool focused_) {
 		if (focused_) {
-			gg.sound.SetMasterVolume(1);
+			gg.SetMasterVolume(masterVolumeBackup);
 		}
 		else {
-			gg.sound.SetMasterVolume(0);
+			masterVolumeBackup = gg.masterVolume;
+			gg.SetMasterVolume(0);
 		}
 	}
 

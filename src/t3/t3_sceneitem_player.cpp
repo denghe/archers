@@ -42,7 +42,7 @@ namespace Test3 {
 
 	void Player::Draw() {
 		gg.Quad().DrawFrame(gg.pics.c128_player, scene->cam.ToGLPos(pos)
-			, scale * scene->cam.scale, radians);
+			, scale * scene->cam.scale, -radians);
 		weapon->Draw();
 	}
 
