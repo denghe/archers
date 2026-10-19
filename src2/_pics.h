@@ -48,6 +48,10 @@ struct _pics {
 	std::array<xx::Frame, 40> slime1_attack_;
 	std::array<xx::Frame, 24> slime1_idle_;
 	std::array<xx::Frame, 32> slime1_move_;
+	std::array<xx::Frame, 47> tiled_walls_1_;
+	std::array<xx::Frame, 47> tiled_walls_2_;
+	std::array<xx::Frame, 47> tiled_walls_3_;
+	std::array<xx::Frame, 47> tiled_walls_shadowmask_;
 	std::array<xx::Frame, 3> walls_;
 
 	xx::Shared<xx::GLTexture> Load(std::string picFN_, bool generateMipmap_ = true);

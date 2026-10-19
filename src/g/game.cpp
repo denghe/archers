@@ -36,6 +36,7 @@ namespace Global {
 		picsTex = pics.Load("res/_pics.png");
 
 		// init tiled maps data for walls
+#if 0
 		{
 			// 预生成针对 gg.pics.walls_? 贴图的 uv 布局. 整张图 256 * 348, 一共 8 列, 每列 32
 			// 第一排高度是 32 第二排是 26，如此交替 6 次, (32 + 26) * 6. 26 高度的是面向玩家的斜壁, 独立处理
@@ -226,7 +227,66 @@ namespace Global {
 
 			// ...
 		}
+#else
+		{
+			// 使用工具生成的映射表，直接映射
 
+			auto WallsMapTo = [this](std::array<xx::TinyFrame, 256>& tar, const std::array<xx::Frame, 47>& src) {
+				tar[0] = src[0];
+				tar[1] = src[1];
+				tar[4] = src[2];
+				tar[5] = src[3];
+				tar[7] = src[4];
+				tar[16] = src[5];
+				tar[17] = src[6];
+				tar[20] = src[7];
+				tar[21] = src[8];
+				tar[23] = src[9];
+				tar[28] = src[10];
+				tar[29] = src[11];
+				tar[31] = src[12];
+				tar[64] = src[13];
+				tar[65] = src[14];
+				tar[68] = src[15];
+				tar[69] = src[16];
+				tar[71] = src[17];
+				tar[80] = src[18];
+				tar[81] = src[19];
+				tar[84] = src[20];
+				tar[85] = src[21];
+				tar[87] = src[22];
+				tar[92] = src[23];
+				tar[93] = src[24];
+				tar[95] = src[25];
+				tar[112] = src[26];
+				tar[113] = src[27];
+				tar[116] = src[28];
+				tar[117] = src[29];
+				tar[119] = src[30];
+				tar[124] = src[31];
+				tar[125] = src[32];
+				tar[127] = src[33];
+				tar[193] = src[34];
+				tar[197] = src[35];
+				tar[199] = src[36];
+				tar[209] = src[37];
+				tar[213] = src[38];
+				tar[215] = src[39];
+				tar[221] = src[40];
+				tar[223] = src[41];
+				tar[241] = src[42];
+				tar[245] = src[43];
+				tar[247] = src[44];
+				tar[253] = src[45];
+				tar[255] = src[46];
+			};
+
+			WallsMapTo(wallsShadowMaskTiles, pics.tiled_walls_shadowmask_);
+			WallsMapTo(wallsTiles[0], pics.tiled_walls_1_);
+			WallsMapTo(wallsTiles[1], pics.tiled_walls_2_);
+			WallsMapTo(wallsTiles[2], pics.tiled_walls_3_);
+		}
+#endif
 
 		// init font0/2
 		auto charCount = pics._3500_t0_.size();
